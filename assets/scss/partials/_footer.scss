@@ -1,0 +1,30 @@
+// Footer style
+.footer {
+  padding: 0;
+  // box-shadow: 0 1000px 0 1000px $footer-background-color;
+
+  // .content,
+  // .columns {
+  //   padding: 1rem;
+  // }
+
+  .twitter {
+    .logo {
+      height: 40px;
+    }
+  }
+}
+.footer-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+}
+.is-dark {
+  background-color: $footer-bg;
+  .footer-link {
+    color: white;
+    &:hover {
+      color: darken(white, 15%);
+    }
+  }
+}
