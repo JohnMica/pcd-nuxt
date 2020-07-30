@@ -60,7 +60,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    deleteDropFile(index) {
+    deleteDropFile(index: number) {
       this.dropFiles.splice(index, 1)
     },
     handleSubmit() {},

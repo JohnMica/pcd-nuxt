@@ -46,7 +46,6 @@
           <p class="content-title title">
             {{ selectedMapObj.name }}
           </p>
-          }
           <p class="content-text">
             Origin Country:
             <span class="is-bold"> {{ selectedMapObj.origin_country }}</span>
@@ -232,10 +231,7 @@ export default Vue.extend({
             this.locations.push({
               id: index,
               // eslint-disable-next-line no-undef
-              position: latLng(
-                user.user_geolocation.lat,
-                user.user_geolocation.long
-              ),
+              position: [user.user_geolocation.lat, user.user_geolocation.long],
               url: user.user_url,
               logo: user.user_logo_url ? user.user_logo_url : '',
               name: user.user_name,

@@ -18,12 +18,17 @@ export default {
   plugins: [
     '~/plugins/truncate',
     '~/plugins/capitalize',
-    { src: '~/plugins/leaflet.js', mode: 'client' },
     { src: '~/plugins/validate.js', mode: 'client' },
   ],
   components: [{ path: '~/components', extensions: ['vue'] }],
   buildModules: ['@nuxt/components', '@nuxt/typescript-build'],
-  modules: ['nuxt-buefy', '@nuxtjs/axios', '@nuxtjs/pwa', '@nuxt/content'],
+  modules: [
+    'nuxt-buefy',
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    'nuxt-leaflet',
+    '@nuxt/content',
+  ],
   axios: {},
   content: {
     nestedProperties: ['author.name'],
