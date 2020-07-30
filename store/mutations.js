@@ -99,7 +99,7 @@ export default {
       licences,
       users,
       languages,
-      // maintainers,
+      maintainers,
     } = data
     state.filteredProducts = state.products.filter((product) => {
       let match = true
@@ -129,17 +129,17 @@ export default {
                 ~licences.indexOf(product.licence[product.licence.indexOf(cat)])
             ))
       }
-      // if (maintainers.length) {
-      //   match =
-      //     match &&
-      //     (!maintainers.length ||
-      //       maintainers.some(
-      //         cat =>
-      //           ~maintainers.indexOf(
-      //             product.maintainers[product.maintainers.indexOf(cat)]
-      //           )
-      //       ))
-      // }
+      if (maintainers.length) {
+        match =
+          match &&
+          (!maintainers.length ||
+            maintainers.some(
+              (cat) =>
+                ~maintainers.indexOf(
+                  product.maintainers[product.maintainers.indexOf(cat)]
+                )
+            ))
+      }
       if (categories.length) {
         match =
           match &&
