@@ -10,7 +10,7 @@
       >
         <div class="step-marker">
           <span v-if="currentStep > 1" class="icon">
-            <i class="fa fa-check"></i>
+            <b-icon icon="check" size="is-small"></b-icon>
           </span>
         </div>
         <div
@@ -29,7 +29,7 @@
       >
         <div class="step-marker">
           <span v-if="currentStep > 2" class="icon">
-            <i class="fa fa-check"></i>
+            <b-icon icon="check" size="is-small"></b-icon>
           </span>
         </div>
         <div
@@ -48,7 +48,7 @@
       >
         <div class="step-marker">
           <span v-if="currentStep > 3" class="icon">
-            <i class="fa fa-check"></i>
+            <b-icon icon="check" size="is-small"></b-icon>
           </span>
         </div>
         <div
@@ -67,7 +67,7 @@
       >
         <div class="step-marker">
           <span v-if="currentStep > 4" class="icon">
-            <i class="fa fa-check"></i>
+            <b-icon icon="check" size="is-small"></b-icon>
           </span>
         </div>
         <div
@@ -86,7 +86,7 @@
       >
         <div class="step-marker">
           <span v-if="submitSuccess" class="icon">
-            <i class="fa fa-flag"></i>
+            <b-icon icon="flag" size="is-small"></b-icon>
           </span>
         </div>
         <div
@@ -99,13 +99,13 @@
     </div>
     <validation-observer ref="formbuilder" v-slot="{ handleSubmit }" tag="div">
       <form id="formbuilder" @submit.prevent="handleSubmit(onSubmit)">
-        <!-- <b-input type="hidden" value="formbuilder" autocomplete="off"></b-input>
+        <b-input type="hidden" value="formbuilder" autocomplete="off"></b-input>
         <b-input
           type="hidden"
           :value="randomNonce"
           autocomplete="off"
         ></b-input>
-        <b-input type="hidden" :value="randomId" autocomplete="off"></b-input> -->
+        <b-input type="hidden" :value="randomId" autocomplete="off"></b-input>
         <div v-if="currentStep === 1" class="step">
           <validation-provider
             v-slot="{ errors, invalid, valid }"
@@ -749,7 +749,7 @@
                 type="text"
                 readonly
                 maxlength="50"
-                :value="form.yourName"
+                :value="dev.name"
                 required
               >
               </b-input>
@@ -872,87 +872,105 @@
       aria-modal
     >
       <div class="modal-card" style="width: auto;">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add Developer</p>
+        </header>
         <section class="modal-card-body">
-          <b-field label="Developer Name">
-            <b-input v-model="tempFormData.name" type="text" value="" required>
-            </b-input>
-          </b-field>
+          <validation-observer v-slot="{ handleSubmit }" slim>
+            <form
+              id="devModal"
+              ref="devModal"
+              @submit.prevent="handleSubmit(saveDeveloper)"
+            >
+              <b-field label="Developer Name">
+                <b-input
+                  v-model="tempFormData.name"
+                  type="text"
+                  value=""
+                  required
+                >
+                </b-input>
+              </b-field>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="url_string"
-          >
-            <div>
-              <b-tooltip label="eg: https://example.com">
-                <b-field label="Developer Website">
-                  <b-input
-                    v-model="tempFormData.website"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="url_string"
+              >
+                <div>
+                  <b-tooltip label="eg: https://example.com">
+                    <b-field label="Developer Website">
+                      <b-input
+                        v-model="tempFormData.website"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="url_string"
-          >
-            <div>
-              <b-tooltip label="eg: https://example.com/logo.png">
-                <b-field label="Developer Logo">
-                  <b-input
-                    v-model="tempFormData.logoUrl"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="url_string"
+              >
+                <div>
+                  <b-tooltip label="eg: https://example.com/logo.png">
+                    <b-field label="Developer Logo">
+                      <b-input
+                        v-model="tempFormData.logoUrl"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="alpha_num:3"
-          >
-            <div>
-              <b-tooltip label="eg: Education Software, Software">
-                <b-field label="Developer Category">
-                  <b-input
-                    v-model="tempFormData.category"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="alpha_num:3"
+              >
+                <div>
+                  <b-tooltip label="eg: Education Software, Software">
+                    <b-field label="Developer Category">
+                      <b-input
+                        v-model="tempFormData.category"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
+              <b-field>
+                <button class="button is-primary" native-type="submit">
+                  Add Developer
+                </button>
+              </b-field>
+            </form>
+          </validation-observer>
         </section>
         <footer class="modal-card-foot">
           <button class="button" type="button" @click.prevent="closeModal">
             Close
-          </button>
-          <button class="button is-primary" @click.prevent="saveDeveloper()">
-            Add Developer
           </button>
         </footer>
       </div>
@@ -965,87 +983,106 @@
       aria-modal
     >
       <div class="modal-card" style="width: auto;">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add Maintainer</p>
+        </header>
+
         <section class="modal-card-body">
-          <b-field label="Maintainer Name">
-            <b-input v-model="tempFormData.name" type="text" value="" required>
-            </b-input>
-          </b-field>
+          <validation-observer v-slot="{ handleSubmit }" slim>
+            <form
+              id="maintModal"
+              ref="maintModal"
+              @submit.prevent="handleSubmit(saveMaintainer)"
+            >
+              <b-field label="Maintainer Name">
+                <b-input
+                  v-model="tempFormData.name"
+                  type="text"
+                  value=""
+                  required
+                >
+                </b-input>
+              </b-field>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="url_string"
-          >
-            <div>
-              <b-tooltip label="eg: https://example.com">
-                <b-field label="Maintainer Website">
-                  <b-input
-                    v-model="tempFormData.website"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="url_string"
+              >
+                <div>
+                  <b-tooltip label="eg: https://example.com">
+                    <b-field label="Maintainer Website">
+                      <b-input
+                        v-model="tempFormData.website"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="url_string"
-          >
-            <div>
-              <b-tooltip label="eg: https://example.com/logo.png">
-                <b-field label="Maintainer Logo">
-                  <b-input
-                    v-model="tempFormData.logoUrl"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="url_string"
+              >
+                <div>
+                  <b-tooltip label="eg: https://example.com/logo.png">
+                    <b-field label="Maintainer Logo">
+                      <b-input
+                        v-model="tempFormData.logoUrl"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="alpha_num:3"
-          >
-            <div>
-              <b-tooltip label="eg: Education Software, Software">
-                <b-field label="Maintainer Category">
-                  <b-input
-                    v-model="tempFormData.category"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="alpha_num:3"
+              >
+                <div>
+                  <b-tooltip label="eg: Education Software, Software">
+                    <b-field label="Maintainer Category">
+                      <b-input
+                        v-model="tempFormData.category"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
+              <b-field>
+                <button class="button is-primary" native-type="submit">
+                  Add Developer
+                </button>
+              </b-field>
+            </form>
+          </validation-observer>
         </section>
         <footer class="modal-card-foot">
           <button class="button" type="button" @click.prevent="closeModal">
             Close
-          </button>
-          <button class="button is-primary" @click.prevent="saveMaintainer()">
-            Add Developer
           </button>
         </footer>
       </div>
@@ -1053,137 +1090,152 @@
     <b-modal
       :active.sync="projectUsersModalActive"
       has-modal-card
-      trap-focus
+      destroy-on-hide
       aria-role="dialog"
-      aria-modal
+      :aria-modal="projectUsersModalActive"
     >
-      <div class="modal-card" style="width: auto;">
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add User</p>
+        </header>
         <section class="modal-card-body">
-          <b-field label="User Name">
-            <b-input v-model="tempFormData.name" type="text" required>
-            </b-input>
-          </b-field>
+          <validation-observer v-slot="{ handleSubmit }" slim>
+            <form
+              id="userModal"
+              ref="userModal"
+              @submit.prevent="handleSubmit(saveUser)"
+            >
+              <b-field label="User Name">
+                <b-input v-model="tempFormData.name" type="text" required>
+                </b-input>
+              </b-field>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="url_string"
-          >
-            <div>
-              <b-tooltip label="eg: https://example.com">
-                <b-field label="User Website">
-                  <b-input
-                    v-model="tempFormData.website"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="url_string"
+              >
+                <div>
+                  <b-tooltip label="eg: https://example.com">
+                    <b-field label="User Website">
+                      <b-input
+                        v-model="tempFormData.website"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="url_string"
-          >
-            <div>
-              <b-tooltip label="eg: https://example.com.logo.png">
-                <b-field label="User Logo">
-                  <b-input
-                    v-model="tempFormData.logoUrl"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="url_string"
+              >
+                <div>
+                  <b-tooltip label="eg: https://example.com.logo.png">
+                    <b-field label="User Logo">
+                      <b-input
+                        v-model="tempFormData.logoUrl"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="alpha_num:3"
-          >
-            <div>
-              <b-tooltip label="eg: City Council, Library, Local Government">
-                <b-field label="User Category">
-                  <b-input
-                    v-model="tempFormData.category"
-                    type="text"
-                    maxlength="50"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="alpha_num:3"
+              >
+                <div>
+                  <b-tooltip
+                    label="eg: City Council, Library, Local Government"
                   >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+                    <b-field label="User Category">
+                      <b-input
+                        v-model="tempFormData.category"
+                        type="text"
+                        maxlength="50"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
 
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="latlong"
-          >
-            <div>
-              <b-tooltip label="eg: Latitude required for map placement">
-                <b-field label="User Location Latitude">
-                  <b-input
-                    v-model="tempFormData.location.latitude"
-                    type="text"
-                    maxlength="10"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
-          <validation-provider
-            v-slot="{ errors, invalid, valid }"
-            rules="latlong"
-          >
-            <div>
-              <b-tooltip label="eg: Longitude required for map placement">
-                <b-field label="User Location Longitude">
-                  <b-input
-                    v-model="tempFormData.location.longitude"
-                    type="text"
-                    maxlength="10"
-                    required
-                    :class="{ 'is-danger': invalid, 'is-success': valid }"
-                  >
-                  </b-input>
-                </b-field>
-              </b-tooltip>
-              <p v-if="errors.length" class="has-text-danger">
-                <small>{{ errors[0] }}</small>
-              </p>
-            </div>
-          </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="latlong"
+              >
+                <div>
+                  <b-tooltip label="eg: Latitude required for map placement">
+                    <b-field label="User Location Latitude">
+                      <b-input
+                        v-model="tempFormData.location.latitude"
+                        type="text"
+                        maxlength="10"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="latlong"
+              >
+                <div>
+                  <b-tooltip label="eg: Longitude required for map placement">
+                    <b-field label="User Location Longitude">
+                      <b-input
+                        v-model="tempFormData.location.longitude"
+                        type="text"
+                        maxlength="10"
+                        required
+                        :class="{ 'is-danger': invalid, 'is-success': valid }"
+                      >
+                      </b-input>
+                    </b-field>
+                  </b-tooltip>
+                  <p v-if="errors.length" class="has-text-danger">
+                    <small>{{ errors[0] }}</small>
+                  </p>
+                </div>
+              </validation-provider>
+              <b-field>
+                <button class="button is-primary" native-type="submit">
+                  Add User
+                </button>
+              </b-field>
+            </form>
+          </validation-observer>
         </section>
         <footer class="modal-card-foot">
           <button class="button" type="button" @click.prevent="closeModal">
             Close
-          </button>
-          <button class="button is-primary" @click.prevent="saveUser()">
-            Add User
           </button>
         </footer>
       </div>
@@ -1192,19 +1244,19 @@
 </template>
 
 <script lang="ts">
-// @ts-nocheck
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// // @ts-nocheck
+// /* eslint-disable no-console */
+// /* eslint-disable no-unused-vars */
+// /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import Vue from 'vue'
 import { ValidationObserver, ValidationProvider, validate } from 'vee-validate'
-import axios from 'axios'
-const qs = require('qs')
-const transformRequest = (jsonData = {}) =>
-  Object.entries(jsonData)
-    .map((x) => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`)
-    .join('&')
+
+// const qs = require('qs')
+// const transformRequest = (jsonData = {}) =>
+//   Object.entries(jsonData)
+//     .map((x: any) => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`)
+//     .join('&')
 
 export default Vue.extend({
   name: 'ProgressSteps',
@@ -1214,16 +1266,18 @@ export default Vue.extend({
   },
   data() {
     return {
-      currentStep: 5,
-      submitSuccess: false,
-      projectDevelopersModalActive: false,
-      projectMaintainersModalActive: false,
-      projectUsersModalActive: false,
-      sendingForm: false,
-      formSubmitted: false,
-      counterDev: 0,
-      counterMaint: 0,
-      sameAsDevs: false,
+      currentStep: 5 as number,
+      submitSuccess: false as boolean,
+      projectDevelopersModalActive: false as boolean,
+      projectMaintainersModalActive: false as boolean,
+      projectUsersModalActive: false as boolean,
+      sendingForm: false as boolean,
+      validForm: false as boolean,
+      formSubmitted: false as boolean,
+      counterDev: 0 as number,
+      counterMaint: 0 as number,
+      counterUsers: 0 as number,
+      sameAsDevs: false as boolean,
       form: {
         name: 'name',
         emailAddress: 'email@test.com',
@@ -1297,17 +1351,14 @@ export default Vue.extend({
       this.currentStep--
     },
     addDevelopers() {
-      this.showDevs = true
       this.counterDev++
       this.projectDevelopersModalActive = true
     },
     addMaintainers() {
-      this.showDevs = true
       this.counterMaint++
       this.projectMaintainersModalActive = true
     },
     addUsers() {
-      this.showUsers = true
       this.counterUsers++
       this.projectUsersModalActive = true
     },
@@ -1324,8 +1375,7 @@ export default Vue.extend({
         website: '',
         logoUrl: '',
         category: '',
-        longitude: '',
-        latitude: '',
+        location: { longitude: '', latitude: '' },
       }
     },
     saveUser() {
@@ -1336,8 +1386,10 @@ export default Vue.extend({
         website: '',
         logoUrl: '',
         category: '',
-        longitude: '',
-        latitude: '',
+        location: {
+          longitude: '',
+          latitude: '',
+        },
       }
     },
     saveMaintainer() {
@@ -1348,49 +1400,45 @@ export default Vue.extend({
         website: '',
         logoUrl: '',
         category: '',
-        longitude: '',
-        latitude: '',
+        location: { longitude: '', latitude: '' },
       }
     },
-    removeDeveloper(index) {
+    removeDeveloper(index: number) {
       this.form.projectDevelopers.splice(index, 1)
       this.tempFormData = {
         name: '',
         website: '',
         logoUrl: '',
         category: '',
-        longitude: '',
-        latitude: '',
+        location: { longitude: '', latitude: '' },
       }
     },
-    removeMaintainer(index) {
+    removeMaintainer(index: number) {
       this.form.projectMaintainers.splice(index, 1)
       this.tempFormData = {
         name: '',
         website: '',
         logoUrl: '',
         category: '',
-        longitude: '',
-        latitude: '',
+        location: { longitude: '', latitude: '' },
       }
     },
-    removeUser(index) {
+    removeUser(index: number) {
       this.form.projectUsers.splice(index, 1)
       this.tempFormData = {
         name: '',
         website: '',
         logoUrl: '',
         category: '',
-        longitude: '',
-        latitude: '',
+        location: { longitude: '', latitude: '' },
       }
     },
     onSubmit() {
       const that = this
       if (that.currentStep === 5) {
         this.sendingForm = true
-        axios
-          .post('forms/formbuilder', that.form, {
+        this.$axios
+          .post('', that.form, {
             headers: {
               'content-type': 'application/x-www-form-urlencoded',
               Accept: 'application/json',
@@ -1404,6 +1452,7 @@ export default Vue.extend({
               that.sendingForm = false
               that.currentStep = 6
               requestAnimationFrame(() => {
+                // @ts-ignore
                 that.$refs.formbuilder.reset()
               })
             }, 500)

@@ -88,7 +88,7 @@
           class="column is-12 is-10-tablet is-8-desktop is-6-widescreen contributor"
         >
           <h4 class="is-size-4">Contributors</h4>
-          <div class="columns is-mobile">
+          <div class="columns is-mobile is-centered">
             <div
               v-for="(item, ind) in page.contributors"
               :key="ind"
@@ -97,11 +97,15 @@
               <h3 class="is-size-5">{{ item.name }}</h3>
               <p class="subtitle">{{ item.contributor_title }}</p>
               <div class="social-media">
-                <div>
-                  Contact details:
+                Contact details:
+                <div class="has-text-centered">
                   <span v-if="item.email">
                     <a :href="`mailto:${item.email}`" class="pa-2">
-                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                      <img
+                        :src="require(`~/assets/images/email.svg`)"
+                        alt="email image"
+                        width="24"
+                      />
                     </a>
                   </span>
                   <span class="is-inline-flex align-center">
@@ -113,7 +117,11 @@
                       target="_blank"
                       class="pa-2"
                     >
-                      <i :class="social.image" aria-hidden="true"></i>
+                      <img
+                        :src="require(`~/assets/images/${social.image}`)"
+                        alt="social media logo"
+                        width="24"
+                      />
                     </a>
                   </span>
                 </div>

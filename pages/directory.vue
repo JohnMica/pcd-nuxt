@@ -10,7 +10,7 @@
                 <total-products></total-products>
               </div>
               <b-tabs type="is-toggle" position="is-centered" destroy-on-hide>
-                <b-tab-item label="List View" icon="grip-horizontal">
+                <b-tab-item label="List View" icon="format-list-bulleted">
                   <list-view></list-view>
                 </b-tab-item>
                 <b-tab-item label="Table View" icon="table">
