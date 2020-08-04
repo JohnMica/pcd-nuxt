@@ -28,6 +28,7 @@
                 src="~/assets/images/twitter.svg"
                 class="logo"
                 alt="Twitter logo"
+                width="30"
               />
             </a>
           </div>
