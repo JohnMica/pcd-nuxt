@@ -41,6 +41,7 @@
         </div>
       </div>
     </section>
+    <app-footer></app-footer>
   </main>
 </template>
 

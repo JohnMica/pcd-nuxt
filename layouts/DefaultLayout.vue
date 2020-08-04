@@ -43,7 +43,7 @@
         </div>
       </div>
     </section>
-    <AppFooter></AppFooter>
+    <app-footer></app-footer>
   </main>
 </template>
 

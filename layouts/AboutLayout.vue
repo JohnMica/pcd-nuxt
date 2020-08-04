@@ -18,7 +18,7 @@
     </section>
     <nuxt></nuxt>
 
-    <AppFooter></AppFooter>
+    <app-footer></app-footer>
   </main>
 </template>
 
