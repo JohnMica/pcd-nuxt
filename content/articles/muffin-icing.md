@@ -2,7 +2,7 @@
 title: 'Muffin icing'
 author:
   name: 'Marry M.'
-image: '~/assets/blog-images/demo03.jpg'
+image: 'demo_03.jpg'
 in_main_menu: true
 in_footer_menu: false
 intro: 'Candy canes dragée jujubes muffin icing. Chocolate cake dessert macaroon dessert sesame snaps tart danish croissant. Sweet jelly pastry chocolate cake gummi bears marzipan gingerbread jelly. Sweet chupa chups gingerbread bonbon.'

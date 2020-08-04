@@ -51,15 +51,7 @@
 export default {
   name: 'DefaultLayout',
   data() {
-    return {
-      items: [
-        {
-          title: 'Home',
-          icon: 'home',
-          to: { name: 'index' },
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>

@@ -1,6 +1,6 @@
 export default {
   mode: 'universal',
-  target: 'server',
+  target: 'static',
   head: {
     title: 'PublicCode Directory',
     meta: [
@@ -32,7 +32,7 @@ export default {
   ],
   axios: {},
   content: {
-    nestedProperties: ['author.name'],
+    // nestedProperties: ['author.name'],
     markdown: {
       // https://github.com/remarkjs/remark-external-links#options
       remarkExternalLinks: {

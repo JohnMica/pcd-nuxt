@@ -23,7 +23,7 @@
         <b-navbar-item
           v-for="page of pages"
           :key="page.slug"
-          :href="`articles/${page.slug}`"
+          :href="`/articles/${page.slug}`"
         >
           {{ page.title }}
         </b-navbar-item>

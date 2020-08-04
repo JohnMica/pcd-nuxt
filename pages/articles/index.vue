@@ -23,10 +23,9 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'BlogSummary',
-  // @ts-ignore
-  async asyncData({ $content, params }) {
-    // @ts-ignore
-    const articles = await $content('articles', params.slug)
+  layout: 'BlogLayout',
+  async asyncData({ $content }) {
+    const articles = await $content('articles')
       .only(['title', 'description', 'img', 'slug', 'author'])
       .sortBy('createdAt', 'asc')
       .fetch()

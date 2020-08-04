@@ -97,8 +97,12 @@
         </div>
       </div>
     </div>
-    <validation-observer ref="formbuilder" v-slot="{ handleSubmit }" tag="div">
-      <form id="formbuilder" @submit.prevent="handleSubmit(onSubmit)">
+    <validation-observer v-slot="{ handleSubmit }" slim>
+      <form
+        id="formbuilder"
+        ref="formbuilder"
+        @submit.prevent="handleSubmit(onSubmit)"
+      >
         <b-input type="hidden" value="formbuilder" autocomplete="off"></b-input>
         <b-input
           type="hidden"
@@ -1434,11 +1438,10 @@ export default Vue.extend({
       }
     },
     onSubmit() {
-      const that = this
-      if (that.currentStep === 5) {
+      if (this.currentStep === 5) {
         this.sendingForm = true
         this.$axios
-          .post('', that.form, {
+          .post('', this.form, {
             headers: {
               'content-type': 'application/x-www-form-urlencoded',
               Accept: 'application/json',
@@ -1448,12 +1451,12 @@ export default Vue.extend({
           .then((res) => {
             setTimeout(() => {
               console.log('response', res)
-              that.submitSuccess = true
-              that.sendingForm = false
-              that.currentStep = 6
+              this.submitSuccess = true
+              this.sendingForm = false
+              this.currentStep = 6
               requestAnimationFrame(() => {
                 // @ts-ignore
-                that.$refs.formbuilder.reset()
+                this.$refs.formbuilder.reset()
               })
             }, 500)
           })

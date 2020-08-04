@@ -2,6 +2,7 @@
   <div class="flex justify-between">
     <NuxtLink
       v-if="prev"
+      :prefetch="false"
       :to="{ name: 'articles-slug', params: { slug: prev.slug } }"
       class="text-primary font-bold hover:underline"
     >
@@ -10,6 +11,7 @@
     <span v-else>&nbsp;</span>
     <NuxtLink
       v-if="next"
+      :prefetch="false"
       :to="{ name: 'articles-slug', params: { slug: next.slug } }"
       class="font-bold hover:underline"
     >
