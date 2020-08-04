@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit()">
+  <form id="simpleForm" ref="simpleForm" @submit.prevent="handleSubmit">
     <b-field label="Name">
       <b-input v-model="name" type="text"></b-input>
     </b-field>
@@ -23,7 +23,7 @@
 
     <div class="tags">
       <span
-        v-for="(file, index) in dropFiles"
+        v-for="(item, index) in dropFiles"
         :key="index"
         class="tag is-primary"
       >

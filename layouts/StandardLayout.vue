@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div class="container">
       <navigation-bar></navigation-bar>
     </div>
@@ -12,22 +12,15 @@
         </div>
       </div>
     </section>
-  </div>
+    <AppFooter></AppFooter>
+  </main>
 </template>
 
 <script>
 export default {
   name: 'StandardLayout',
   data() {
-    return {
-      items: [
-        {
-          title: 'Home',
-          icon: 'home',
-          to: { name: 'index' },
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>

@@ -19,7 +19,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'JoinUs',
-  layout: 'join',
+  layout: 'JoinLayout',
   async asyncData({ $content }) {
     const page = await $content('join').fetch()
     return { page }

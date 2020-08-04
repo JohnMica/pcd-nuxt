@@ -29,18 +29,24 @@
               </li>
             </ol>
           </div>
+          <div class="column is-12 join-page-content">
+            <nuxt-content :document="page"></nuxt-content>
+          </div>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-12 is-half-desktop">
+        <div class="columns is-centered is-multiline has-background-white">
+          <div class="column is-12 is-10-tablet is-8-desktop is-6-widescreen">
             <nuxt></nuxt>
           </div>
         </div>
+        <div class="columns is-compensating"></div>
       </div>
     </section>
+
+    <app-footer></app-footer>
   </main>
 </template>
 
@@ -48,7 +54,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'JoinUs',
+  name: 'ContactLayout',
   data() {
     return {
       page: {},
@@ -59,7 +65,7 @@ export default Vue.extend({
   },
   methods: {
     async fethPage() {
-      const page = await this.$content('join').fetch()
+      const page = await this.$content('contact').fetch()
       this.page = page
     },
   },

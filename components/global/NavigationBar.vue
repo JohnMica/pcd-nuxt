@@ -20,7 +20,11 @@
         About us
       </b-navbar-item>
       <b-navbar-dropdown label="Blog" href="#">
-        <b-navbar-item v-for="page of pages" :key="page.slug" :href="page.slug">
+        <b-navbar-item
+          v-for="page of pages"
+          :key="page.slug"
+          :href="`articles/${page.slug}`"
+        >
           {{ page.title }}
         </b-navbar-item>
       </b-navbar-dropdown>

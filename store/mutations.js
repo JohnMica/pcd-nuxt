@@ -68,7 +68,9 @@ export default {
     const usersSet = []
     state.products.filter((el) => {
       el.users.forEach((user) => {
-        usersSet.push(user.user_name)
+        if (user.user_name.length > 0) {
+          usersSet.push(user.user_name)
+        }
       })
     })
 
@@ -78,7 +80,9 @@ export default {
     const maintainerSet = []
     state.products.filter((el) => {
       el.maintainers.forEach((maintainer) => {
-        maintainerSet.push(maintainer.maintainer_name)
+        if (maintainer.maintainer_name.length > 0) {
+          maintainerSet.push(maintainer.maintainer_name)
+        }
       })
     })
 
@@ -133,12 +137,13 @@ export default {
         match =
           match &&
           (!maintainers.length ||
-            maintainers.some(
-              (cat) =>
-                ~maintainers.indexOf(
-                  product.maintainers[product.maintainers.indexOf(cat)]
-                )
-            ))
+            maintainers.some((maint) => {
+              if (
+                product.maintainers.some((el) => el.maintainer_name === maint)
+              )
+                return true
+              else return false
+            }))
       }
       if (categories.length) {
         match =
@@ -155,9 +160,10 @@ export default {
         match =
           match &&
           (!users.length ||
-            users.some(
-              (cat) => ~users.indexOf(product.users[product.users.indexOf(cat)])
-            ))
+            users.some((user) => {
+              if (product.users.some((el) => el.user_name === user)) return true
+              else return false
+            }))
       }
       if (sectors.length) {
         match =

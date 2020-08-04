@@ -43,6 +43,7 @@
         </div>
       </div>
     </section>
+    <AppFooter></AppFooter>
   </main>
 </template>
 

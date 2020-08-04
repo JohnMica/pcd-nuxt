@@ -138,7 +138,33 @@
         </b-checkbox>
       </b-field>
       <b-field v-for="(item, inde) in users" :key="`users-${inde}`">
-        <b-checkbox v-model="checkedUsers" :native-value="item">
+        <b-checkbox
+          v-model="checkedUsers"
+          :native-value="item"
+          @input="updateFilteredItems"
+        >
+          {{ item }}
+        </b-checkbox>
+      </b-field>
+      <hr />
+      <b-field label="Maintainers">
+        <b-checkbox
+          :indeterminate="
+            checkedMaintainers.length > 0 &&
+            checkedMaintainers.length < maintainers.length
+          "
+          :value="checkedMaintainers.length === maintainers.length"
+          @input="toggleMaintainers"
+        >
+          All Users
+        </b-checkbox>
+      </b-field>
+      <b-field v-for="(item, inde) in maintainers" :key="`maintainers-${inde}`">
+        <b-checkbox
+          v-model="checkedMaintainers"
+          :native-value="item"
+          @input="updateFilteredItems"
+        >
           {{ item }}
         </b-checkbox>
       </b-field>
@@ -343,6 +369,7 @@ export default Vue.extend({
       checkedLicences: [],
       checkedUsers: [],
       checkedLang: [],
+      checkedMaintainers: [],
       selected: null,
       isComponentModalActive: false,
     }
@@ -377,6 +404,7 @@ export default Vue.extend({
         licences: this.checkedLicences,
         users: this.checkedUsers,
         languages: this.checkedLang,
+        maintainers: this.checkedMaintainers,
         selectedProd: this.selected,
       }
     },
@@ -399,6 +427,7 @@ export default Vue.extend({
       licences: 'licences',
       users: 'users',
       languages: 'languages',
+      maintainers: 'maintainers',
     }),
   },
   mounted() {},
@@ -432,6 +461,14 @@ export default Vue.extend({
         this.checkedUsers = this.users
       } else {
         this.checkedUsers = []
+      }
+      this.updateFilteredItems()
+    },
+    toggleMaintainers() {
+      if (this.checkedMaintainers.length < this.maintainers.length) {
+        this.checkedMaintainers = this.maintainers
+      } else {
+        this.checkedMaintainers = []
       }
       this.updateFilteredItems()
     },

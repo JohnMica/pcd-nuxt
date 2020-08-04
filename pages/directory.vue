@@ -33,7 +33,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'DirectoryPage',
-  layout: 'standard',
+  layout: 'StandardLayout',
 })
 </script>
 

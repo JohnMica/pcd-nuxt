@@ -1,22 +1,22 @@
 <template>
   <main>
-    <!-- <section class="hero is-medium is-gradient"> -->
-    <!-- <div class="hero-head">
+    <section class="hero is-medium is-gradient">
+      <div class="hero-head">
         <div class="container">
           <navigation-bar></navigation-bar>
         </div>
-      </div> -->
-    <!-- <div class="hero-body has-text-centered">
+      </div>
+      <div class="hero-body has-text-centered">
         <div class="container">
           <div class="columns is-centered">
-            <div class="column is-12 is-half-desktop"> -->
-    errorororor
-    <!-- </div>
+            <div class="column is-12 is-half-desktop">
+              errorororor
+            </div>
           </div>
         </div>
       </div>
-    </section> -->
-    <!-- <section class="section is-gradient is-margin-negative">
+    </section>
+    <section class="section is-gradient is-margin-negative">
       <div class="columns is-centered is-multiline">
         <div
           class="column is-10 is-8-desktop has-text-centered is-flex justify-center homepage-btns"
@@ -42,7 +42,7 @@
           </a>
         </div>
       </div>
-    </section> -->
+    </section>
   </main>
 </template>
 <script lang="ts">

@@ -9,6 +9,8 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  name: 'MainPage',
+  layout: 'DefaultLayout',
   data() {
     return {
       page: {} as any,
