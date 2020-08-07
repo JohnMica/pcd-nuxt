@@ -33,6 +33,8 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable no-console */
+
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -61,14 +63,23 @@ export default Vue.extend({
         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       }
       // @ts-ignore
-      this.$axios.post(
-        '/',
-        this.encode({
-          'form-name': 'simplecontact',
-          ...this.form,
-        }),
-        axiosConfig
-      )
+      this.$axios
+        .post(
+          '/',
+          this.encode({
+            'form-name': 'simplecontact',
+            ...this.form,
+          }),
+          axiosConfig
+        )
+        .then((res: any) => {
+          console.log('result', res)
+
+          this.$router.push('/')
+        })
+        .catch((err: any) => {
+          console.log(err)
+        })
     },
   },
 })

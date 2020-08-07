@@ -1,7 +1,7 @@
 <template>
   <div>
-    We collect cookies to gather information about how the website is being used
-    and only to improve the speed, functionality and usefulness of the website.
+    <h1>{{ page.title }}</h1>
+    <nuxt-content :document="page"></nuxt-content>
   </div>
 </template>
 
@@ -10,7 +10,21 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'CookiesPage',
-  layout: 'StandardLayout',
+  layout: 'DefaultLayout',
+  data() {
+    return {
+      page: {} as any,
+    }
+  },
+  beforeMount() {
+    this.fetchPage()
+  },
+  methods: {
+    async fetchPage() {
+      const page = await this.$content('cookies').fetch()
+      this.page = page
+    },
+  },
 })
 </script>
 

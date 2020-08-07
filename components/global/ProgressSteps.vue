@@ -1480,16 +1480,8 @@ export default Vue.extend({
             }, 500)
           })
           .catch((error: any) => {
-            if (error.response) {
-              console.error('error.response', error.response)
-              this.sendingForm = false
-            } else if (error.request) {
-              console.error('error.request', error.request)
-              this.sendingForm = false
-            } else {
-              console.error('Error', error.message)
-              this.sendingForm = false
-            }
+            console.error('Error', error)
+            this.sendingForm = false
           })
 
         return

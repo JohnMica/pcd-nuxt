@@ -1,6 +1,6 @@
 export default {
   mode: 'universal',
-  target: 'static',
+  // target: 'static',
   head: {
     title: 'PublicCode Directory',
     meta: [
@@ -30,6 +30,9 @@ export default {
     'nuxt-leaflet',
     '@nuxt/content',
   ],
+  generate: {
+    fallback: true,
+  },
   axios: {},
   content: {
     // nestedProperties: ['author.name'],
