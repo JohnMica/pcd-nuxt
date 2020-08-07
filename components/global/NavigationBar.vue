@@ -19,7 +19,7 @@
       <b-navbar-item label="About us" href="/about">
         About us
       </b-navbar-item>
-      <b-navbar-dropdown label="Blog" href="#">
+      <!-- <b-navbar-dropdown label="Blog" href="#">
         <b-navbar-item
           v-for="page of pages"
           :key="page.slug"
@@ -27,7 +27,7 @@
         >
           {{ page.title }}
         </b-navbar-item>
-      </b-navbar-dropdown>
+      </b-navbar-dropdown> -->
       <b-navbar-item label="Submit Porject" href="/join-us">
         Submit Project
       </b-navbar-item>

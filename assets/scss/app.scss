@@ -17,7 +17,7 @@
 // @import 'partials/beta';
 
 * {
-  border-radius: 0 !important;
+  border-radius: 0;
 }
 
 html,
@@ -137,30 +137,12 @@ footer {
   }
 }
 
-// .is-margin-negative {
-//   position: relative;
-//   .columns {
-//     position: absolute;
-//     width: 100%;
-//     left: 50%;
-//     top: 50%;
-//     margin: 0;
-//     transform: translate(-50%, -30%);
-//   }
-// }
-
 .footer {
   .has-background-white {
-    // padding-top: 10rem;
     background: white;
   }
 }
 @media screen and (max-width: 576px) {
-  // .is-margin-negative {
-  //   .columns {
-  //     width: auto;
-  //   }
-  // }
   .homepage-btns {
     .card {
       width: calc(100vw / 2);
@@ -168,6 +150,14 @@ footer {
     img {
       height: 50px;
     }
+  }
+
+  .image-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
   }
 }
 .is-gradient {
@@ -199,4 +189,23 @@ footer {
 }
 #breadcrumbs {
   padding-left: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4vw, 2.7rem);
+}
+h2 {
+  font-size: clamp(2rem, 3.6vw, 2.5rem);
+}
+h3 {
+  font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+}
+h4 {
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+}
+h5 {
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+}
+h6 {
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
 }

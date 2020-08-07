@@ -7,7 +7,7 @@
           :key="ind"
           class="column is-12 is-12 is-10-tablet is-8-desktop is-7-widescreen features"
         >
-          <div class="image">
+          <div class="image-wrapper image">
             <img
               class="feature-image"
               :src="require(`~/assets/images/${feature.image}`)"
@@ -88,17 +88,19 @@
           class="column is-12 is-10-tablet is-8-desktop is-6-widescreen contributor"
         >
           <h4 class="is-size-4">Contributors</h4>
-          <div class="columns is-mobile is-centered">
+          <div
+            class="columns is-tablet is-centered is-multiline is-variable is-4-mobile is-6-desktop is-10-widescreen"
+          >
             <div
               v-for="(item, ind) in page.contributors"
               :key="ind"
-              class="column name"
+              class="column is-12-phone is-4-tablet pa-4"
             >
               <h3 class="is-size-5">{{ item.name }}</h3>
               <p class="subtitle">{{ item.contributor_title }}</p>
               <div class="social-media">
                 Contact details:
-                <div class="has-text-centered">
+                <div class="">
                   <span v-if="item.email">
                     <a :href="`mailto:${item.email}`" class="pa-2">
                       <img
@@ -108,14 +110,14 @@
                       />
                     </a>
                   </span>
-                  <span class="is-inline-flex align-center">
+                  <span>
                     <a
                       v-for="(social, i) in item.socialmedia"
                       :key="i"
                       :href="social.link"
                       rel="noopener"
                       target="_blank"
-                      class="pa-2"
+                      class="pa-2 is-inline-flex"
                     >
                       <img
                         :src="require(`~/assets/images/${social.image}`)"
