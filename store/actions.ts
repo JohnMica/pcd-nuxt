@@ -15,7 +15,7 @@ const schemaType = {
     'repository',
     'logo_url',
     'language',
-    'origin_country',
+    'originCountry',
     'sector',
     'category',
     'licence',
@@ -78,10 +78,10 @@ const schemaType = {
         pattern: '^(.*)$',
       },
     },
-    origin_country: {
-      $id: '#/properties/origin_country',
+    originCountry: {
+      $id: '#/properties/originCountry',
       type: 'string',
-      title: 'The Origin_country Schema',
+      title: 'The originCountry Schema',
       default: '',
       pattern: '^(.*)$',
     },
@@ -130,16 +130,16 @@ const schemaType = {
         type: 'object',
         title: 'The Items Schema',
         required: [
-          'developer_name',
+          'name',
           'developer_logo_url',
           'developer_url',
           'developer_category',
         ],
         properties: {
-          developer_name: {
-            $id: '#/properties/developers/items/properties/developer_name',
+          name: {
+            $id: '#/properties/developers/items/properties/name',
             type: 'string',
-            title: 'The Developer_name Schema',
+            title: 'The name Schema',
             default: '',
             pattern: '^(.*)$',
           },
@@ -176,16 +176,16 @@ const schemaType = {
         type: 'object',
         title: 'The Items Schema',
         required: [
-          'maintainer_name',
+          'name',
           'maintainer_url',
           'maintainer_logo_url',
           'maintainer_repository',
         ],
         properties: {
-          maintainer_name: {
-            $id: '#/properties/maintainers/items/properties/maintainer_name',
+          name: {
+            $id: '#/properties/maintainers/items/properties/name',
             type: 'string',
-            title: 'The Maintainer_name Schema',
+            title: 'The name Schema',
             default: '',
             pattern: '^(.*)$',
           },
@@ -224,17 +224,17 @@ const schemaType = {
         type: 'object',
         title: 'The Items Schema',
         required: [
-          'user_name',
+          'name',
           'user_location',
           'user_logo_url',
           'user_url',
           'user_geolocation',
         ],
         properties: {
-          user_name: {
-            $id: '#/properties/users/items/properties/user_name',
+          name: {
+            $id: '#/properties/users/items/properties/name',
             type: 'string',
-            title: 'The User_name Schema',
+            title: 'The name Schema',
             default: '',
             pattern: '^(.*)$',
           },
@@ -288,7 +288,7 @@ const schemaType = {
 }
 
 export default {
-  fetchLinks(context) {
+  fetchLinks(context: any) {
     $axios
       .get(
         'https://raw.githubusercontent.com/OpenUK/publiccode.directory/master/database/database.index.json'
@@ -297,15 +297,15 @@ export default {
         context.commit('fetchLinks', data.data)
       })
       .then(() => {
-        context.state.links.forEach((item) => {
+        context.state.links.forEach((item: any) => {
           $axios
             .get(item)
-            .then((data) => {
+            .then((data: any) => {
               const avj = new Ajv()
               const valid = avj
                 .addSchema(schemaType, 'projSchema')
                 .validate('projSchema', data.data)
-              if (valid) {
+              if (valid as boolean) {
                 context.commit('fetchProducts', data.data)
                 context.commit('getCategories')
                 context.commit('getCountries')
@@ -317,10 +317,10 @@ export default {
                 context.commit('getLanguage')
               }
             })
-            .catch((error) => console.log(error))
+            .catch((error: any) => console.log(error))
         })
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.log(error)
       })
   },

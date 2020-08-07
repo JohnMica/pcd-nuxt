@@ -1248,13 +1248,12 @@
 </template>
 
 <script lang="ts">
-// // @ts-nocheck
-// /* eslint-disable no-console */
+/* eslint-disable no-console */
 // /* eslint-disable no-unused-vars */
 // /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import Vue from 'vue'
-import { ValidationObserver, ValidationProvider, validate } from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 // const qs = require('qs')
 // const transformRequest = (jsonData = {}) =>
@@ -1440,6 +1439,7 @@ export default Vue.extend({
     onSubmit() {
       if (this.currentStep === 5) {
         this.sendingForm = true
+        // @ts-ignore
         this.$axios
           .post('', this.form, {
             headers: {
@@ -1448,7 +1448,7 @@ export default Vue.extend({
               'X-Requested-With': 'XMLHttpRequest',
             },
           })
-          .then((res) => {
+          .then((res: any) => {
             setTimeout(() => {
               console.log('response', res)
               this.submitSuccess = true
@@ -1460,16 +1460,16 @@ export default Vue.extend({
               })
             }, 500)
           })
-          .catch((error) => {
+          .catch((error: any) => {
             if (error.response) {
               console.error('error.response', error.response)
-              that.sendingForm = false
+              this.sendingForm = false
             } else if (error.request) {
               console.error('error.request', error.request)
-              that.sendingForm = false
+              this.sendingForm = false
             } else {
               console.error('Error', error.message)
-              that.sendingForm = false
+              this.sendingForm = false
             }
           })
 

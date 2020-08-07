@@ -48,7 +48,7 @@
           </p>
           <p class="content-text">
             Origin Country:
-            <span class="is-bold"> {{ selectedMapObj.origin_country }}</span>
+            <span class="is-bold"> {{ selectedMapObj.originCountry }}</span>
           </p>
           <p v-if="selectedMapObj.sector.length === 1" class="content-text">
             Sector:
@@ -118,8 +118,8 @@
             <p>
               Developed by:
               <span v-for="(dev, ind) in selectedMapObj.developers" :key="ind">
-                <a :href="dev.developer_name" rel="noopener">
-                  {{ dev.developer_name }}
+                <a :href="dev.name" rel="noopener">
+                  {{ dev.name }}
                 </a>
               </span>
             </p>
@@ -227,15 +227,15 @@ export default Vue.extend({
       this.locations = []
       for (let index = 0; index < this.list.length; index++) {
         this.list[index].users.forEach((user) => {
-          if (user.user_name !== '') {
+          if (user.name !== '') {
             this.locations.push({
               id: index,
               // eslint-disable-next-line no-undef
               position: [user.user_geolocation.lat, user.user_geolocation.long],
               url: user.user_url,
               logo: user.user_logo_url ? user.user_logo_url : '',
-              name: user.user_name,
-              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' class='small-logo'/>  ${user.user_name}</div>  `,
+              name: user.name,
+              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' class='small-logo'/>  ${user.name}</div>  `,
             })
           }
         })
@@ -246,14 +246,14 @@ export default Vue.extend({
       Object.assign(
         this.selectedMapObj,
         this.list.filter((el) =>
-          el.users.some((item) => item.user_name === marker.name)
+          el.users.some((item) => item.name === marker.name)
         )[0]
       )
       this.showObjectMap = true
     },
     removeSelection(marker) {
       this.showObjectMap = false
-      if (this.selectedMapObj.user_name === marker.name) {
+      if (this.selectedMapObj.name === marker.name) {
         this.selectedMapObj = null
       }
     },

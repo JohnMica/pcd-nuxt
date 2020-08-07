@@ -30,7 +30,7 @@
             </p>
             <p class="content-text">
               Origin Country:
-              <span class="is-bold"> {{ product.origin_country }}</span>
+              <span class="is-bold"> {{ product.originCountry }}</span>
             </p>
             <p v-if="product.sector.length === 1" class="content-text">
               Sector:
@@ -92,8 +92,8 @@
               <p>
                 Developed by:
                 <span v-for="(dev, ind) in product.developers" :key="ind">
-                  <a :href="dev.developer_name" rel="noopener">
-                    {{ dev.developer_name }}
+                  <a :href="dev.name" rel="noopener">
+                    {{ dev.name }}
                   </a>
                 </span>
               </p>

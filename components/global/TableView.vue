@@ -56,7 +56,7 @@
         <div class="media-content">
           <div class="content">
             <p>Product Name: {{ props.row.name }}</p>
-            <p>Origin Country: {{ props.row.origin_country }}</p>
+            <p>Origin Country: {{ props.row.originCountry }}</p>
             <p>
               Sector:
               <span v-for="(sector, index) in props.row.sector" :key="index">
@@ -73,7 +73,7 @@
                 <li v-for="(devs, ind) in props.row.developers" :key="ind">
                   <span>
                     <a :href="devs.developer_url" rel="noopener">{{
-                      devs.developer_name
+                      devs.name
                     }}</a>
                   </span>
                 </li>
@@ -88,7 +88,7 @@
                 >
                   <span v-if="maintainer.maintainer_url !== ''">
                     <a :href="maintainer.maintainer_url" rel="noopener">
-                      {{ maintainer.maintainer_name }}
+                      {{ maintainer.name }}
                     </a>
                   </span>
                   <span v-if="maintainer.maintainer_repository !== ''">

@@ -5,7 +5,7 @@ export const state = () => ({
   products: [],
   categories: [],
   licences: [],
-  public_sector: [],
+  publicSector: [],
   languages: [],
   countries: [],
   companies: [],
