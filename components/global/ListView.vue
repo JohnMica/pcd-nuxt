@@ -64,8 +64,11 @@
                 Project Repository
               </a>
             </p>
-            <p v-if="!product.showMore" class="content-text">
-              {{ product.description | truncate(150) }}
+            <p
+              v-if="!product.showMore && product.description"
+              class="content-text"
+            >
+              {{ product.description | truncate(150) || '--' }}
             </p>
             <div v-else class="content-text">
               {{ product.description }}

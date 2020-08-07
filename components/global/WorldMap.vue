@@ -227,15 +227,20 @@ export default Vue.extend({
       this.locations = []
       for (let index = 0; index < this.list.length; index++) {
         this.list[index].users.forEach((user) => {
-          if (user.name !== '') {
+          if (
+            user.user_name !== '' &&
+            user.user_geolocation &&
+            user.user_geolocation.lat &&
+            user.user_geolocation.long
+          ) {
             this.locations.push({
               id: index,
               // eslint-disable-next-line no-undef
               position: [user.user_geolocation.lat, user.user_geolocation.long],
               url: user.user_url,
               logo: user.user_logo_url ? user.user_logo_url : '',
-              name: user.name,
-              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' class='small-logo'/>  ${user.name}</div>  `,
+              name: user.user_name,
+              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' class='small-logo'/>  ${user.user_name}</div>  `,
             })
           }
         })

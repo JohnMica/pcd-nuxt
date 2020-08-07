@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import $axios from 'axios'
 const Ajv = require('ajv')
 const schemaType = {
@@ -15,7 +17,7 @@ const schemaType = {
     'repository',
     'logo_url',
     'language',
-    'originCountry',
+    'origin_country',
     'sector',
     'category',
     'licence',
@@ -78,10 +80,10 @@ const schemaType = {
         pattern: '^(.*)$',
       },
     },
-    originCountry: {
-      $id: '#/properties/originCountry',
+    origin_country: {
+      $id: '#/properties/origin_country',
       type: 'string',
-      title: 'The originCountry Schema',
+      title: 'The origin_country Schema',
       default: '',
       pattern: '^(.*)$',
     },
@@ -136,8 +138,8 @@ const schemaType = {
           'developer_category',
         ],
         properties: {
-          name: {
-            $id: '#/properties/developers/items/properties/name',
+          developer_name: {
+            $id: '#/properties/developers/items/properties/developer_name',
             type: 'string',
             title: 'The name Schema',
             default: '',
@@ -176,14 +178,14 @@ const schemaType = {
         type: 'object',
         title: 'The Items Schema',
         required: [
-          'name',
+          'maintainer_name',
           'maintainer_url',
           'maintainer_logo_url',
           'maintainer_repository',
         ],
         properties: {
-          name: {
-            $id: '#/properties/maintainers/items/properties/name',
+          maintainer_name: {
+            $id: '#/properties/maintainers/items/properties/maintainer_name',
             type: 'string',
             title: 'The name Schema',
             default: '',
@@ -224,15 +226,15 @@ const schemaType = {
         type: 'object',
         title: 'The Items Schema',
         required: [
-          'name',
+          'user_name',
           'user_location',
           'user_logo_url',
           'user_url',
           'user_geolocation',
         ],
         properties: {
-          name: {
-            $id: '#/properties/users/items/properties/name',
+          user_name: {
+            $id: '#/properties/users/items/properties/user_name',
             type: 'string',
             title: 'The name Schema',
             default: '',
@@ -288,8 +290,8 @@ const schemaType = {
 }
 
 export default {
-  fetchLinks(context: any) {
-    $axios
+  async fetchLinks(context) {
+    await $axios
       .get(
         'https://raw.githubusercontent.com/OpenUK/publiccode.directory/master/database/database.index.json'
       )
@@ -297,30 +299,30 @@ export default {
         context.commit('fetchLinks', data.data)
       })
       .then(() => {
-        context.state.links.forEach((item: any) => {
-          $axios
+        context.state.links.forEach(async (item) => {
+          await $axios
             .get(item)
-            .then((data: any) => {
-              const avj = new Ajv()
-              const valid = avj
-                .addSchema(schemaType, 'projSchema')
-                .validate('projSchema', data.data)
-              if (valid as boolean) {
-                context.commit('fetchProducts', data.data)
-                context.commit('getCategories')
-                context.commit('getCountries')
-                context.commit('getDevelopers')
-                context.commit('getlicences')
-                context.commit('getMaintainers')
-                context.commit('getUsers')
-                context.commit('getSector')
-                context.commit('getLanguage')
-              }
+            .then((data) => {
+              // const avj = new Ajv()
+              // const valid = avj
+              //   .addSchema(schemaType, 'projSchema')
+              //   .validate('projSchema', data.data)
+              // if (valid) {
+              context.commit('fetchProducts', data.data)
+              context.commit('getCategories')
+              context.commit('getCountries')
+              context.commit('getDevelopers')
+              context.commit('getlicences')
+              context.commit('getMaintainers')
+              context.commit('getUsers')
+              context.commit('getSector')
+              context.commit('getLanguage')
+              // }
             })
-            .catch((error: any) => console.log(error))
+            .catch((error) => console.log(error))
         })
       })
-      .catch((error: any) => {
+      .catch((error) => {
         console.log(error)
       })
   },

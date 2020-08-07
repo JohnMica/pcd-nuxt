@@ -34,21 +34,21 @@ extend('url_string', (value) => {
   if (urlPattern.test(value)) {
     return true
   }
-  return 'The {_field_} field is not a valid URL'
+  return 'The field is not a valid URL'
 })
 
 extend('latlong', (value) => {
   if (latlongPatt.test(value)) {
     return true
   }
-  return 'The {_field_} field is not a valid Latitude / Longitude'
+  return 'The field is not a valid Latitude / Longitude'
 })
 extend('alpha_num', {
   validate(value, { length }) {
     return value.length >= length
   },
   params: ['length'],
-  message: 'The {_field_} field must have at least {length} language',
+  message: 'The field must have at least {length} language',
 })
 extend('minmax', {
   validate(value, { min, max }) {
@@ -56,28 +56,5 @@ extend('minmax', {
   },
   params: ['min', 'max'],
   message:
-    'The {_field_} field must have at least {min} characters and {max} characters at most',
+    'The field must have at least {min} characters and {max} characters at most',
 })
-// extend('required', {
-//   ...required,
-//   message: 'This field is required',
-// })
-
-// extend('email', {
-//   ...email,
-//   message: 'This field must be a valid email',
-// })
-// extend('min', {
-//   ...min,
-//   message: 'This field must have more then 3 characters',
-// })
-
-// extend('confirmed', {
-//   ...confirmed,
-//   message: 'This field confirmation does not match',
-// })
-
-// extend('length', {
-//   ...length,
-//   message: 'This field must have 2 options',
-// })

@@ -113,7 +113,7 @@
           :value="checkedLang.length === languages.length"
           @input="toggleLangs"
         >
-          All Users
+          All Languages
         </b-checkbox>
       </b-field>
       <b-field v-for="(item, inde) in languages" :key="`languages-${inde}`">
@@ -156,7 +156,7 @@
           :value="checkedMaintainers.length === maintainers.length"
           @input="toggleMaintainers"
         >
-          All Users
+          All Maintainers
         </b-checkbox>
       </b-field>
       <b-field v-for="(item, inde) in maintainers" :key="`maintainers-${inde}`">
@@ -242,7 +242,7 @@
               All Sectors
             </b-checkbox>
           </b-field>
-          <b-field v-for="(item, inde) in sectors" :key="`sector-${inde}`">
+          <b-field v-for="(item, inde) in sectors" :key="`sector-mob-${inde}`">
             <b-checkbox
               v-model="checkedSectors"
               :native-value="item"
@@ -264,7 +264,10 @@
               All Categories
             </b-checkbox>
           </b-field>
-          <b-field v-for="(item, inde) in categories" :key="`categ-${inde}`">
+          <b-field
+            v-for="(item, inde) in categories"
+            :key="`categ-mob-${inde}`"
+          >
             <b-checkbox
               v-model="checkedCategories"
               :native-value="item"
@@ -286,7 +289,10 @@
               All Licences
             </b-checkbox>
           </b-field>
-          <b-field v-for="(item, inde) in licences" :key="`licence-${inde}`">
+          <b-field
+            v-for="(item, inde) in licences"
+            :key="`licence-mob-${inde}`"
+          >
             <b-checkbox
               v-model="checkedLicences"
               :native-value="item"
@@ -304,10 +310,13 @@
               :value="checkedLang.length === languages.length"
               @input="toggleLangs"
             >
-              All Users
+              All Languages
             </b-checkbox>
           </b-field>
-          <b-field v-for="(item, inde) in languages" :key="`languages-${inde}`">
+          <b-field
+            v-for="(item, inde) in languages"
+            :key="`languages-mob-${inde}`"
+          >
             <b-checkbox
               v-model="checkedLang"
               :native-value="item"
@@ -328,7 +337,27 @@
               All Users
             </b-checkbox>
           </b-field>
-          <b-field v-for="(item, inde) in users" :key="`users-${inde}`">
+          <b-field v-for="(item, inde) in users" :key="`users-mob-${inde}`">
+            <b-checkbox v-model="checkedUsers" :native-value="item">
+              {{ item }}
+            </b-checkbox>
+          </b-field>
+          <hr />
+          <b-field label="Maintainers">
+            <b-checkbox
+              :indeterminate="
+                checkedUsers.length > 0 && checkedUsers.length < users.length
+              "
+              :value="checkedUsers.length === users.length"
+              @input="toggleUsers"
+            >
+              All Maintainers
+            </b-checkbox>
+          </b-field>
+          <b-field
+            v-for="(item, inde) in maintainers"
+            :key="`maint-mob-${inde}`"
+          >
             <b-checkbox v-model="checkedUsers" :native-value="item">
               {{ item }}
             </b-checkbox>
