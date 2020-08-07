@@ -208,7 +208,7 @@
           <validation-provider
             v-slot="{ errors, invalid, valid }"
             tag="div"
-            rules="name:1"
+            rules="length:1"
             :skip-if-empty="false"
           >
             <b-field
@@ -238,7 +238,7 @@
           <validation-provider
             v-slot="{ errors, invalid, valid }"
             tag="div"
-            rules="name:1"
+            rules="length:1"
             name="projectlang"
             :skip-if-empty="false"
           >
@@ -301,7 +301,7 @@
           <validation-provider
             v-slot="{ errors, invalid, valid }"
             tag="div"
-            rules="alpha_num:1"
+            rules="length:1"
             name="projectlicence"
             :skip-if-empty="false"
           >
@@ -332,7 +332,7 @@
           <validation-provider
             v-slot="{ errors, invalid, valid }"
             tag="div"
-            rules="alpha_num:1"
+            rules="length:1"
             name="projectcateg"
             :skip-if-empty="false"
           >
@@ -367,7 +367,7 @@
           <validation-provider
             v-slot="{ errors, invalid, valid }"
             tag="div"
-            rules="name:1"
+            rules="length:1"
             name="projectsector"
             :skip-if-empty="false"
           >
@@ -393,7 +393,7 @@
                 icon="label"
                 :allow-new="true"
                 :data="sectors"
-                :value="form.sector.toString()"
+                :value="form.sector"
               >
               </b-taginput>
             </b-field>
@@ -786,7 +786,7 @@
 
             <validation-provider
               v-slot="{ errors, invalid, valid }"
-              rules="latlong"
+              rules="digits:10"
               :name="`userlong-${ind}`"
               :skip-if-empty="false"
             >
@@ -813,7 +813,7 @@
 
             <validation-provider
               v-slot="{ errors, invalid, valid }"
-              rules="latlong"
+              rules="digits:10"
               :name="`userlat-${ind}`"
               :skip-if-empty="false"
             >
@@ -849,10 +849,10 @@
               <b-input type="text" :value="dev.user_url"> </b-input>
             </b-field>
             <b-field label="User Logo URL" readonly>
-              <b-input v-model="dev.user_logo_url" type="text"> </b-input>
+              <b-input :value="dev.user_logo_url" type="text"> </b-input>
             </b-field>
             <b-field label="User Location" readonly>
-              <b-input v-model="dev.user_location" type="text"> </b-input>
+              <b-input :value="dev.user_location" type="text"> </b-input>
             </b-field>
             <b-field label="User Geolocation" readonly>
               <b-input type="text" :value="dev.user_geolocation.long">
@@ -995,7 +995,7 @@
 
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
-                rules="alpha_num:3"
+                rules="length:1"
                 :name="`newdevcateg`"
                 :skip-if-empty="false"
               >
@@ -1017,13 +1017,16 @@
                       ></b-icon>
                     </b-tooltip>
                   </template>
-                  <b-input
+                  <b-taginput
                     v-model="tempDevData.developer_category"
-                    type="text"
-                    maxlength="50"
                     required
+                    :data="countries"
+                    autocomplete
+                    icon="label"
+                    :allow-new="true"
+                    :value="tempDevData.developer_category"
                   >
-                  </b-input>
+                  </b-taginput>
                 </b-field>
               </validation-provider>
               <b-field>
@@ -1301,7 +1304,7 @@
 
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
-                rules="latlong"
+                rules="digits:10"
                 :name="`newuserlong`"
                 :skip-if-empty="false"
               >
@@ -1325,7 +1328,19 @@
                     maxlength="10"
                     required
                   >
-                  </b-input>
+                  </b-input> </b-field
+              ></validation-provider>
+              <validation-provider
+                v-slot="{ errors, invalid, valid }"
+                rules="digits:10"
+                :name="`newuserlat`"
+                :skip-if-empty="false"
+              >
+                <b-field
+                  v-bind="$attrs"
+                  :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                  :message="errors"
+                >
                   <b-input
                     v-model="tempUserData.user_geolocation.lat"
                     type="number"

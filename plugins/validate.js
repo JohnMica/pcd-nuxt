@@ -27,7 +27,7 @@ extend('name', {
     return value.length >= length
   },
   params: ['length'],
-  message: 'The field must have more then {length} alpha numeric characters',
+  message: 'The field must have more then {length} characters',
 })
 
 extend('url_string', (value) => {
