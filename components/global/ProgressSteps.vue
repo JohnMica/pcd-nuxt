@@ -1451,11 +1451,7 @@ export default Vue.extend({
       if (this.currentStep === 5) {
         this.sendingForm = true
         const axiosConfig = {
-          header: {
-            'content-type': 'application/x-www-form-urlencoded',
-            Accept: 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-          },
+          header: { 'Content-Type': 'application/x-www-form-urlencoded' },
         }
         // @ts-ignore
         this.$axios
