@@ -125,7 +125,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    encode(data) {
+    encode(data: any) {
       return Object.keys(data)
         .map(
           (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
@@ -139,6 +139,7 @@ export default Vue.extend({
       const axiosConfig = {
         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       }
+      // @ts-ignore
       this.$axios.post(
         '/',
         this.encode({

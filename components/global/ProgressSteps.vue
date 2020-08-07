@@ -1440,7 +1440,7 @@ export default Vue.extend({
         location: { longitude: '', latitude: '' },
       }
     },
-    encode(data) {
+    encode(data: any) {
       return Object.keys(data)
         .map(
           (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
