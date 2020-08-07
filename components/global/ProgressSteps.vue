@@ -101,8 +101,12 @@
       <form
         id="formbuilder"
         ref="formbuilder"
+        nam="formbuilder"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit(onSubmit)"
       >
+        <input type="hidden" name="form-name" value="formbuilder" />
         <b-input type="hidden" value="formbuilder" autocomplete="off"></b-input>
         <b-input
           type="hidden"
@@ -1436,18 +1440,33 @@ export default Vue.extend({
         location: { longitude: '', latitude: '' },
       }
     },
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join('&')
+    },
     onSubmit() {
       if (this.currentStep === 5) {
         this.sendingForm = true
+        const axiosConfig = {
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+            Accept: 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        }
         // @ts-ignore
         this.$axios
-          .post('', this.form, {
-            headers: {
-              'content-type': 'application/x-www-form-urlencoded',
-              Accept: 'application/json',
-              'X-Requested-With': 'XMLHttpRequest',
-            },
-          })
+          .post(
+            '/',
+            this.encode({
+              'form-name': 'formbuilder',
+              ...this.form,
+            }),
+            axiosConfig
+          )
           .then((res: any) => {
             setTimeout(() => {
               console.log('response', res)

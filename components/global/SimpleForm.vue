@@ -1,6 +1,14 @@
 <template>
-  <validation-observer ref="simpleForm" v-slot="{ handleSubmit }" slim>
-    <form id="simpleForm" @submit.prevent="handleSubmit(onSubmit)">
+  <validation-observer ref="simpleform" v-slot="{ handleSubmit }" slim>
+    <form
+      id="simpleform"
+      name="simpleform"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      method="post"
+      @submit.prevent="handleSubmit(onSubmit)"
+    >
+      <b-input type="hidden" name="form-name" value="simpleform" />
       <b-input type="hidden" value="simpleForm" autocomplete="off"></b-input>
       <b-input type="hidden" :value="randomNonce" autocomplete="off"></b-input>
       <b-input type="hidden" :value="randomId" autocomplete="off"></b-input>
@@ -96,7 +104,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { ValidationObserver, ValidationProvider, validate } from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 export default Vue.extend({
   name: 'SimpleForm',
   components: {
@@ -117,11 +125,28 @@ export default Vue.extend({
     },
   },
   methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join('&')
+    },
     deleteDropFile(index: number) {
       this.form.dropFiles.splice(index, 1)
     },
     onSubmit() {
-      console.log('submitted', this.form)
+      const axiosConfig = {
+        header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      }
+      this.$axios.post(
+        '/',
+        this.encode({
+          'form-name': 'simpleform',
+          ...this.form,
+        }),
+        axiosConfig
+      )
     },
   },
 })

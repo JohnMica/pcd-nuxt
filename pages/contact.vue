@@ -1,5 +1,15 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form
+    id="simplecontact"
+    ref="simplecontact"
+    name="simplecontact"
+    method="post"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    @submit.prevent="handleSubmit"
+  >
+    <input type="hidden" name="form-name" value="simplecontact" />
+
     <b-field label="Name">
       <b-input v-model="form.name"></b-input>
     </b-field>
@@ -39,8 +49,25 @@ export default Vue.extend({
     }
   },
   methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join('&')
+    },
     handleSubmit() {
-      console.log('form sent', this.form)
+      const axiosConfig = {
+        header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      }
+      this.$axios.post(
+        '/',
+        this.encode({
+          'form-name': 'simplecontact',
+          ...this.form,
+        }),
+        axiosConfig
+      )
     },
   },
 })
