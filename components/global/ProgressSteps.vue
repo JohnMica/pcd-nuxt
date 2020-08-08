@@ -112,7 +112,6 @@
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
-              mode="lazy"
               rules="name:3"
               name="sendername"
               :skip-if-empty="false"
@@ -130,7 +129,6 @@
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
-              mode="lazy"
               rules="required|email"
               name="senderemail"
               :skip-if-empty="false"
@@ -163,7 +161,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="name:3"
-              mode="lazy"
               name="projectname"
               :skip-if-empty="false"
             >
@@ -181,7 +178,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="url_string"
-              mode="lazy"
               name="officialurl"
               :skip-if-empty="false"
             >
@@ -208,7 +204,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="url_string"
-              mode="lazy"
               name="repository"
               :skip-if-empty="false"
             >
@@ -226,8 +221,7 @@
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
-              rules="array:1"
-              mode="lazy"
+              rules="arr:1"
               name="startingcountry"
               :skip-if-empty="false"
             >
@@ -244,7 +238,6 @@
                 </template>
                 <b-taginput
                   v-model="form.origin_country"
-                  required
                   :data="countries"
                   autocomplete
                   icon="label"
@@ -258,8 +251,7 @@
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
-              rules="array:1"
-              mode="lazy"
+              rules="arr:1"
               name="projectlang"
               :skip-if-empty="false"
             >
@@ -280,7 +272,6 @@
                 </template>
                 <b-taginput
                   v-model="form.language"
-                  required
                   autocomplete
                   icon="label"
                   :data="languages"
@@ -295,7 +286,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="name:3"
-              mode="lazy"
               name="projecttype"
               :skip-if-empty="false"
             >
@@ -327,8 +317,7 @@
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
-              rules="array:1"
-              mode="lazy"
+              rules="arr:1"
               name="projectlicence"
               :skip-if-empty="false"
             >
@@ -346,7 +335,6 @@
                 <b-taginput
                   v-model="form.licence"
                   :data="licences"
-                  required
                   autocomplete
                   icon="label"
                   :allow-new="true"
@@ -359,8 +347,7 @@
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
-              rules="array:1"
-              mode="lazy"
+              rules="arr:1"
               name="projectcateg"
               :skip-if-empty="false"
             >
@@ -382,7 +369,6 @@
                 <b-taginput
                   v-model="form.category"
                   :data="categories"
-                  required
                   icon="label"
                   autocomplete
                   :allow-new="true"
@@ -395,8 +381,7 @@
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
-              rules="array:1"
-              mode="lazy"
+              rules="arr:1"
               name="projectsector"
               :skip-if-empty="false"
             >
@@ -418,7 +403,6 @@
                 <b-taginput
                   v-model="form.sector"
                   autocomplete
-                  required
                   icon="label"
                   :allow-new="true"
                   :data="sectors"
@@ -432,7 +416,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="minmax:10,350"
-              mode="lazy"
               name="description"
               :skip-if-empty="false"
             >
@@ -473,7 +456,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                mode="lazy"
                 :name="`devname-${ind}`"
                 :skip-if-empty="false"
               >
@@ -496,7 +478,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`devwebsite-${ind}`"
                 :skip-if-empty="false"
               >
@@ -531,7 +512,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`devlogo-${ind}`"
                 :skip-if-empty="false"
               >
@@ -566,7 +546,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="alpha_num:3"
-                mode="lazy"
                 :skip-if-empty="false"
                 :name="`devcateg-${ind}`"
               >
@@ -621,7 +600,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="name:3"
-                  mode="lazy"
                   :name="`maintname-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -644,7 +622,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
-                  mode="lazy"
                   :name="`maintwebsite-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -674,7 +651,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
-                  mode="lazy"
                   :name="`maintlogo-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -708,7 +684,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
-                  mode="lazy"
                   :name="`maintrepo-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -759,7 +734,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                mode="lazy"
                 :name="`username-${ind}`"
                 :skip-if-empty="false"
               >
@@ -777,7 +751,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`userwebsite-${ind}`"
                 :skip-if-empty="false"
               >
@@ -806,7 +779,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`userlogo-${ind}`"
                 :skip-if-empty="false"
               >
@@ -836,7 +808,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                mode="lazy"
                 :name="`userlocation-${ind}`"
                 :skip-if-empty="false"
               >
@@ -862,7 +833,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
-                mode="lazy"
                 :name="`userlong-${ind}`"
                 :skip-if-empty="false"
               >
@@ -893,7 +863,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
-                mode="lazy"
                 :name="`userlat-${ind}`"
                 :skip-if-empty="false"
               >
@@ -1010,7 +979,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                mode="lazy"
                 :name="`newdevname`"
                 :skip-if-empty="false"
               >
@@ -1031,7 +999,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newdevwebsite`"
                 :skip-if-empty="false"
               >
@@ -1065,7 +1032,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newdevlogo`"
                 :skip-if-empty="false"
               >
@@ -1098,8 +1064,7 @@
 
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
-                rules="array:1"
-                mode="lazy"
+                rules="arr:1"
                 :name="`newdevcateg`"
                 :skip-if-empty="false"
               >
@@ -1123,7 +1088,6 @@
                   </template>
                   <b-taginput
                     v-model="tempDevData.developer_category"
-                    required
                     :data="countries"
                     autocomplete
                     icon="label"
@@ -1170,7 +1134,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newmaintname`"
                 :skip-if-empty="false"
               >
@@ -1192,7 +1155,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newmaintwebsite`"
                 :skip-if-empty="false"
               >
@@ -1226,7 +1188,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newmaintlogo`"
                 :skip-if-empty="false"
               >
@@ -1260,7 +1221,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newmaintrepo`"
                 :skip-if-empty="false"
               >
@@ -1332,7 +1292,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                mode="lazy"
                 :name="`newusername`"
                 :skip-if-empty="false"
               >
@@ -1353,7 +1312,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newuserwebsite`"
                 :skip-if-empty="false"
               >
@@ -1383,7 +1341,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                mode="lazy"
                 :name="`newuserlogo`"
                 :skip-if-empty="false"
               >
@@ -1416,7 +1373,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                mode="lazy"
                 :name="`newuserlocation`"
                 :skip-if-empty="false"
               >
@@ -1447,7 +1403,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
-                mode="lazy"
                 :name="`newuserlong`"
                 :skip-if-empty="false"
               >
@@ -1476,7 +1431,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
-                mode="lazy"
                 :name="`newuserlat`"
                 :skip-if-empty="false"
               >
