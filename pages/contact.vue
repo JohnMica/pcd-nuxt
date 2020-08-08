@@ -131,9 +131,17 @@ export default Vue.extend({
         )
         .then((res: any) => {
           setTimeout(() => {
+            console.log(
+              this.encode({
+                'form-name': 'simplecontact',
+                ...this.form,
+              })
+            )
+
             this.sendingForm = false
+            this.form = { name: '', email: '', subject: '', message: '' }
             console.log('result', res)
-            this.$router.push('/')
+            // this.$router.push('/')
           }, 1500)
         })
         .catch((err: any) => {

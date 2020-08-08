@@ -103,6 +103,7 @@
         ref="formbuilder"
         name="formbuilder"
         data-netlify="true"
+        method="post"
         data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit(onSubmit)"
       >
