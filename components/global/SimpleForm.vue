@@ -133,7 +133,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      form: { name: 'my name', email: 'my@test.com', file: [] },
+      form: { name: 'my name', email: 'my@test.com', files: [] },
       dropFiles: [],
     }
   },
