@@ -6,7 +6,7 @@
           v-model="name"
           open-on-focus
           placeholder="e.g. Govstrap"
-          icon="search"
+          icon="find-replace"
           clearable
           :data="filteredProductNames"
           @input="updateFilteredItems"
@@ -30,7 +30,7 @@
           open-on-focus
           :data="filteredDataArray"
           placeholder="e.g. UK"
-          icon="search"
+          icon="find-replace"
           clearable
           @select="(option) => (selected = option)"
           @input="updateFilteredItems"
@@ -40,7 +40,8 @@
       </b-field>
 
       <hr />
-      <b-field label="Sectors">
+      <b-field label="Sectors"> </b-field>
+      <b-field>
         <b-checkbox
           :indeterminate="
             checkedSectors.length > 0 && checkedSectors.length < sectors.length
@@ -61,7 +62,8 @@
         </b-checkbox>
       </b-field>
       <hr />
-      <b-field label="Categories">
+      <b-field label="Categories"> </b-field>
+      <b-field>
         <b-checkbox
           :indeterminate="
             checkedCategories.length > 0 &&
@@ -83,7 +85,8 @@
         </b-checkbox>
       </b-field>
       <hr />
-      <b-field label="Licences">
+      <b-field label="Licences"></b-field>
+      <b-field>
         <b-checkbox
           :indeterminate="
             checkedLicences.length > 0 &&
@@ -105,7 +108,8 @@
         </b-checkbox>
       </b-field>
       <hr />
-      <b-field label="Languages">
+      <b-field label="Languages"></b-field>
+      <b-field>
         <b-checkbox
           :indeterminate="
             checkedLang.length > 0 && checkedLang.length < languages.length
@@ -126,7 +130,8 @@
         </b-checkbox>
       </b-field>
       <hr />
-      <b-field label="Users">
+      <b-field label="Users"></b-field>
+      <b-field>
         <b-checkbox
           :indeterminate="
             checkedUsers.length > 0 && checkedUsers.length < users.length
@@ -147,7 +152,8 @@
         </b-checkbox>
       </b-field>
       <hr />
-      <b-field label="Maintainers">
+      <b-field label="Maintainers"></b-field>
+      <b-field>
         <b-checkbox
           :indeterminate="
             checkedMaintainers.length > 0 &&
@@ -196,7 +202,7 @@
               v-model="name"
               open-on-focus
               placeholder="e.g. Govstrap"
-              icon="search"
+              icon="find-replace"
               clearable
               :data="filteredProductNames"
               @input="updateFilteredItems"
@@ -220,7 +226,7 @@
               open-on-focus
               :data="filteredDataArray"
               placeholder="e.g. UK"
-              icon="search"
+              icon="find-replace"
               clearable
               @select="(option) => (selected = option)"
               @input="updateFilteredItems"
@@ -230,7 +236,8 @@
           </b-field>
 
           <hr />
-          <b-field label="Sectors">
+          <b-field label="Sectors"> </b-field>
+          <b-field>
             <b-checkbox
               :indeterminate="
                 checkedSectors.length > 0 &&
@@ -252,7 +259,8 @@
             </b-checkbox>
           </b-field>
           <hr />
-          <b-field label="Categories">
+          <b-field label="Categories"> </b-field>
+          <b-field>
             <b-checkbox
               :indeterminate="
                 checkedCategories.length > 0 &&
@@ -277,7 +285,8 @@
             </b-checkbox>
           </b-field>
           <hr />
-          <b-field label="Licences">
+          <b-field label="Licences"> </b-field>
+          <b-field>
             <b-checkbox
               :indeterminate="
                 checkedLicences.length > 0 &&
@@ -302,7 +311,8 @@
             </b-checkbox>
           </b-field>
           <hr />
-          <b-field label="Languages">
+          <b-field label="Languages"> </b-field>
+          <b-field>
             <b-checkbox
               :indeterminate="
                 checkedLang.length > 0 && checkedLang.length < languages.length
@@ -326,7 +336,8 @@
             </b-checkbox>
           </b-field>
           <hr />
-          <b-field label="Users">
+          <b-field label="Users"> </b-field>
+          <b-field>
             <b-checkbox
               :indeterminate="
                 checkedUsers.length > 0 && checkedUsers.length < users.length
@@ -343,7 +354,8 @@
             </b-checkbox>
           </b-field>
           <hr />
-          <b-field label="Maintainers">
+          <b-field label="Maintainers"> </b-field>
+          <b-field>
             <b-checkbox
               :indeterminate="
                 checkedUsers.length > 0 && checkedUsers.length < users.length

@@ -30,26 +30,18 @@
             </p>
             <p class="content-text">
               Origin Country:
-              <span class="is-bold"> {{ product.originCountry }}</span>
+              <span class="is-bold"> {{ product.origin_country }}</span>
             </p>
-            <p v-if="product.sector.length === 1" class="content-text">
-              Sector:
+
+            <p class="content-text">
+              {{ product.sector.length > 1 ? 'Sectors:' : 'Sector: ' }}
               <span
                 v-for="(sector, inde) in product.sector"
                 :key="inde"
                 class="tag"
               >
                 {{ sector }}
-              </span>
-            </p>
-            <p v-else class="content-text">
-              Sectors:
-              <span
-                v-for="(sector, inde) in product.sector"
-                :key="inde"
-                class="tag"
-              >
-                {{ sector }}
+                <span v-if="inde < product.sector.length - 1">,</span>
               </span>
             </p>
             <p class="content-text is-flex is-between">
@@ -68,36 +60,29 @@
               v-if="!product.showMore && product.description"
               class="content-text"
             >
-              {{ product.description | truncate(150) || '--' }}
+              {{ product.description | truncate(150) }}
             </p>
             <div v-else class="content-text">
               {{ product.description }}
-              <p v-if="product.category.length === 1">
-                Category:
+              <p>
+                {{ product.category.length > 1 ? 'Categories' : 'Category' }}
                 <span
                   v-for="(prod_categ, inde) in product.category"
                   :key="inde"
                   class="tag"
                 >
                   {{ prod_categ }}
+                  <span v-if="inde < product.category.length - 1">,</span>
                 </span>
               </p>
-              <p v-else>
-                Categories:
-                <span
-                  v-for="(prod_categ, inde) in product.category"
-                  :key="inde"
-                  class="tag"
-                >
-                  {{ prod_categ }}
-                </span>
-              </p>
+
               <p>
                 Developed by:
                 <span v-for="(dev, ind) in product.developers" :key="ind">
                   <a :href="dev.name" rel="noopener">
-                    {{ dev.name }}
+                    {{ dev.developer_name }}
                   </a>
+                  <span v-if="ind < product.developers.length - 1">,</span>
                 </span>
               </p>
               <p v-if="product.maintainers.length > 0">
@@ -107,8 +92,9 @@
                   :key="ind"
                 >
                   <a :href="maintainer.url" rel="noopener">
-                    {{ maintainer.name }}
+                    {{ maintainer.maintainer_name }}
                   </a>
+                  <span v-if="ind < product.maintainers.length - 1">,</span>
                 </span>
               </p>
             </div>
