@@ -145,14 +145,13 @@ export default Vue.extend({
 
     encode(data: any) {
       const formData = new FormData()
-      Object.entries(data).forEach((key) => {
+      for (const key of Object.keys(data)) {
         if (key === 'files') {
           formData.append(key, data[key][0])
         } else {
           formData.append(key, data[key])
         }
-      })
-
+      }
       return formData
     },
     deleteDropFile(index: number) {
