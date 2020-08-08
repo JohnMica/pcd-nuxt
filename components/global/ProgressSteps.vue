@@ -107,6 +107,7 @@
         data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit(onSubmit)"
       >
+        <input type="hidden" name="bot-field" />
         <input type="hidden" name="form-name" value="formbuilder" />
         <keep-alive>
           <div v-show="currentStep === 1" class="step">

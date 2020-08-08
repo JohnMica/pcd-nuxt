@@ -12,12 +12,13 @@
         @submit.prevent="handleSubmit(onSubmit)"
       >
         <input type="hidden" name="form-name" value="simpleform" />
-
+        <input type="hidden" name="bot-field" />
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           tag="div"
           rules="name:3"
           name="sendername"
+          vid="sendername"
           :skip-if-empty="false"
         >
           <b-field
@@ -34,6 +35,7 @@
           v-slot="{ errors, invalid, valid }"
           tag="div"
           name="senderemail"
+          vid="senderemail"
           :skip-if-empty="false"
         >
           <b-field
@@ -47,21 +49,22 @@
           </b-field>
         </validation-provider>
         <!-- <b-field class="file">
-        <b-upload v-model="form.file">
-          <a class="button is-primary">
-            <b-icon icon="upload"></b-icon>
-            <span>Click to upload</span>
-          </a>
-        </b-upload>
-        <span v-if="form.file" class="file-name">
-          {{ form.file.name }}
-        </span>
-      </b-field> -->
+          <b-upload v-model="form.file">
+            <a class="button is-primary">
+              <b-icon icon="upload"></b-icon>
+              <span>Click to upload</span>
+            </a>
+          </b-upload>
+          <span v-if="form.file" class="file-name">
+            {{ form.file.name }}
+          </span>
+        </b-field> -->
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           rules="mimes:.json"
           tag="div"
           name="fileupload"
+          vid="fileupload"
           :skip-if-empty="false"
         >
           <b-field

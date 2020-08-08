@@ -10,11 +10,13 @@
         @submit.prevent="handleSubmit(onSubmit)"
       >
         <input type="hidden" name="form-name" value="simplecontact" />
+        <input type="hidden" name="bot-field" />
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           rules="name:3"
           tag="div"
           name="sendername"
+          vid="sendername"
           :skip-if-empty="false"
         >
           <b-field
@@ -47,6 +49,8 @@
           v-slot="{ errors }"
           tag="div"
           rules="name:3"
+          name="subject"
+          vid="subject"
           :skip-if-empty="true"
         >
           <b-field
@@ -62,7 +66,9 @@
           v-slot="{ errors, invalid, valid }"
           tag="div"
           rules="name:25"
-          :skip-if-empty="true"
+          name="message"
+          vid="message"
+          :skip-if-empty="false"
         >
           <b-field
             label="Message"
