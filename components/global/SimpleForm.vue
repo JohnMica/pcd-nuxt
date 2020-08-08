@@ -120,7 +120,7 @@
 
 <script lang="ts">
 /* eslint-disable no-console */
-
+// @ts-nocheck
 import Vue from 'vue'
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate'

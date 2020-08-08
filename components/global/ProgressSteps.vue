@@ -1722,7 +1722,8 @@ export default Vue.extend({
       }
 
       if (this.currentStep === 5) {
-        this.$refs.observer.validate().then((success) => {
+        // @ts-ignore
+        this.$refs.observer.validate().then((success: any) => {
           if (!success) {
           }
         })
