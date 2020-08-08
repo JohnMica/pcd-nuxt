@@ -1,6 +1,6 @@
 <template>
   <div>
-    <validation-observer ref="simplecontact" v-slot="{ handleSubmit }" slim>
+    <validation-observer ref="simplecontact" v-slot="{ handleSubmit }">
       <form
         id="simplecontact"
         name="simplecontact"
@@ -129,7 +129,8 @@ export default Vue.extend({
       // @ts-ignore
       this.$axios
         .post(
-          'https://testing-pcd.netlify.app',
+          '/',
+          // 'https://testing-pcd.netlify.app',
           this.encode({
             'form-name': 'simplecontact',
             ...this.form,

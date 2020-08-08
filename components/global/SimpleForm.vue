@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
-    <validation-observer ref="simpleform" v-slot="{ handleSubmit }" slim>
+    <validation-observer ref="simpleform" v-slot="{ handleSubmit }">
       <form
         id="simpleform"
         name="simpleform"
@@ -174,7 +174,8 @@ export default Vue.extend({
       // @ts-ignore
       this.$axios
         .post(
-          'https://testing-pcd.netlify.app',
+          '/',
+          // 'https://testing-pcd.netlify.app',
           this.encode({
             'form-name': 'simpleform',
             ...this.form,

@@ -115,6 +115,7 @@
               tag="div"
               rules="name:3"
               name="sendername"
+              vid="sendername"
               :skip-if-empty="false"
             >
               <b-field
@@ -132,6 +133,7 @@
               tag="div"
               rules="required|email"
               name="senderemail"
+              vid="senderemail"
               :skip-if-empty="false"
             >
               <b-field
@@ -148,6 +150,7 @@
               tag="div"
               :skip-if-empty="true"
               name="organisation"
+              vid="organisation"
             >
               <b-field label="Organisation">
                 <b-input v-model="form.senderorganisation" type="text">
@@ -163,6 +166,7 @@
               tag="div"
               rules="name:3"
               name="projectname"
+              vid="projectname"
               :skip-if-empty="false"
             >
               <b-field
@@ -180,6 +184,7 @@
               tag="div"
               rules="url_string"
               name="officialurl"
+              vid="officialurl"
               :skip-if-empty="false"
             >
               <b-field
@@ -206,6 +211,7 @@
               tag="div"
               rules="url_string"
               name="repository"
+              vid="repository"
               :skip-if-empty="false"
             >
               <b-field
@@ -224,6 +230,7 @@
               tag="div"
               rules="arr:1"
               name="startingcountry"
+              vid="startingcountry"
               :skip-if-empty="false"
             >
               <b-field
@@ -254,6 +261,7 @@
               tag="div"
               rules="arr:1"
               name="projectlang"
+              vid="projectlang"
               :skip-if-empty="false"
             >
               <b-field
@@ -288,6 +296,7 @@
               tag="div"
               rules="name:3"
               name="projecttype"
+              vid="projecttype"
               :skip-if-empty="false"
             >
               <b-field
@@ -320,6 +329,7 @@
               tag="div"
               rules="arr:1"
               name="projectlicence"
+              vid="projectlicence"
               :skip-if-empty="false"
             >
               <b-field
@@ -350,6 +360,7 @@
               tag="div"
               rules="arr:1"
               name="projectcateg"
+              vid="projectcateg"
               :skip-if-empty="false"
             >
               <b-field
@@ -384,6 +395,7 @@
               tag="div"
               rules="arr:1"
               name="projectsector"
+              vid="projectsector"
               :skip-if-empty="false"
             >
               <b-field
@@ -418,6 +430,7 @@
               tag="div"
               rules="minmax:10,350"
               name="description"
+              vid="description"
               :skip-if-empty="false"
             >
               <b-field
@@ -458,6 +471,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
                 :name="`devname-${ind}`"
+                :vid="`devname-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -480,6 +494,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
                 :name="`devwebsite-${ind}`"
+                :vid="`devwebsite-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -514,6 +529,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
                 :name="`devlogo-${ind}`"
+                :vid="`devlogo-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -547,8 +563,9 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="alpha_num:3"
-                :skip-if-empty="false"
                 :name="`devcateg-${ind}`"
+                :vid="`devcateg-${ind}`"
+                :skip-if-empty="false"
               >
                 <b-field
                   v-bind="$attrs"
@@ -602,6 +619,7 @@
                   v-slot="{ errors, invalid, valid }"
                   rules="name:3"
                   :name="`maintname-${ind}`"
+                  :vid="`maintname-${ind}`"
                   :skip-if-empty="false"
                 >
                   <b-field
@@ -624,6 +642,7 @@
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
                   :name="`maintwebsite-${ind}`"
+                  :vid="`maintwebsite-${ind}`"
                   :skip-if-empty="false"
                 >
                   <b-field
@@ -653,6 +672,7 @@
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
                   :name="`maintlogo-${ind}`"
+                  :vid="`maintlogo-${ind}`"
                   :skip-if-empty="false"
                 >
                   <b-field
@@ -686,6 +706,7 @@
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
                   :name="`maintrepo-${ind}`"
+                  :vid="`maintrepo-${ind}`"
                   :skip-if-empty="false"
                 >
                   <b-field
@@ -736,6 +757,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
                 :name="`username-${ind}`"
+                :vid="`username-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -753,6 +775,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
                 :name="`userwebsite-${ind}`"
+                :vid="`userwebsite-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -781,6 +804,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
                 :name="`userlogo-${ind}`"
+                :vid="`userlogo-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -810,6 +834,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
                 :name="`userlocation-${ind}`"
+                :vid="`userlocation-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -835,6 +860,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
                 :name="`userlong-${ind}`"
+                :vid="`userlong-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -865,6 +891,7 @@
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
                 :name="`userlat-${ind}`"
+                :vid="`userlat-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -897,26 +924,32 @@
           <div v-show="currentStep === 5" class="step">
             <div v-for="(dev, ind) in form.users" :key="ind">
               <hr v-if="ind >= 1" />
-              <validation-provider name="readform">
-                <b-field label="User Name" readonly>
-                  <b-input type="text" :value="dev.user_name"> </b-input>
-                </b-field>
-                <b-field label="Users Website" readonly>
-                  <b-input type="text" :value="dev.user_url"> </b-input>
-                </b-field>
-                <b-field label="User Logo URL" readonly>
-                  <b-input :value="dev.user_logo_url" type="text"> </b-input>
-                </b-field>
-                <b-field label="User Location" readonly>
-                  <b-input :value="dev.user_location" type="text"> </b-input>
-                </b-field>
-                <b-field label="User Geolocation" readonly>
-                  <b-input type="text" :value="dev.user_geolocation.long">
-                  </b-input>
-                  <b-input type="text" :value="dev.user_geolocation.lat">
-                  </b-input>
-                </b-field>
-              </validation-provider>
+              <!-- <validation-provider name="readform"> -->
+              <b-field label="User Name">
+                <b-input type="text" :value="dev.user_name" readonly> </b-input>
+              </b-field>
+              <b-field label="Users Website">
+                <b-input type="text" :value="dev.user_url" readonly> </b-input>
+              </b-field>
+              <b-field label="User Logo URL">
+                <b-input :value="dev.user_logo_url" type="text" readonly>
+                </b-input>
+              </b-field>
+              <b-field label="User Location">
+                <b-input :value="dev.user_location" type="text" readonly>
+                </b-input>
+              </b-field>
+              <b-field label="User Geolocation">
+                <b-input
+                  type="text"
+                  :value="dev.user_geolocation.long"
+                  readonly
+                >
+                </b-input>
+                <b-input type="text" :value="dev.user_geolocation.lat" readonly>
+                </b-input>
+              </b-field>
+              <!-- </validation-provider> -->
             </div>
           </div>
         </keep-alive>
@@ -1735,7 +1768,8 @@ export default Vue.extend({
         // @ts-ignore
         this.$axios
           .post(
-            'https://testing-pcd.netlify.app',
+            // 'https://testing-pcd.netlify.app',
+            '/',
             this.encode({
               'form-name': 'formbuilder',
               ...this.form,
