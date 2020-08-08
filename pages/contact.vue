@@ -44,14 +44,15 @@
           </b-field>
         </validation-provider>
         <validation-provider
-          v-slot="{ errors, invalid, valid }"
+          v-slot="{ errors }"
           tag="div"
+          rules="name:3"
           :skip-if-empty="true"
         >
           <b-field
             label="Subject"
             v-bind="$attrs"
-            :type="{ 'is-danger': errors[0], 'is-success': valid }"
+            :type="{ 'is-danger': errors[0] }"
             :message="errors"
           >
             <b-input v-model="form.subject" type="text"></b-input>
@@ -60,6 +61,7 @@
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           tag="div"
+          rules="name:25"
           :skip-if-empty="true"
         >
           <b-field
@@ -86,10 +88,15 @@
 /* eslint-disable no-console */
 // @ts-nocheck
 import Vue from 'vue'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default Vue.extend({
   name: 'AboutPage',
   layout: 'ContactLayout',
+  components: {
+    ValidationObserver,
+    ValidationProvider,
+  },
   data() {
     return {
       form: {
@@ -146,6 +153,7 @@ export default Vue.extend({
         })
         .catch((err: any) => {
           console.log(err)
+          this.sendingForm = false
         })
     },
   },
