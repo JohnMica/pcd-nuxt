@@ -34,6 +34,7 @@
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           tag="div"
+          rules="email"
           vid="senderemail"
           :skip-if-empty="false"
         >
