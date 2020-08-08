@@ -116,7 +116,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="name:3"
-              name="sendername"
               vid="sendername"
               :skip-if-empty="false"
             >
@@ -126,7 +125,12 @@
                 :type="{ 'is-danger': errors[0], 'is-success': valid }"
                 :message="errors"
               >
-                <b-input v-model="form.sendername" type="text" required>
+                <b-input
+                  v-model="form.sendername"
+                  type="text"
+                  name="sendername"
+                  required
+                >
                 </b-input>
               </b-field>
             </validation-provider>
@@ -134,7 +138,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="required|email"
-              name="senderemail"
               vid="senderemail"
               :skip-if-empty="false"
             >
@@ -144,18 +147,26 @@
                 :type="{ 'is-danger': errors[0], 'is-success': valid }"
                 :message="errors"
               >
-                <b-input v-model="form.senderemail" type="email" required>
+                <b-input
+                  v-model="form.senderemail"
+                  type="email"
+                  name="senderemail"
+                  required
+                >
                 </b-input>
               </b-field>
             </validation-provider>
             <validation-provider
               tag="div"
               :skip-if-empty="true"
-              name="organisation"
               vid="organisation"
             >
               <b-field label="Organisation">
-                <b-input v-model="form.senderorganisation" type="text">
+                <b-input
+                  v-model="form.senderorganisation"
+                  type="text"
+                  name="organisation"
+                >
                 </b-input>
               </b-field>
             </validation-provider>
@@ -167,7 +178,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="name:3"
-              name="projectname"
               vid="projectname"
               :skip-if-empty="false"
             >
@@ -177,7 +187,13 @@
                 :type="{ 'is-danger': errors[0], 'is-success': valid }"
                 :message="errors"
               >
-                <b-input v-model="form.name" type="text" required> </b-input>
+                <b-input
+                  v-model="form.name"
+                  type="text"
+                  name="projectname"
+                  required
+                >
+                </b-input>
               </b-field>
             </validation-provider>
 
@@ -185,7 +201,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="url_string"
-              name="officialurl"
               vid="officialurl"
               :skip-if-empty="false"
             >
@@ -203,7 +218,12 @@
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
                 </template>
-                <b-input v-model="form.official_url" type="text" required>
+                <b-input
+                  v-model="form.official_url"
+                  type="text"
+                  name="officialurl"
+                  required
+                >
                 </b-input>
               </b-field>
             </validation-provider>
@@ -212,7 +232,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="url_string"
-              name="repository"
               vid="repository"
               :skip-if-empty="false"
             >
@@ -222,7 +241,12 @@
                 :type="{ 'is-danger': errors[0], 'is-success': valid }"
                 :message="errors"
               >
-                <b-input v-model="form.repository" type="text" required>
+                <b-input
+                  v-model="form.repository"
+                  type="text"
+                  name="repository"
+                  required
+                >
                 </b-input>
               </b-field>
             </validation-provider>
@@ -231,7 +255,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="arr:1"
-              name="startingcountry"
               vid="startingcountry"
               :skip-if-empty="false"
             >
@@ -251,6 +274,7 @@
                   :data="countries"
                   autocomplete
                   icon="label"
+                  name="startingcountry"
                   :allow-new="true"
                   :value="form.origin_country"
                 >
@@ -262,7 +286,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="arr:1"
-              name="projectlang"
               vid="projectlang"
               :skip-if-empty="false"
             >
@@ -285,6 +308,7 @@
                   v-model="form.language"
                   autocomplete
                   icon="label"
+                  name="projectlang"
                   :data="languages"
                   :allow-new="true"
                   :value="form.language"
@@ -297,7 +321,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="name:3"
-              name="projecttype"
               vid="projecttype"
               :skip-if-empty="false"
             >
@@ -319,6 +342,7 @@
                 <b-input
                   v-model="form.entry_type"
                   type="text"
+                  name="projecttype"
                   maxlength="50"
                   required
                 >
@@ -330,7 +354,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="arr:1"
-              name="projectlicence"
               vid="projectlicence"
               :skip-if-empty="false"
             >
@@ -349,6 +372,7 @@
                   v-model="form.licence"
                   :data="licences"
                   autocomplete
+                  name="projectlicence"
                   icon="label"
                   :allow-new="true"
                   :value="form.licence"
@@ -361,7 +385,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="arr:1"
-              name="projectcateg"
               vid="projectcateg"
               :skip-if-empty="false"
             >
@@ -383,6 +406,7 @@
                 <b-taginput
                   v-model="form.category"
                   :data="categories"
+                  name="projectcateg"
                   icon="label"
                   autocomplete
                   :allow-new="true"
@@ -396,7 +420,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="arr:1"
-              name="projectsector"
               vid="projectsector"
               :skip-if-empty="false"
             >
@@ -418,6 +441,7 @@
                 <b-taginput
                   v-model="form.sector"
                   autocomplete
+                  name="projectsector"
                   icon="label"
                   :allow-new="true"
                   :data="sectors"
@@ -431,7 +455,6 @@
               v-slot="{ errors, invalid, valid }"
               tag="div"
               rules="minmax:10,350"
-              name="description"
               vid="description"
               :skip-if-empty="false"
             >
@@ -444,6 +467,7 @@
                 <b-input
                   v-model="form.description"
                   type="textarea"
+                  name="description"
                   maxlength="350"
                   required
                 >
@@ -472,7 +496,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                :name="`devname-${ind}`"
                 :vid="`devname-${ind}`"
                 :skip-if-empty="false"
               >
@@ -485,6 +508,7 @@
                   <b-input
                     v-model="dev.developer_name"
                     type="text"
+                    :name="`devname-${ind}`"
                     maxlength="50"
                     required
                   >
@@ -495,7 +519,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                :name="`devwebsite-${ind}`"
                 :vid="`devwebsite-${ind}`"
                 :skip-if-empty="false"
               >
@@ -520,7 +543,7 @@
                   <b-input
                     v-model="dev.developer_url"
                     type="text"
-                    maxlength="50"
+                    :name="`devwebsite-${ind}`"
                     required
                   >
                   </b-input>
@@ -530,7 +553,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                :name="`devlogo-${ind}`"
                 :vid="`devlogo-${ind}`"
                 :skip-if-empty="false"
               >
@@ -555,7 +577,7 @@
                   <b-input
                     v-model="dev.developer_logo_url"
                     type="text"
-                    maxlength="50"
+                    :name="`devlogo-${ind}`"
                     required
                   >
                   </b-input>
@@ -565,7 +587,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="alpha_num:3"
-                :name="`devcateg-${ind}`"
                 :vid="`devcateg-${ind}`"
                 :skip-if-empty="false"
               >
@@ -590,6 +611,7 @@
                   <b-input
                     v-model="dev.developer_category"
                     type="text"
+                    :name="`devcateg-${ind}`"
                     maxlength="50"
                     required
                   >
@@ -620,7 +642,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="name:3"
-                  :name="`maintname-${ind}`"
                   :vid="`maintname-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -633,6 +654,7 @@
                     <b-input
                       v-model="dev.maintainer_name"
                       type="text"
+                      :name="`maintname-${ind}`"
                       maxlength="50"
                       required
                     >
@@ -643,7 +665,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
-                  :name="`maintwebsite-${ind}`"
                   :vid="`maintwebsite-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -665,7 +686,12 @@
                         ></b-icon>
                       </b-tooltip>
                     </template>
-                    <b-input v-model="dev.maintainer_url" type="text" required>
+                    <b-input
+                      v-model="dev.maintainer_url"
+                      type="text"
+                      :name="`maintwebsite-${ind}`"
+                      required
+                    >
                     </b-input>
                   </b-field>
                 </validation-provider>
@@ -673,7 +699,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
-                  :name="`maintlogo-${ind}`"
                   :vid="`maintlogo-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -698,6 +723,7 @@
                     <b-input
                       v-model="dev.maintainer_logo_url"
                       type="text"
+                      :name="`maintlogo-${ind}`"
                       required
                     >
                     </b-input>
@@ -707,7 +733,6 @@
                 <validation-provider
                   v-slot="{ errors, invalid, valid }"
                   rules="url_string"
-                  :name="`maintrepo-${ind}`"
                   :vid="`maintrepo-${ind}`"
                   :skip-if-empty="false"
                 >
@@ -732,6 +757,7 @@
                     <b-input
                       v-model="dev.maintainer_repository"
                       type="text"
+                      :name="`maintrepo-${ind}`"
                       required
                     >
                     </b-input>
@@ -758,7 +784,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                :name="`username-${ind}`"
                 :vid="`username-${ind}`"
                 :skip-if-empty="false"
               >
@@ -768,7 +793,12 @@
                   :type="{ 'is-danger': errors[0], 'is-success': valid }"
                   :message="errors"
                 >
-                  <b-input v-model="dev.user_name" type="text" required>
+                  <b-input
+                    v-model="dev.user_name"
+                    :name="`username-${ind}`"
+                    type="text"
+                    required
+                  >
                   </b-input>
                 </b-field>
               </validation-provider>
@@ -776,7 +806,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                :name="`userwebsite-${ind}`"
                 :vid="`userwebsite-${ind}`"
                 :skip-if-empty="false"
               >
@@ -798,14 +827,18 @@
                       ></b-icon>
                     </b-tooltip>
                   </template>
-                  <b-input v-model="dev.user_url" type="text" required>
+                  <b-input
+                    v-model="dev.user_url"
+                    type="text"
+                    :name="`userwebsite-${ind}`"
+                    required
+                  >
                   </b-input>
                 </b-field>
               </validation-provider>
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="url_string"
-                :name="`userlogo-${ind}`"
                 :vid="`userlogo-${ind}`"
                 :skip-if-empty="false"
               >
@@ -827,7 +860,12 @@
                       ></b-icon>
                     </b-tooltip>
                   </template>
-                  <b-input v-model="dev.user_logo_url" type="text" required>
+                  <b-input
+                    v-model="dev.user_logo_url"
+                    type="text"
+                    :name="`userlogo-${ind}`"
+                    required
+                  >
                   </b-input>
                 </b-field>
               </validation-provider>
@@ -835,7 +873,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:3"
-                :name="`userlocation-${ind}`"
                 :vid="`userlocation-${ind}`"
                 :skip-if-empty="false"
               >
@@ -853,7 +890,12 @@
                       ></b-icon>
                     </b-tooltip>
                   </template>
-                  <b-input v-model="dev.user_location" type="text" required>
+                  <b-input
+                    v-model="dev.user_location"
+                    type="text"
+                    :name="`userlocation-${ind}`"
+                    required
+                  >
                   </b-input>
                 </b-field>
               </validation-provider>
@@ -861,7 +903,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
-                :name="`userlong-${ind}`"
                 :vid="`userlong-${ind}`"
                 :skip-if-empty="false"
               >
@@ -882,6 +923,7 @@
                   <b-input
                     v-model="dev.user_geolocation.long"
                     type="text"
+                    :name="`userlong-${ind}`"
                     maxlength="10"
                     required
                   >
@@ -892,7 +934,6 @@
               <validation-provider
                 v-slot="{ errors, invalid, valid }"
                 rules="name:5"
-                :name="`userlat-${ind}`"
                 :vid="`userlat-${ind}`"
                 :skip-if-empty="false"
               >
@@ -913,6 +954,7 @@
                   <b-input
                     v-model="dev.user_geolocation.lat"
                     type="text"
+                    :name="`userlat-${ind}`"
                     maxlength="10"
                     required
                   >

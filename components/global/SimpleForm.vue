@@ -18,7 +18,6 @@
           v-slot="{ errors, invalid, valid }"
           tag="div"
           rules="name:3"
-          name="sendername"
           vid="sendername"
           :skip-if-empty="false"
         >
@@ -28,14 +27,14 @@
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
-            <b-input v-model="form.name" type="text" required> </b-input>
+            <b-input v-model="form.name" type="text" name="name" required>
+            </b-input>
           </b-field>
         </validation-provider>
 
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           tag="div"
-          name="senderemail"
           vid="senderemail"
           :skip-if-empty="false"
         >
@@ -45,7 +44,13 @@
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
-            <b-input v-model="form.email" type="email" maxlength="50" required>
+            <b-input
+              v-model="form.email"
+              type="email"
+              name="email"
+              maxlength="50"
+              required
+            >
             </b-input>
           </b-field>
         </validation-provider>
@@ -64,7 +69,6 @@
           v-slot="{ errors, invalid, valid }"
           rules="mimes:.json"
           tag="div"
-          name="fileupload"
           vid="fileupload"
           :skip-if-empty="false"
         >
@@ -77,7 +81,7 @@
             <b-upload
               ref="file"
               v-model="dropFiles"
-              name="attach"
+              name="file"
               expanded
               multiple
               drag-drop

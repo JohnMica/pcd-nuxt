@@ -16,7 +16,6 @@
           v-slot="{ errors, invalid, valid }"
           rules="name:3"
           tag="div"
-          name="sendername"
           vid="sendername"
           :skip-if-empty="false"
         >
@@ -26,14 +25,14 @@
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
-            <b-input v-model="form.name"></b-input>
+            <b-input v-model="form.name" name="sendername"></b-input>
           </b-field>
         </validation-provider>
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           rules="email"
           tag="div"
-          name="senderemail"
+          vid="senderemail"
           :skip-if-empty="false"
         >
           <b-field
@@ -42,7 +41,12 @@
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
-            <b-input v-model="form.email" type="email" maxlength="50">
+            <b-input
+              v-model="form.email"
+              type="email"
+              name="email"
+              maxlength="50"
+            >
             </b-input>
           </b-field>
         </validation-provider>
@@ -50,7 +54,6 @@
           v-slot="{ errors }"
           tag="div"
           rules="name:3"
-          name="subject"
           vid="subject"
           :skip-if-empty="true"
         >
@@ -60,14 +63,17 @@
             :type="{ 'is-danger': errors[0] }"
             :message="errors"
           >
-            <b-input v-model="form.subject" type="text"></b-input>
+            <b-input
+              v-model="form.subject"
+              type="text"
+              name="subject"
+            ></b-input>
           </b-field>
         </validation-provider>
         <validation-provider
           v-slot="{ errors, invalid, valid }"
           tag="div"
           rules="name:25"
-          name="message"
           vid="message"
           :skip-if-empty="false"
         >
@@ -77,7 +83,11 @@
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
-            <b-input v-model="form.message" type="textarea"></b-input>
+            <b-input
+              v-model="form.message"
+              type="textarea"
+              name="message"
+            ></b-input>
           </b-field>
         </validation-provider>
         <b-field>
