@@ -97,14 +97,13 @@
         </div>
       </div>
     </div>
-    <validation-observer ref="observer" v-slot="{ handleSubmit }">
+    <validation-observer ref="observer" v-slot="{ handleSubmit }" tag="div">
       <form
         id="formbuilder"
         ref="formbuilder"
         name="formbuilder"
         data-netlify="true"
-        method="post"
-        action="/"
+        method="POST"
         data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit(onSubmit)"
       >
@@ -1815,8 +1814,8 @@ export default Vue.extend({
         // @ts-ignore
         this.$axios
           .post(
-            // 'https://testing-pcd.netlify.app',
-            '/',
+            'https://testing-pcd.netlify.app',
+            // '/',
             this.encode({
               'form-name': 'formbuilder',
               ...this.form,

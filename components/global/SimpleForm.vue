@@ -6,9 +6,8 @@
         name="simpleform"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        method="post"
+        method="POST"
         novalidate
-        action="/"
         enctype="multipart/form-data"
         @submit.prevent="handleSubmit(onSubmit)"
       >
@@ -76,7 +75,6 @@
             v-bind="$attrs"
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
-            label="Upload .json file"
           >
             <b-upload
               ref="file"
@@ -186,8 +184,8 @@ export default Vue.extend({
       // @ts-ignore
       this.$axios
         .post(
-          '/',
-          // 'https://testing-pcd.netlify.app',
+          // '/',
+          'https://testing-pcd.netlify.app',
           this.encode({
             'form-name': 'simpleform',
             ...this.form,

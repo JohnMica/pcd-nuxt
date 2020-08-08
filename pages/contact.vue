@@ -4,9 +4,8 @@
       <form
         id="simplecontact"
         name="simplecontact"
-        method="post"
+        method="POST"
         data-netlify="true"
-        action="/"
         data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit(onSubmit)"
       >
@@ -149,8 +148,8 @@ export default Vue.extend({
       // @ts-ignore
       this.$axios
         .post(
-          '/',
-          // 'https://testing-pcd.netlify.app',
+          // '/',
+          'https://testing-pcd.netlify.app',
           this.encode({
             'form-name': 'simplecontact',
             ...this.form,
