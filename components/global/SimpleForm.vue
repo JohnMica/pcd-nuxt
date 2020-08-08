@@ -173,7 +173,10 @@ export default Vue.extend({
       })
       this.sendingForm = true
       const axiosConfig = {
-        header: { 'Content-Type': 'multipart/form-data' },
+        header: {
+          'Content-Type': 'multipart/form-data',
+          'Access-Control-Allow-Origin': '*',
+        },
       }
       // @ts-ignore
       this.$axios
