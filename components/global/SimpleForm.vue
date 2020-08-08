@@ -157,6 +157,8 @@ export default Vue.extend({
     encode(data: any) {
       const formData = new FormData()
       for (const key of Object.keys(data)) {
+        console.log('key', key, data[key])
+
         if (key === 'files') {
           formData.append(key, data[key][0])
         } else {

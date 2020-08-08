@@ -125,7 +125,7 @@
                 :message="errors"
               >
                 <b-input
-                  v-model="form.sendername"
+                  v-model="senderDetails.sendername"
                   type="text"
                   name="sendername"
                   required
@@ -147,7 +147,7 @@
                 :message="errors"
               >
                 <b-input
-                  v-model="form.senderemail"
+                  v-model="senderDetails.senderemail"
                   type="email"
                   name="senderemail"
                   required
@@ -162,7 +162,7 @@
             >
               <b-field label="Organisation">
                 <b-input
-                  v-model="form.senderorganisation"
+                  v-model="senderDetails.senderorganisation"
                   type="text"
                   name="senderorganisation"
                 >
@@ -1557,7 +1557,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      currentStep: 1 as number,
+      currentStep: 5 as number,
       submitSuccess: false as boolean,
       developersModalActive: false as boolean,
       maintainersModalActive: false as boolean,
@@ -1570,10 +1570,12 @@ export default Vue.extend({
       counterUsers: 0 as number,
       sameAsDevs: false as boolean,
       userCategories: [],
-      form: {
+      senderDetails: {
         sendername: 'name',
         senderemail: 'email@test.com',
         senderorganisation: 'organisation',
+      },
+      form: {
         name: 'project name',
         official_url: 'http://test.com',
         logo_url: 'http://test.com',
@@ -1614,10 +1616,12 @@ export default Vue.extend({
           },
         ],
       },
-      defaultForm: {
+      defaultSenderDetails: {
         sendername: '',
         senderemail: '',
         senderorganisation: '',
+      },
+      defaultForm: {
         name: '',
         official_url: '',
         logo_url: '',
@@ -1783,9 +1787,41 @@ export default Vue.extend({
     },
     encode(data: any) {
       return Object.keys(data)
-        .map(
-          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
+        .map((key) => {
+          if (
+            key === 'developers' ||
+            key === 'maintainers' ||
+            key === 'users'
+          ) {
+            return data[key].map((el: any) => {
+              return Object.entries(el)
+                .map((i: any) => {
+                  if (i[0] === 'user_geolocation') {
+                    return Object.keys(i[1])
+                      .map((j) => {
+                        return `${encodeURIComponent(j)}=${encodeURIComponent(
+                          i[1][j]
+                        )}`
+                      })
+                      .join('&')
+                  } else {
+                    return `${encodeURIComponent(i[0])}=${encodeURIComponent(
+                      i[1]
+                    )}`
+                  }
+                })
+                .join('&')
+            })
+          } else if (
+            key === 'licence' ||
+            key === 'category' ||
+            key === 'sector'
+          ) {
+            return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+          } else {
+            return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+          }
+        })
         .join('&')
     },
     onSubmit() {
@@ -1807,6 +1843,19 @@ export default Vue.extend({
             'Access-Control-Allow-Origin': '*',
           },
         }
+        console.log(
+          'formencoded',
+          JSON.parse(
+            JSON.stringify(
+              this.encode({
+                'form-name': 'formbuilder',
+                ...this.form,
+                ...this.senderDetails,
+              })
+            )
+          )
+        )
+
         // @ts-ignore
         this.$axios
           .post(
@@ -1815,6 +1864,7 @@ export default Vue.extend({
             this.encode({
               'form-name': 'formbuilder',
               ...this.form,
+              ...this.senderDetails,
             }),
             axiosConfig
           )
@@ -1826,6 +1876,10 @@ export default Vue.extend({
               this.currentStep = 6
               this.$nextTick(() => {
                 this.form = Object.assign({}, this.defaultForm)
+                this.senderDetails = Object.assign(
+                  {},
+                  this.defaultSenderDetails
+                )
                 // @ts-ignore
                 this.$refs.observer.reset()
               })
