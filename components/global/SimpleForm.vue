@@ -197,6 +197,7 @@ export default Vue.extend({
             this.$nextTick(() => {
               this.sendingForm = false
               this.form = Object.assign({}, this.defaultForm)
+              this.dropFiles = []
               // @ts-ignore
               this.$refs.simpleform.reset()
             })

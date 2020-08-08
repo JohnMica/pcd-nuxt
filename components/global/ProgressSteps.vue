@@ -758,8 +758,9 @@
                   </b-field>
                 </validation-provider>
               </div>
-            </div></div
-        ></keep-alive>
+            </div>
+          </div>
+        </keep-alive>
         <keep-alive>
           <div v-show="currentStep === 4" class="step">
             <b-field label="Users">
