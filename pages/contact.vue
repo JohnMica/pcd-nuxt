@@ -24,7 +24,7 @@
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
-            <b-input v-model="form.name" name="sendername"></b-input>
+            <b-input v-model="form.name" name="name"></b-input>
           </b-field>
         </validation-provider>
         <validation-provider

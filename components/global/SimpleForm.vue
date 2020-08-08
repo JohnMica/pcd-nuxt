@@ -68,7 +68,7 @@
           v-slot="{ errors, invalid, valid }"
           rules="mimes:.json"
           tag="div"
-          vid="fileupload"
+          vid="file"
           :skip-if-empty="false"
         >
           <b-field
@@ -79,7 +79,7 @@
             <b-upload
               ref="file"
               v-model="dropFiles"
-              name="file"
+              name="files"
               expanded
               multiple
               drag-drop

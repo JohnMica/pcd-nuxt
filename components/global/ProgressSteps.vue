@@ -164,7 +164,7 @@
                 <b-input
                   v-model="form.senderorganisation"
                   type="text"
-                  name="organisation"
+                  name="senderorganisation"
                 >
                 </b-input>
               </b-field>
@@ -186,12 +186,7 @@
                 :type="{ 'is-danger': errors[0], 'is-success': valid }"
                 :message="errors"
               >
-                <b-input
-                  v-model="form.name"
-                  type="text"
-                  name="projectname"
-                  required
-                >
+                <b-input v-model="form.name" type="text" name="name" required>
                 </b-input>
               </b-field>
             </validation-provider>
@@ -220,7 +215,7 @@
                 <b-input
                   v-model="form.official_url"
                   type="text"
-                  name="officialurl"
+                  name="official_url"
                   required
                 >
                 </b-input>
@@ -273,7 +268,7 @@
                   :data="countries"
                   autocomplete
                   icon="label"
-                  name="startingcountry"
+                  name="origin_country"
                   :allow-new="true"
                   :value="form.origin_country"
                 >
@@ -307,7 +302,7 @@
                   v-model="form.language"
                   autocomplete
                   icon="label"
-                  name="projectlang"
+                  name="language"
                   :data="languages"
                   :allow-new="true"
                   :value="form.language"
@@ -341,7 +336,7 @@
                 <b-input
                   v-model="form.entry_type"
                   type="text"
-                  name="projecttype"
+                  name="entry_type"
                   maxlength="50"
                   required
                 >
@@ -371,7 +366,7 @@
                   v-model="form.licence"
                   :data="licences"
                   autocomplete
-                  name="projectlicence"
+                  name="licence"
                   icon="label"
                   :allow-new="true"
                   :value="form.licence"
@@ -405,7 +400,7 @@
                 <b-taginput
                   v-model="form.category"
                   :data="categories"
-                  name="projectcateg"
+                  name="category"
                   icon="label"
                   autocomplete
                   :allow-new="true"
@@ -440,7 +435,7 @@
                 <b-taginput
                   v-model="form.sector"
                   autocomplete
-                  name="projectsector"
+                  name="sector"
                   icon="label"
                   :allow-new="true"
                   :data="sectors"
@@ -507,7 +502,7 @@
                   <b-input
                     v-model="dev.developer_name"
                     type="text"
-                    :name="`devname-${ind}`"
+                    name="developer_name"
                     maxlength="50"
                     required
                   >
@@ -542,7 +537,7 @@
                   <b-input
                     v-model="dev.developer_url"
                     type="text"
-                    :name="`devwebsite-${ind}`"
+                    name="developer_url"
                     required
                   >
                   </b-input>
@@ -576,7 +571,7 @@
                   <b-input
                     v-model="dev.developer_logo_url"
                     type="text"
-                    :name="`devlogo-${ind}`"
+                    name="developer_url"
                     required
                   >
                   </b-input>
@@ -610,7 +605,7 @@
                   <b-input
                     v-model="dev.developer_category"
                     type="text"
-                    :name="`devcateg-${ind}`"
+                    name="developer_category"
                     maxlength="50"
                     required
                   >
@@ -653,7 +648,7 @@
                     <b-input
                       v-model="dev.maintainer_name"
                       type="text"
-                      :name="`maintname-${ind}`"
+                      name="maintainer_name"
                       maxlength="50"
                       required
                     >
@@ -688,7 +683,7 @@
                     <b-input
                       v-model="dev.maintainer_url"
                       type="text"
-                      :name="`maintwebsite-${ind}`"
+                      name="maintainer_url"
                       required
                     >
                     </b-input>
@@ -722,7 +717,7 @@
                     <b-input
                       v-model="dev.maintainer_logo_url"
                       type="text"
-                      :name="`maintlogo-${ind}`"
+                      name="maintainer_logo_url"
                       required
                     >
                     </b-input>
@@ -756,7 +751,7 @@
                     <b-input
                       v-model="dev.maintainer_repository"
                       type="text"
-                      :name="`maintrepo-${ind}`"
+                      name="maintainer_repository"
                       required
                     >
                     </b-input>
@@ -794,7 +789,7 @@
                 >
                   <b-input
                     v-model="dev.user_name"
-                    :name="`username-${ind}`"
+                    name="user_name"
                     type="text"
                     required
                   >
@@ -829,7 +824,7 @@
                   <b-input
                     v-model="dev.user_url"
                     type="text"
-                    :name="`userwebsite-${ind}`"
+                    name="user_url"
                     required
                   >
                   </b-input>
@@ -862,7 +857,7 @@
                   <b-input
                     v-model="dev.user_logo_url"
                     type="text"
-                    :name="`userlogo-${ind}`"
+                    name="user_logo_url"
                     required
                   >
                   </b-input>
@@ -892,7 +887,7 @@
                   <b-input
                     v-model="dev.user_location"
                     type="text"
-                    :name="`userlocation-${ind}`"
+                    name="user_location"
                     required
                   >
                   </b-input>
@@ -922,7 +917,7 @@
                   <b-input
                     v-model="dev.user_geolocation.long"
                     type="text"
-                    :name="`userlong-${ind}`"
+                    name="long"
                     maxlength="10"
                     required
                   >
@@ -953,7 +948,7 @@
                   <b-input
                     v-model="dev.user_geolocation.lat"
                     type="text"
-                    :name="`userlat-${ind}`"
+                    name="lat"
                     maxlength="10"
                     required
                   >
