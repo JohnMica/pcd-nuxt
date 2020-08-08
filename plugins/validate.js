@@ -29,6 +29,13 @@ extend('name', {
   params: ['length'],
   message: 'The field must have more then {length} characters',
 })
+extend('array', {
+  validate(value, { length }) {
+    return value.length >= length
+  },
+  params: ['length'],
+  message: 'The field must have more then {length} entries',
+})
 
 extend('url_string', (value) => {
   if (urlPattern.test(value)) {
