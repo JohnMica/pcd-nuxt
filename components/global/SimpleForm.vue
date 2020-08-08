@@ -6,61 +6,80 @@
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       method="post"
+      novalidate
+      enctype="multipart/form-data"
       @submit.prevent="handleSubmit(onSubmit)"
     >
-      <b-input type="hidden" name="form-name" value="simpleform" />
-      <b-input type="hidden" value="simpleForm" autocomplete="off"></b-input>
-      <b-input type="hidden" :value="randomNonce" autocomplete="off"></b-input>
-      <b-input type="hidden" :value="randomId" autocomplete="off"></b-input>
+      <input type="hidden" name="form-name" value="simpleform" />
+
       <validation-provider
         v-slot="{ errors, invalid, valid }"
         tag="div"
-        rules="name:5"
+        rules="name:3"
+        name="sendername"
+        :skip-if-empty="false"
       >
-        <b-field label="Name">
-          <b-input
-            v-model="form.name"
-            type="text"
-            required
-            :class="{ 'is-danger': invalid, 'is-success': valid }"
-          >
-          </b-input>
+        <b-field
+          label="Name"
+          v-bind="$attrs"
+          :type="{ 'is-danger': errors[0], 'is-success': valid }"
+          :message="errors"
+        >
+          <b-input v-model="form.name" type="text" required> </b-input>
         </b-field>
-        <p v-if="errors.length" class="has-text-danger">
-          <small>{{ errors[0] }}</small>
-        </p>
       </validation-provider>
 
-      <validation-provider v-slot="{ errors, invalid, valid }" tag="div">
-        <b-field label="Email">
-          <b-input
-            v-model="form.email"
-            type="email"
-            maxlength="50"
-            required
-            :class="{ 'is-danger': invalid, 'is-success': valid }"
-          >
+      <validation-provider
+        v-slot="{ errors, invalid, valid }"
+        tag="div"
+        name="senderemail"
+        :skip-if-empty="false"
+      >
+        <b-field
+          label="Email"
+          v-bind="$attrs"
+          :type="{ 'is-danger': errors[0], 'is-success': valid }"
+          :message="errors"
+        >
+          <b-input v-model="form.email" type="email" maxlength="50" required>
           </b-input>
         </b-field>
-        <p v-if="errors.length" class="has-text-danger">
-          <small>{{ errors[0] }}</small>
-        </p>
       </validation-provider>
+      <!-- <b-field class="file">
+        <b-upload v-model="form.file">
+          <a class="button is-primary">
+            <b-icon icon="upload"></b-icon>
+            <span>Click to upload</span>
+          </a>
+        </b-upload>
+        <span v-if="form.file" class="file-name">
+          {{ form.file.name }}
+        </span>
+      </b-field> -->
       <validation-provider
-        v-slot="{ errors, invalid, valid, validate }"
+        v-slot="{ errors, invalid, valid }"
         rules="mimes:.json"
         tag="div"
+        name="fileupload"
+        :skip-if-empty="false"
       >
-        <b-field>
+        <b-field
+          v-bind="$attrs"
+          :type="{ 'is-danger': errors[0], 'is-success': valid }"
+          :message="errors"
+          label="Upload .json file"
+        >
           <b-upload
-            v-model="form.dropFiles"
+            ref="file"
+            v-model="dropFiles"
+            name="attach"
             expanded
             multiple
             drag-drop
             accept=".json"
             required
             :class="{ 'is-danger': invalid, 'is-success': valid }"
-            @change="validate"
+            @change="addFile"
           >
             <section class="section">
               <div class="content has-text-centered">
@@ -72,13 +91,10 @@
             </section>
           </b-upload>
         </b-field>
-        <span v-if="errors.length" class="has-text-danger"
-          ><small>{{ errors[0] }}</small></span
-        >
       </validation-provider>
       <div class="tags">
         <span
-          v-for="(item, index) in form.dropFiles"
+          v-for="(item, index) in dropFiles"
           :key="index"
           class="tag is-primary"
         >
@@ -117,31 +133,34 @@ export default Vue.extend({
   },
   data() {
     return {
-      form: { name: '', email: '', file: {}, dropFiles: [] },
+      form: { name: 'my name', email: 'my@test.com', file: [] },
+      // dropFiles: [],
     }
   },
-  computed: {
-    randomNonce() {
-      return (Math.random() * 1e32).toString(24)
-    },
-    randomId() {
-      return (Math.random() * 1e32).toString(20)
-    },
-  },
+  computed: {},
   methods: {
+    addFile() {
+      this.form.files = this.dropFiles
+    },
+
     encode(data: any) {
-      return Object.keys(data)
-        .map(
-          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join('&')
+      const formData = new FormData()
+      Object.entries(data).forEach((key) => {
+        if (key === 'files') {
+          formData.append(key, data[key][0])
+        } else {
+          formData.append(key, data[key])
+        }
+      })
+
+      return formData
     },
     deleteDropFile(index: number) {
-      this.form.dropFiles.splice(index, 1)
+      this.form.files.splice(index, 1)
     },
     onSubmit() {
       const axiosConfig = {
-        header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        header: { 'Content-Type': 'multipart/form-data' },
       }
       // @ts-ignore
       this.$axios
@@ -155,7 +174,6 @@ export default Vue.extend({
         )
         .then((res: any) => {
           console.log('result', res)
-
           this.$router.push('/')
         })
         .catch((err: any) => {
