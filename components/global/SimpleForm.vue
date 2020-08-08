@@ -86,7 +86,7 @@
               accept=".json"
               required
               :class="{ 'is-danger': invalid, 'is-success': valid }"
-              @change="addFile"
+              @input="processFile()"
             >
               <section class="section">
                 <div class="content has-text-centered">
@@ -150,16 +150,18 @@ export default Vue.extend({
   },
   computed: {},
   methods: {
-    addFile() {
-      this.form.files = this.dropFiles
+    processFile() {
+      this.$nextTick(() => {
+        this.form.files = this.dropFiles
+      })
     },
 
     encode(data: any) {
       const formData = new FormData()
       for (const key of Object.keys(data)) {
-        console.log('key', key, data[key])
-
         if (key === 'files') {
+          console.log(data[key])
+
           formData.append(key, data[key][0])
         } else {
           formData.append(key, data[key])
@@ -183,6 +185,14 @@ export default Vue.extend({
           'Access-Control-Allow-Origin': '*',
         },
       }
+      console.log(
+        'data',
+        this.encode({
+          'form-name': 'simpleform',
+          ...this.form,
+        })
+      )
+
       // @ts-ignore
       this.$axios
         .post(
