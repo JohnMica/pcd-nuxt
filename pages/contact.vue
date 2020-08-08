@@ -140,15 +140,19 @@ export default Vue.extend({
         .then((res: any) => {
           setTimeout(() => {
             console.log(
+              'form sent',
               this.encode({
                 'form-name': 'simplecontact',
                 ...this.form,
               })
             )
-
-            this.sendingForm = false
-            this.form = { name: '', email: '', subject: '', message: '' }
-            console.log('result', res)
+            this.$nextTick(() => {
+              this.sendingForm = false
+              this.form = { name: '', email: '', subject: '', message: '' }
+              console.log('result', res)
+              // @ts-ignore
+              this.$refs.simplecontact.reset()
+            })
             // this.$router.push('/')
           }, 1500)
         })

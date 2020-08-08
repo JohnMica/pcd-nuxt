@@ -1782,11 +1782,11 @@ export default Vue.extend({
               this.submitSuccess = true
               this.sendingForm = false
               this.currentStep = 6
-              requestAnimationFrame(() => {
+              this.$nextTick(() => {
+                this.form = Object.assign({}, this.defaultForm)
                 // @ts-ignore
                 this.$refs.observer.reset()
               })
-              this.form = Object.assign({}, this.defaultForm)
             }, 1500)
           })
           .catch((error: any) => {

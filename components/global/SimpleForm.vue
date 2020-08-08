@@ -1,6 +1,5 @@
 <template>
   <div>
-    <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
     <validation-observer ref="simpleform" v-slot="{ handleSubmit }">
       <form
         id="simpleform"
@@ -118,6 +117,7 @@
         </b-field>
       </form>
     </validation-observer>
+    <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
   </div>
 </template>
 
@@ -137,6 +137,7 @@ export default Vue.extend({
   data() {
     return {
       form: { name: 'my name', email: 'my@test.com', files: [] },
+      defaultForm: { name: '', email: '', files: [] },
       dropFiles: [],
       sendingForm: false,
     }
@@ -184,9 +185,14 @@ export default Vue.extend({
         )
         .then((res: any) => {
           setTimeout(() => {
-            this.sendingForm = false
+            this.$nextTick(() => {
+              this.sendingForm = false
+              this.form = Object.assign({}, this.defaultForm)
+              // @ts-ignore
+              this.$refs.simpleform.reset()
+            })
             console.log('result', res)
-            this.$router.push('/')
+            // this.$router.push('/')
           }, 1500)
         })
         .catch((err: any) => {
