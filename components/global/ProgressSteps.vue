@@ -1734,7 +1734,7 @@ export default Vue.extend({
         // @ts-ignore
         this.$axios
           .post(
-            '/',
+            'https://testing-pcd.netlify.app',
             this.encode({
               'form-name': 'formbuilder',
               ...this.form,
