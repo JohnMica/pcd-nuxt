@@ -8,6 +8,7 @@
         data-netlify-honeypot="bot-field"
         method="post"
         novalidate
+        action="/"
         enctype="multipart/form-data"
         @submit.prevent="handleSubmit(onSubmit)"
       >

@@ -6,6 +6,7 @@
         name="simplecontact"
         method="post"
         data-netlify="true"
+        action="/"
         data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit(onSubmit)"
       >
