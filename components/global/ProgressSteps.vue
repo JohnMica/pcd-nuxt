@@ -108,7 +108,7 @@
       >
         <input type="hidden" name="form-name" value="formbuilder" />
         <keep-alive>
-          <div v-if="currentStep === 1" class="step">
+          <div v-show="currentStep === 1" class="step">
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
@@ -156,7 +156,7 @@
           </div>
         </keep-alive>
         <keep-alive>
-          <div v-if="currentStep === 2" class="step">
+          <div v-show="currentStep === 2" class="step">
             <validation-provider
               v-slot="{ errors, invalid, valid }"
               tag="div"
@@ -436,7 +436,7 @@
             </validation-provider></div
         ></keep-alive>
         <keep-alive>
-          <div v-if="currentStep === 3" class="step">
+          <div v-show="currentStep === 3" class="step">
             <b-field label="Developers">
               <b-button native-type="button" @click.prevent="addDevelopers">
                 Add Developers
@@ -717,7 +717,7 @@
             </div></div
         ></keep-alive>
         <keep-alive>
-          <div v-if="currentStep === 4" class="step">
+          <div v-show="currentStep === 4" class="step">
             <b-field label="Users">
               <b-button native-type="button" @click.prevent="addUsers">
                 Add Users
@@ -893,7 +893,7 @@
           </div>
         </keep-alive>
         <keep-alive>
-          <div v-if="currentStep === 5" class="step">
+          <div v-show="currentStep === 5" class="step">
             <div v-for="(dev, ind) in form.users" :key="ind">
               <hr v-if="ind >= 1" />
               <validation-provider name="readform">
@@ -919,7 +919,7 @@
             </div>
           </div>
         </keep-alive>
-        <b-field v-if="currentStep < 6" class="is-between pt-5">
+        <b-field v-show="currentStep < 6" class="is-between pt-5">
           <b-button
             outlined
             type="is-primary"
