@@ -14,6 +14,9 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    bodyAttrs: {
+      class: 'is-grid',
+    },
   },
   css: ['~/assets/scss/app'],
   plugins: [

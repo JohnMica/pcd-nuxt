@@ -42,7 +42,7 @@
             <nuxt></nuxt>
           </div>
         </div>
-        <div class="columns is-compensating"></div>
+        <!-- <div class="columns is-compensating"></div> -->
       </div>
     </section>
 

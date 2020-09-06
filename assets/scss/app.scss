@@ -30,6 +30,24 @@ body,
 //   font-size: calc(16px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 //   line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px) / (1600 - 300)));
 // }
+
+.is-grid {
+  display: grid;
+  grid-template-rows: 1fr;
+  #__nuxt {
+    display: grid;
+    grid-template-rows: 1fr;
+    #__layout {
+      grid-row: 1/-1;
+      display: grid;
+    }
+  }
+}
+main {
+  // min-height: 100vh;
+  display: flex;
+  flex-flow: column wrap;
+}
 object {
   pointer-events: none;
 }
