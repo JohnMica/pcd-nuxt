@@ -112,7 +112,7 @@
         <keep-alive>
           <div v-show="currentStep === 1" class="step">
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="name:3"
               vid="sendername"
@@ -134,7 +134,7 @@
               </b-field>
             </validation-provider>
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="required|email"
               vid="senderemail"
@@ -174,7 +174,7 @@
         <keep-alive>
           <div v-show="currentStep === 2" class="step">
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="name:3"
               vid="projectname"
@@ -192,7 +192,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="url_string"
               vid="officialurl"
@@ -223,7 +223,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="url_string"
               vid="repository"
@@ -246,7 +246,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="arr:1"
               vid="startingcountry"
@@ -277,7 +277,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="arr:1"
               vid="projectlang"
@@ -312,7 +312,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="name:3"
               vid="projecttype"
@@ -345,7 +345,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="arr:1"
               vid="projectlicence"
@@ -376,7 +376,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="arr:1"
               vid="projectcateg"
@@ -411,7 +411,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="arr:1"
               vid="projectsector"
@@ -446,7 +446,7 @@
             </validation-provider>
 
             <validation-provider
-              v-slot="{ errors, invalid, valid }"
+              v-slot="{ errors, valid }"
               tag="div"
               rules="minmax:10,350"
               vid="description"
@@ -488,7 +488,7 @@
                 </b-button>
               </b-field>
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:3"
                 :vid="`devname-${ind}`"
                 :skip-if-empty="false"
@@ -511,7 +511,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :vid="`devwebsite-${ind}`"
                 :skip-if-empty="false"
@@ -545,7 +545,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :vid="`devlogo-${ind}`"
                 :skip-if-empty="false"
@@ -579,7 +579,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="alpha_num:3"
                 :vid="`devcateg-${ind}`"
                 :skip-if-empty="false"
@@ -634,7 +634,7 @@
                 </b-field>
 
                 <validation-provider
-                  v-slot="{ errors, invalid, valid }"
+                  v-slot="{ errors, valid }"
                   rules="name:3"
                   :vid="`maintname-${ind}`"
                   :skip-if-empty="false"
@@ -657,7 +657,7 @@
                 </validation-provider>
 
                 <validation-provider
-                  v-slot="{ errors, invalid, valid }"
+                  v-slot="{ errors, valid }"
                   rules="url_string"
                   :vid="`maintwebsite-${ind}`"
                   :skip-if-empty="false"
@@ -691,7 +691,7 @@
                 </validation-provider>
 
                 <validation-provider
-                  v-slot="{ errors, invalid, valid }"
+                  v-slot="{ errors, valid }"
                   rules="url_string"
                   :vid="`maintlogo-${ind}`"
                   :skip-if-empty="false"
@@ -725,7 +725,7 @@
                 </validation-provider>
 
                 <validation-provider
-                  v-slot="{ errors, invalid, valid }"
+                  v-slot="{ errors, valid }"
                   rules="url_string"
                   :vid="`maintrepo-${ind}`"
                   :skip-if-empty="false"
@@ -777,7 +777,7 @@
               </b-field>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:3"
                 :vid="`username-${ind}`"
                 :skip-if-empty="false"
@@ -799,7 +799,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :vid="`userwebsite-${ind}`"
                 :skip-if-empty="false"
@@ -832,7 +832,7 @@
                 </b-field>
               </validation-provider>
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :vid="`userlogo-${ind}`"
                 :skip-if-empty="false"
@@ -866,7 +866,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:3"
                 :vid="`userlocation-${ind}`"
                 :skip-if-empty="false"
@@ -896,7 +896,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:5"
                 :vid="`userlong-${ind}`"
                 :skip-if-empty="false"
@@ -927,7 +927,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:5"
                 :vid="`userlat-${ind}`"
                 :skip-if-empty="false"
@@ -1029,6 +1029,11 @@
     <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
     <div v-show="submitSuccess" id="form-result" class="step">
       Thanks for the email. We will analyze it and add it to our databse
+      <div class="has-text-centered">
+        <b-button outlined type="is-primary" @click.prevent="resetForm">
+          Start a new submission
+        </b-button>
+      </div>
     </div>
     <b-modal
       :active.sync="developersModalActive"
@@ -1037,7 +1042,7 @@
       aria-role="dialog"
       aria-modal
     >
-      <div class="modal-card" style="width: auto;">
+      <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Add Developer</p>
         </header>
@@ -1050,7 +1055,7 @@
               @submit.prevent="handleSubmit(saveDeveloper)"
             >
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:3"
                 :name="`newdevname`"
                 :skip-if-empty="false"
@@ -1070,7 +1075,7 @@
                 </b-field>
               </validation-provider>
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newdevwebsite`"
                 :skip-if-empty="false"
@@ -1103,7 +1108,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newdevlogo`"
                 :skip-if-empty="false"
@@ -1136,7 +1141,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="arr:1"
                 :name="`newdevcateg`"
                 :skip-if-empty="false"
@@ -1192,7 +1197,7 @@
       aria-role="dialog"
       aria-modal
     >
-      <div class="modal-card" style="width: auto;">
+      <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Add Maintainer</p>
         </header>
@@ -1205,7 +1210,7 @@
               @submit.prevent="handleSubmit(saveMaintainer)"
             >
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newmaintname`"
                 :skip-if-empty="false"
@@ -1226,7 +1231,7 @@
                 </b-field>
               </validation-provider>
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newmaintwebsite`"
                 :skip-if-empty="false"
@@ -1259,7 +1264,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newmaintlogo`"
                 :skip-if-empty="false"
@@ -1292,7 +1297,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newmaintrepo`"
                 :skip-if-empty="false"
@@ -1363,7 +1368,7 @@
               @submit.prevent="handleSubmit(saveUser)"
             >
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:3"
                 :name="`newusername`"
                 :skip-if-empty="false"
@@ -1383,7 +1388,7 @@
                 </b-field>
               </validation-provider>
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newuserwebsite`"
                 :skip-if-empty="false"
@@ -1412,7 +1417,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newuserlogo`"
                 :skip-if-empty="false"
@@ -1444,7 +1449,7 @@
                 </b-field>
               </validation-provider>
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:3"
                 :name="`newuserlocation`"
                 :skip-if-empty="false"
@@ -1474,7 +1479,7 @@
               </validation-provider>
 
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:5"
                 :name="`newuserlong`"
                 :skip-if-empty="false"
@@ -1502,7 +1507,7 @@
                   </b-input> </b-field
               ></validation-provider>
               <validation-provider
-                v-slot="{ errors, invalid, valid }"
+                v-slot="{ errors, valid }"
                 rules="name:5"
                 :name="`newuserlat`"
                 :skip-if-empty="false"
@@ -1697,6 +1702,11 @@ export default Vue.extend({
     ]),
   },
   methods: {
+    resetForm() {
+      this.form = Object.assign({}, this.defaultForm)
+      this.currentStep = 1
+      this.submitSuccess = false
+    },
     backToStep() {
       if (this.currentStep === 1) {
         return

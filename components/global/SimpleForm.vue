@@ -14,7 +14,7 @@
         <input type="hidden" name="form-name" value="simpleform" />
         <input type="hidden" name="bot-field" />
         <validation-provider
-          v-slot="{ errors, invalid, valid }"
+          v-slot="{ errors, valid }"
           tag="div"
           rules="name:3"
           vid="sendername"
@@ -32,7 +32,7 @@
         </validation-provider>
 
         <validation-provider
-          v-slot="{ errors, invalid, valid }"
+          v-slot="{ errors, valid }"
           tag="div"
           rules="email"
           vid="senderemail"

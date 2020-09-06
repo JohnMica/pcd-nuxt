@@ -105,7 +105,7 @@
             v-if="!product.showMore"
             href="#"
             class="card-footer-item"
-            @click.prevent="$emit('showHide', product.name, true)"
+            @click.prevent="$emit('show-hide', product.name, true)"
           >
             Show More
           </a>
@@ -113,7 +113,7 @@
             v-else
             href="#"
             class="card-footer-item"
-            @click.prevent="$emit('showHide', product.name, false)"
+            @click.prevent="$emit('show-hide', product.name, false)"
           >
             Show Less
           </a>
@@ -149,8 +149,8 @@ export default Vue.extend({
     setTimeout(() => {
       this.loading = false
     }, 200)
-    this.$on('showHide', (name, value) => {
-      this.$store.commit('showHideMore', { name, value })
+    this.$on('show-hide', (name, value) => {
+      this.$store.commit('show-hideMore', { name, value })
     })
   },
   methods: {},
