@@ -50,19 +50,9 @@
             Origin Country:
             <span class="is-bold"> {{ selectedMapObj.originCountry }}</span>
           </p>
-          <p v-if="selectedMapObj.sector.length === 1" class="content-text">
-            Sector:
-            <span
-              v-for="(sector, index) in selectedMapObj.sector"
-              :id="`sector-${index}`"
-              :key="index"
-              class="tag"
-            >
-              {{ sector }}
-            </span>
-          </p>
-          <p v-else class="content-text">
-            Sectors:
+
+          <p class="content-text">
+            {{ selectedMapObj.sector.length === 1 ? 'Sector' : 'Sectors' }}:
             <span
               v-for="(sector, index) in selectedMapObj.sector"
               :id="`selecter-sector-${index}`"
@@ -93,8 +83,12 @@
           </p>
           <div v-else class="content-text">
             <p>{{ selectedMapObj.description }}</p>
-            <p v-if="selectedMapObj.category.length === 1">
-              Category:
+            <p>
+              {{
+                selectedMapObj.category.length === 1
+                  ? 'Category'
+                  : 'Categories'
+              }}:
               <span
                 v-for="(prod_categ, index) in selectedMapObj.category"
                 :id="`categ-${index}`"
@@ -104,17 +98,7 @@
                 {{ prod_categ }}
               </span>
             </p>
-            <p v-else>
-              Categories:
-              <span
-                v-for="(prod_categ, index) in selectedMapObj.category"
-                :id="`sel-categ-${index}`"
-                :key="index"
-                class="tag"
-              >
-                {{ prod_categ }}
-              </span>
-            </p>
+
             <p>
               Developed by:
               <span v-for="(dev, ind) in selectedMapObj.developers" :key="ind">
@@ -251,7 +235,7 @@ export default Vue.extend({
       Object.assign(
         this.selectedMapObj,
         this.list.filter((el) =>
-          el.users.some((item) => item.name === marker.name)
+          el.users.some((item) => item.user_name === marker.name)
         )[0]
       )
       this.showObjectMap = true
@@ -259,7 +243,7 @@ export default Vue.extend({
     removeSelection(marker) {
       this.showObjectMap = false
       if (this.selectedMapObj.name === marker.name) {
-        this.selectedMapObj = null
+        this.selectedMapObj = {}
       }
     },
   },
