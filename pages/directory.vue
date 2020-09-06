@@ -2,13 +2,11 @@
   <section class="section container">
     <div class="columns is-centered">
       <sidebar-component></sidebar-component>
-      <main class="column is-9">
+      <section class="column is-9">
         <div class="columns">
           <div class="column is-12">
             <main class="main-content">
-              <div class="content px-1">
-                <total-products></total-products>
-              </div>
+              <div class="content px-1"></div>
               <b-tabs type="is-toggle" position="is-centered" destroy-on-hide>
                 <b-tab-item label="List View" icon="format-list-bulleted">
                   <list-view></list-view>
@@ -23,7 +21,7 @@
             </main>
           </div>
         </div>
-      </main>
+      </section>
     </div>
   </section>
 </template>
@@ -33,7 +31,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'DirectoryPage',
-  layout: 'StandardLayout',
+  layout: 'DirectoryLayout',
 })
 </script>
 

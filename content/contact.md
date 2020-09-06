@@ -4,7 +4,7 @@ in_main_menu: true
 in_footer_menu: true
 ---
 
-# This is how you can contact us
+## This is how you can contact us
 
 You can contact one of the partners individually at their own contact address
 

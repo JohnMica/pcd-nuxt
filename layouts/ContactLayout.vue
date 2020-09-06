@@ -9,7 +9,7 @@
       <div class="hero-body has-text-centered">
         <div class="columns is-centered is-multiline">
           <div class="column is-12">
-            <h2 class="is-size-2">{{ page.title }}</h2>
+            <h1>{{ page.title }}</h1>
           </div>
           <div class="column is-12">
             <ol class="header-join-list">

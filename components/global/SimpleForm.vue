@@ -26,7 +26,13 @@
             :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
-            <b-input v-model="form.name" type="text" name="name" required>
+            <b-input
+              v-model="form.name"
+              type="text"
+              name="name"
+              required
+              placeholder="eg: John Smith"
+            >
             </b-input>
           </b-field>
         </validation-provider>
@@ -50,6 +56,7 @@
               name="email"
               maxlength="50"
               required
+              placeholder="eg: user@example.com"
             >
             </b-input>
           </b-field>
@@ -143,7 +150,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      form: { name: 'my name', email: 'my@test.com', files: [] },
+      form: { name: '', email: '', files: [] },
       defaultForm: { name: '', email: '', files: [] },
       dropFiles: [],
       sendingForm: false,
