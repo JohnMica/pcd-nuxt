@@ -987,380 +987,391 @@
           >
           </b-input>
         </b-field>
-
-        <b-field label="Project Name">
-          <b-input :value="form.name" type="text" name="project-name" readonly>
-          </b-input>
-        </b-field>
-        <b-field>
-          <template slot="label">
-            Project Website &nbsp;
-            <b-tooltip label="Project website is required" type="is-light">
-              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-            </b-tooltip>
-          </template>
-          <b-input
-            :value="form.official_url"
-            type="text"
-            name="official_url"
-            readonly
-          >
-          </b-input>
-        </b-field>
-        <b-field label="Repository URL">
-          <b-input
-            :value="form.repository"
-            type="text"
-            name="repository"
-            readonly
-          >
-          </b-input>
-        </b-field>
-
-        <b-field>
-          <template slot="label">
-            Project Starting Country &nbsp;
-            <b-tooltip label="eg: Canada" type="is-light" animated>
-              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-            </b-tooltip>
-          </template>
-          <b-taginput
-            icon="label"
-            name="origin_country"
-            :allow-new="false"
-            :value="form.origin_country"
-            readonly
-            :closable="false"
-          >
-          </b-taginput>
-        </b-field>
-        <b-field>
-          <template slot="label">
-            Project Languages &nbsp;
-            <b-tooltip label="eg: EN, IT, FR, DE" type="is-light" animated>
-              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-            </b-tooltip>
-          </template>
-          <b-taginput
-            icon="label"
-            name="language"
-            :allow-new="false"
-            :value="form.language"
-            readonly
-            :closable="false"
-          >
-          </b-taginput>
-        </b-field>
-        <b-field>
-          <template slot="label">
-            Project Type &nbsp;
-            <b-tooltip
-              label="eg: website, mobile app, platform"
-              type="is-light"
-              animated
-            >
-              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-            </b-tooltip>
-          </template>
-          <b-input
-            :value="form.entry_type"
-            type="text"
-            name="entry_type"
-            readonly
-          >
-          </b-input>
-        </b-field>
-        <b-field>
-          <template slot="label">
-            Project Category &nbsp;
-            <b-tooltip
-              label="eg: Education Software, Software"
-              type="is-light"
-              animated
-            >
-              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-            </b-tooltip>
-          </template>
-          <b-taginput
-            name="category"
-            icon="label"
-            :allow-new="false"
-            :value="form.category"
-            readonly
-            :closable="false"
-          >
-          </b-taginput>
-        </b-field>
-        <b-field>
-          <template slot="label">
-            Project Licence &nbsp;
-            <b-tooltip label="eg: MIT, GPL" type="is-light" animated>
-              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-            </b-tooltip>
-          </template>
-          <b-taginput
-            name="licence"
-            icon="label"
-            :allow-new="false"
-            :value="form.licence"
-            readonly
-            :closable="false"
-          >
-          </b-taginput>
-        </b-field>
-        <b-field>
-          <template slot="label">
-            Project Sector &nbsp;
-            <b-tooltip
-              label="eg: Local Government, Public Health"
-              type="is-light"
-              animated
-            >
-              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-            </b-tooltip>
-          </template>
-          <b-taginput
-            name="sector"
-            icon="label"
-            :allow-new="false"
-            :value="form.sector"
-            readonly
-            :closable="false"
-          >
-          </b-taginput>
-        </b-field>
-        <b-field label="Project Description">
-          <b-input
-            :value="form.description"
-            type="textarea"
-            name="description"
-            readonly
-          >
-          </b-input>
-        </b-field>
-        <hr />
-        <template v-for="(dev, ind) in formToSend.developers">
-          <div v-show="dev.developer_name.length > 0" :key="`dev-r-${ind}`">
-            <hr v-if="ind >= 1" />
-            <b-field label="Developer Name">
-              <b-input
-                :value="dev.developer_name"
-                type="text"
-                :name="`developer_name${ind}`"
-                readonly
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <template slot="label">
-                Developer Website &nbsp;
-                <b-tooltip
-                  label="eg: https://example.com"
-                  type="is-light"
-                  animated
-                >
-                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                </b-tooltip>
-              </template>
-              <b-input
-                :value="dev.developer_url"
-                type="text"
-                :name="`developer_url${ind}`"
-                readonly
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <template slot="label">
-                Developer Logo URL &nbsp;
-                <b-tooltip
-                  label="eg: https://example.com/logo.png"
-                  type="is-light"
-                  animated
-                >
-                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                </b-tooltip>
-              </template>
-              <b-input
-                :value="dev.developer_logo_url"
-                type="text"
-                :name="`developer_logo_url${ind}`"
-                readonly
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <template slot="label">
-                Developer Category &nbsp;
-                <b-tooltip
-                  label="eg: Education Software, Software"
-                  type="is-light"
-                  animated
-                >
-                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                </b-tooltip>
-              </template>
-              <b-input
-                :value="dev.developer_category"
-                type="text"
-                :name="`developer_category${ind}`"
-                readonly
-              >
-              </b-input>
-            </b-field>
-          </div>
-        </template>
-        <hr />
-        <template v-for="(dev, ind) in formToSend.maintainers">
-          <div v-show="dev.maintainer_name.length > 0" :key="`maint-r-${ind}`">
-            <hr v-if="ind >= 1" />
-            <b-field label="Maintainers Name">
-              <b-input
-                :value="dev.maintainer_name"
-                type="text"
-                readonly
-                :name="`maintainer_name${ind}`"
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <template slot="label">
-                Maintainers Website &nbsp;
-                <b-tooltip
-                  label="eg: https://example.com"
-                  type="is-light"
-                  animated
-                >
-                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                </b-tooltip>
-              </template>
-              <b-input
-                :value="dev.maintainer_url"
-                type="text"
-                readonly
-                :name="`maintainer_url${ind}`"
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <template slot="label">
-                Maintainers Logo URL &nbsp;
-                <b-tooltip
-                  label="eg: https://example.com/logo.png"
-                  type="is-light"
-                  animated
-                >
-                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                </b-tooltip>
-              </template>
-              <b-input
-                :value="dev.maintainer_logo_url"
-                type="text"
-                readonly
-                :name="`maintainer_logo_url${ind}`"
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <template slot="label">
-                Maintainers Repository &nbsp;
-                <b-tooltip
-                  label="eg: https://github.com/maintainer"
-                  type="is-light"
-                  animated
-                >
-                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                </b-tooltip>
-              </template>
-              <b-input
-                :value="dev.maintainer_repository"
-                type="text"
-                readonly
-                :name="`maintainer_repository${ind}`"
-              >
-              </b-input>
-            </b-field>
-          </div>
-        </template>
-        <hr />
-        <template v-for="(dev, ind) in formToSend.users">
-          <div v-show="dev.user_name.length > 0" :key="`user-r-${ind}`">
-            <hr v-if="ind >= 1" />
-            <b-field label="User Name">
-              <b-input
-                type="text"
-                :value="dev.user_name"
-                readonly
-                :name="`user_name${ind}`"
-              >
-              </b-input>
-            </b-field>
-            <b-field label="Users Website">
-              <b-input
-                type="text"
-                :value="dev.user_url"
-                readonly
-                :name="`user_url${ind}`"
-              >
-              </b-input>
-            </b-field>
-            <b-field label="User Logo URL">
-              <b-input
-                :value="dev.user_logo_url"
-                type="text"
-                readonly
-                :name="`user_url${ind}`"
-              >
-              </b-input>
-            </b-field>
-            <b-field label="User Location">
-              <b-input
-                :value="dev.user_location"
-                type="text"
-                readonly
-                :name="`user_location${ind}`"
-              >
-              </b-input>
-            </b-field>
-            <b-field label="User Geolocation">
-              <b-input
-                type="text"
-                :value="dev.user_geolocation.long"
-                readonly
-                :name="`user_geolocation_long${ind}`"
-              >
-              </b-input>
-              <b-input
-                type="text"
-                :value="dev.user_geolocation.lat"
-                readonly
-                :name="`user_geolocation_lat${ind}`"
-              >
-              </b-input>
-            </b-field>
-          </div>
-        </template>
-        <b-field class="is-between pt-5">
-          <b-button outlined type="is-primary" @click.prevent="backToStep">
-            Prev Step
-          </b-button>
-
-          <button
-            id="submitbtn"
-            type="submit"
-            native-type="submit"
-            class="button is-primary is-outlined"
-          >
-            Submit Form
-          </button>
+        <b-field class="file hidden">
+          <b-upload v-model="files" accept=".json">
+            <a class="button is-primary">
+              <b-icon icon="upload"></b-icon>
+              <span>Click to upload</span>
+            </a>
+          </b-upload>
+          <!-- <span v-if="file" class="file-name">
+            {{ file.name }}
+          </span> -->
         </b-field>
       </form>
+
+      <b-field label="Project Name">
+        <b-input :value="form.name" type="text" name="project-name" readonly>
+        </b-input>
+      </b-field>
+      <b-field>
+        <template slot="label">
+          Project Website &nbsp;
+          <b-tooltip label="Project website is required" type="is-light">
+            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+          </b-tooltip>
+        </template>
+        <b-input
+          :value="form.official_url"
+          type="text"
+          name="official_url"
+          readonly
+        >
+        </b-input>
+      </b-field>
+      <b-field label="Repository URL">
+        <b-input
+          :value="form.repository"
+          type="text"
+          name="repository"
+          readonly
+        >
+        </b-input>
+      </b-field>
+      <b-field>
+        <template slot="label">
+          Project Starting Country &nbsp;
+          <b-tooltip label="eg: Canada" type="is-light" animated>
+            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+          </b-tooltip>
+        </template>
+        <b-taginput
+          icon="label"
+          name="origin_country"
+          :allow-new="false"
+          :value="form.origin_country"
+          readonly
+          :closable="false"
+        >
+        </b-taginput>
+      </b-field>
+      <b-field>
+        <template slot="label">
+          Project Languages &nbsp;
+          <b-tooltip label="eg: EN, IT, FR, DE" type="is-light" animated>
+            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+          </b-tooltip>
+        </template>
+        <b-taginput
+          icon="label"
+          name="language"
+          :allow-new="false"
+          :value="form.language"
+          readonly
+          :closable="false"
+        >
+        </b-taginput>
+      </b-field>
+      <b-field>
+        <template slot="label">
+          Project Type &nbsp;
+          <b-tooltip
+            label="eg: website, mobile app, platform"
+            type="is-light"
+            animated
+          >
+            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+          </b-tooltip>
+        </template>
+        <b-input
+          :value="form.entry_type"
+          type="text"
+          name="entry_type"
+          readonly
+        >
+        </b-input>
+      </b-field>
+      <b-field>
+        <template slot="label">
+          Project Category &nbsp;
+          <b-tooltip
+            label="eg: Education Software, Software"
+            type="is-light"
+            animated
+          >
+            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+          </b-tooltip>
+        </template>
+        <b-taginput
+          name="category"
+          icon="label"
+          :allow-new="false"
+          :value="form.category"
+          readonly
+          :closable="false"
+        >
+        </b-taginput>
+      </b-field>
+      <b-field>
+        <template slot="label">
+          Project Licence &nbsp;
+          <b-tooltip label="eg: MIT, GPL" type="is-light" animated>
+            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+          </b-tooltip>
+        </template>
+        <b-taginput
+          name="licence"
+          icon="label"
+          :allow-new="false"
+          :value="form.licence"
+          readonly
+          :closable="false"
+        >
+        </b-taginput>
+      </b-field>
+      <b-field>
+        <template slot="label">
+          Project Sector &nbsp;
+          <b-tooltip
+            label="eg: Local Government, Public Health"
+            type="is-light"
+            animated
+          >
+            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+          </b-tooltip>
+        </template>
+        <b-taginput
+          name="sector"
+          icon="label"
+          :allow-new="false"
+          :value="form.sector"
+          readonly
+          :closable="false"
+        >
+        </b-taginput>
+      </b-field>
+      <b-field label="Project Description">
+        <b-input
+          :value="form.description"
+          type="textarea"
+          name="description"
+          readonly
+        >
+        </b-input>
+      </b-field>
+      <hr />
+      <template v-for="(dev, ind) in formToSend.developers">
+        <div v-show="dev.developer_name.length > 0" :key="`dev-r-${ind}`">
+          <hr v-if="ind >= 1" />
+          <b-field label="Developer Name">
+            <b-input
+              :value="dev.developer_name"
+              type="text"
+              :name="`developer_name${ind}`"
+              readonly
+            >
+            </b-input>
+          </b-field>
+
+          <b-field>
+            <template slot="label">
+              Developer Website &nbsp;
+              <b-tooltip
+                label="eg: https://example.com"
+                type="is-light"
+                animated
+              >
+                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+              </b-tooltip>
+            </template>
+            <b-input
+              :value="dev.developer_url"
+              type="text"
+              :name="`developer_url${ind}`"
+              readonly
+            >
+            </b-input>
+          </b-field>
+
+          <b-field>
+            <template slot="label">
+              Developer Logo URL &nbsp;
+              <b-tooltip
+                label="eg: https://example.com/logo.png"
+                type="is-light"
+                animated
+              >
+                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+              </b-tooltip>
+            </template>
+            <b-input
+              :value="dev.developer_logo_url"
+              type="text"
+              :name="`developer_logo_url${ind}`"
+              readonly
+            >
+            </b-input>
+          </b-field>
+
+          <b-field>
+            <template slot="label">
+              Developer Category &nbsp;
+              <b-tooltip
+                label="eg: Education Software, Software"
+                type="is-light"
+                animated
+              >
+                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+              </b-tooltip>
+            </template>
+            <b-input
+              :value="dev.developer_category"
+              type="text"
+              :name="`developer_category${ind}`"
+              readonly
+            >
+            </b-input>
+          </b-field>
+        </div>
+      </template>
+      <hr />
+      <template v-for="(dev, ind) in formToSend.maintainers">
+        <div v-show="dev.maintainer_name.length > 0" :key="`maint-r-${ind}`">
+          <hr v-if="ind >= 1" />
+          <b-field label="Maintainers Name">
+            <b-input
+              :value="dev.maintainer_name"
+              type="text"
+              readonly
+              :name="`maintainer_name${ind}`"
+            >
+            </b-input>
+          </b-field>
+
+          <b-field>
+            <template slot="label">
+              Maintainers Website &nbsp;
+              <b-tooltip
+                label="eg: https://example.com"
+                type="is-light"
+                animated
+              >
+                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+              </b-tooltip>
+            </template>
+            <b-input
+              :value="dev.maintainer_url"
+              type="text"
+              readonly
+              :name="`maintainer_url${ind}`"
+            >
+            </b-input>
+          </b-field>
+
+          <b-field>
+            <template slot="label">
+              Maintainers Logo URL &nbsp;
+              <b-tooltip
+                label="eg: https://example.com/logo.png"
+                type="is-light"
+                animated
+              >
+                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+              </b-tooltip>
+            </template>
+            <b-input
+              :value="dev.maintainer_logo_url"
+              type="text"
+              readonly
+              :name="`maintainer_logo_url${ind}`"
+            >
+            </b-input>
+          </b-field>
+
+          <b-field>
+            <template slot="label">
+              Maintainers Repository &nbsp;
+              <b-tooltip
+                label="eg: https://github.com/maintainer"
+                type="is-light"
+                animated
+              >
+                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+              </b-tooltip>
+            </template>
+            <b-input
+              :value="dev.maintainer_repository"
+              type="text"
+              readonly
+              :name="`maintainer_repository${ind}`"
+            >
+            </b-input>
+          </b-field>
+        </div>
+      </template>
+      <hr />
+      <template v-for="(dev, ind) in formToSend.users">
+        <div v-show="dev.user_name.length > 0" :key="`user-r-${ind}`">
+          <hr v-if="ind >= 1" />
+          <b-field label="User Name">
+            <b-input
+              type="text"
+              :value="dev.user_name"
+              readonly
+              :name="`user_name${ind}`"
+            >
+            </b-input>
+          </b-field>
+          <b-field label="Users Website">
+            <b-input
+              type="text"
+              :value="dev.user_url"
+              readonly
+              :name="`user_url${ind}`"
+            >
+            </b-input>
+          </b-field>
+          <b-field label="User Logo URL">
+            <b-input
+              :value="dev.user_logo_url"
+              type="text"
+              readonly
+              :name="`user_url${ind}`"
+            >
+            </b-input>
+          </b-field>
+          <b-field label="User Location">
+            <b-input
+              :value="dev.user_location"
+              type="text"
+              readonly
+              :name="`user_location${ind}`"
+            >
+            </b-input>
+          </b-field>
+          <b-field label="User Geolocation">
+            <b-input
+              type="text"
+              :value="dev.user_geolocation.long"
+              readonly
+              :name="`user_geolocation_long${ind}`"
+            >
+            </b-input>
+            <b-input
+              type="text"
+              :value="dev.user_geolocation.lat"
+              readonly
+              :name="`user_geolocation_lat${ind}`"
+            >
+            </b-input>
+          </b-field>
+        </div>
+      </template>
+      <b-field class="is-between pt-5">
+        <b-button outlined type="is-primary" @click.prevent="backToStep">
+          Prev Step
+        </b-button>
+
+        <button
+          id="submitbtn"
+          type="submit"
+          native-type="submit"
+          form="form-submit"
+          class="button is-primary is-outlined"
+        >
+          Submit Form
+        </button>
+      </b-field>
       <!-- </ValidationObserver> -->
     </div>
     <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
@@ -1892,7 +1903,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      currentStep: 1,
+      currentStep: 4,
       submitSuccess: false,
       developersModalActive: false,
       maintainersModalActive: false,
@@ -2279,6 +2290,7 @@ export default Vue.extend({
           },
         ],
       },
+      files: [],
     }
   },
   computed: {
@@ -2401,44 +2413,62 @@ export default Vue.extend({
       }
     },
     encode(data) {
-      return Object.keys(data)
-        .map((key) => {
-          if (
-            key === 'developers' ||
-            key === 'maintainers' ||
-            key === 'users'
-          ) {
-            return data[key].map((el) => {
-              return Object.entries(el)
-                .map((i) => {
-                  if (i[0] === 'user_geolocation') {
-                    console.log(i[1])
-                    return Object.keys(i[1])
-                      .map((j) => {
-                        return `${encodeURIComponent(j)}=${encodeURIComponent(
-                          i[1][j]
-                        )}`
-                      })
-                      .join('&')
-                  } else {
-                    return `${encodeURIComponent(i[0])}=${encodeURIComponent(
-                      i[1]
-                    )}`
-                  }
-                })
-                .join('&')
-            })
-          } else if (
-            key === 'licence' ||
-            key === 'category' ||
-            key === 'sector'
-          ) {
-            return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-          } else {
-            return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-          }
-        })
-        .join('&')
+      const formData = new FormData()
+      const files = new Blob([JSON.stringify(data)], {
+        type: 'application/json',
+      })
+      const dataToEncod = {
+        files: new File([files], 'entry.json', { type: 'application/json' }),
+        ...this.senderDetails,
+        'form-name': 'form-submit',
+      }
+      for (const key of Object.keys(dataToEncod)) {
+        if (key === 'files') {
+          formData.append(key, dataToEncod[key][0])
+        } else {
+          formData.append(key, dataToEncod[key])
+        }
+      }
+      this.files = new File([files], 'entry.json', { type: 'application/json' })
+      console.log(formData, files, dataToEncod)
+      return formData
+      // return Object.keys(data)
+      // .map((key) => {
+      //   if (
+      //     key === 'developers' ||
+      //     key === 'maintainers' ||
+      //     key === 'users'
+      //   ) {
+      //     return data[key].map((el, ind) => {
+      //       return Object.entries(el)
+      //         .map((i) => {
+      //           if (i[0] === 'user_geolocation') {
+      //             return Object.keys(i[1])
+      //               .map((j) => {
+      //                 return `user_geolocation${encodeURIComponent(
+      //                   j
+      //                 )}=${encodeURIComponent(i[1][j])}`
+      //               })
+      //               .join('&')
+      //           } else {
+      //             return `${encodeURIComponent(
+      //               i[0]
+      //             )}${ind}=${encodeURIComponent(i[1])}`
+      //           }
+      //         })
+      //         .join('&')
+      //     })
+      //   } else if (
+      //     key === 'licence' ||
+      //     key === 'category' ||
+      //     key === 'sector'
+      //   ) {
+      //     return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+      //   } else {
+      //     return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+      //   }
+      // })
+      // .join('&')
     },
     onSubmit() {
       if (this.currentStep === 5) {
@@ -2447,23 +2477,21 @@ export default Vue.extend({
         this.sendingForm = true
         const axiosConfig = {
           header: {
-            // 'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             // 'Content-Type': 'application/x-www-form-urlencoded',
             'Access-Control-Allow-Origin': '*',
           },
         }
-        const form = new FormData(document.getElementById('form-submit'))
-        console.log('form', form)
         // @ts-ignore
         this.$axios
           .post(
             'https://testing-pcd.netlify.app',
             // '/',
-            this.encode({
-              'form-name': 'form-submit',
-              ...this.formToSend,
-              ...this.senderDetails,
-            }),
+            this.encode(
+              // 'form-name': 'form-submit',
+              { ...this.formToSend }
+              // ...this.senderDetails,
+            ),
             axiosConfig
           )
           .then((res) => {

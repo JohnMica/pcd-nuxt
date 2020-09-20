@@ -101,6 +101,8 @@
 </template>
 
 <script>
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import Vue from 'vue'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
@@ -158,7 +160,7 @@ export default Vue.extend({
               this.sendingForm = false
               this.form = { name: '', email: '', subject: '', message: '' }
               // eslint-disable-next-line no-console
-              console.log('result', res)
+              // console.log('result', res)
               // @ts-ignore
               this.$refs.simplecontact.reset()
             })

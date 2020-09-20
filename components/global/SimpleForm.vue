@@ -167,8 +167,6 @@ export default Vue.extend({
       const formData = new FormData()
       for (const key of Object.keys(data)) {
         if (key === 'files') {
-          console.log(data[key])
-
           formData.append(key, data[key][0])
         } else {
           formData.append(key, data[key])
@@ -191,13 +189,6 @@ export default Vue.extend({
           'Access-Control-Allow-Origin': '*',
         },
       }
-      console.log(
-        'data',
-        this.encode({
-          'form-name': 'simpleform',
-          ...this.form,
-        })
-      )
 
       this.$axios
         .post(
@@ -209,6 +200,7 @@ export default Vue.extend({
           }),
           axiosConfig
         )
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .then((res) => {
           setTimeout(() => {
             this.$nextTick(() => {
@@ -217,7 +209,7 @@ export default Vue.extend({
               this.dropFiles = []
               this.$refs.simpleform.reset()
             })
-            console.log('result', res)
+            // console.log('result', res)
             // this.$router.push('/')
           }, 1500)
         })
