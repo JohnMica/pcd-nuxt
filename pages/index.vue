@@ -19,8 +19,8 @@ export default Vue.extend({
     this.fetchPage()
   },
   methods: {
-    async fetchPage({ $content }) {
-      const page = await $content('index').fetch()
+    async fetchPage() {
+      const page = await this.$content('index').fetch()
       this.page = page
     },
   },
