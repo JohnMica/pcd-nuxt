@@ -989,7 +989,7 @@
         </b-field>
 
         <b-field label="Project Name">
-          <b-input :value="form.name" type="text" name="name" readonly>
+          <b-input :value="form.name" type="text" name="project-name" readonly>
           </b-input>
         </b-field>
         <b-field>
@@ -1146,7 +1146,7 @@
               <b-input
                 :value="dev.developer_name"
                 type="text"
-                name="developer_name"
+                :name="`developer_name${ind}`"
                 readonly
               >
               </b-input>
@@ -1166,7 +1166,7 @@
               <b-input
                 :value="dev.developer_url"
                 type="text"
-                name="developer_url"
+                :name="`developer_url${ind}`"
                 readonly
               >
               </b-input>
@@ -1186,7 +1186,7 @@
               <b-input
                 :value="dev.developer_logo_url"
                 type="text"
-                name="developer_url"
+                :name="`developer_logo_url${ind}`"
                 readonly
               >
               </b-input>
@@ -1206,7 +1206,7 @@
               <b-input
                 :value="dev.developer_category"
                 type="text"
-                name="developer_category"
+                :name="`developer_category${ind}`"
                 readonly
               >
               </b-input>
@@ -1221,8 +1221,8 @@
               <b-input
                 :value="dev.maintainer_name"
                 type="text"
-                name="maintainer_name"
                 readonly
+                :name="`maintainer_name${ind}`"
               >
               </b-input>
             </b-field>
@@ -1241,8 +1241,8 @@
               <b-input
                 :value="dev.maintainer_url"
                 type="text"
-                name="maintainer_url"
                 readonly
+                :name="`maintainer_url${ind}`"
               >
               </b-input>
             </b-field>
@@ -1261,8 +1261,8 @@
               <b-input
                 :value="dev.maintainer_logo_url"
                 type="text"
-                name="maintainer_logo_url"
                 readonly
+                :name="`maintainer_logo_url${ind}`"
               >
               </b-input>
             </b-field>
@@ -1281,8 +1281,8 @@
               <b-input
                 :value="dev.maintainer_repository"
                 type="text"
-                name="maintainer_repository"
                 readonly
+                :name="`maintainer_repository${ind}`"
               >
               </b-input>
             </b-field>
@@ -1293,23 +1293,55 @@
           <div v-show="dev.user_name.length > 0" :key="`user-r-${ind}`">
             <hr v-if="ind >= 1" />
             <b-field label="User Name">
-              <b-input type="text" :value="dev.user_name" readonly> </b-input>
+              <b-input
+                type="text"
+                :value="dev.user_name"
+                readonly
+                :name="`user_name${ind}`"
+              >
+              </b-input>
             </b-field>
             <b-field label="Users Website">
-              <b-input type="text" :value="dev.user_url" readonly> </b-input>
+              <b-input
+                type="text"
+                :value="dev.user_url"
+                readonly
+                :name="`user_url${ind}`"
+              >
+              </b-input>
             </b-field>
             <b-field label="User Logo URL">
-              <b-input :value="dev.user_logo_url" type="text" readonly>
+              <b-input
+                :value="dev.user_logo_url"
+                type="text"
+                readonly
+                :name="`user_url${ind}`"
+              >
               </b-input>
             </b-field>
             <b-field label="User Location">
-              <b-input :value="dev.user_location" type="text" readonly>
+              <b-input
+                :value="dev.user_location"
+                type="text"
+                readonly
+                :name="`user_location${ind}`"
+              >
               </b-input>
             </b-field>
             <b-field label="User Geolocation">
-              <b-input type="text" :value="dev.user_geolocation.long" readonly>
+              <b-input
+                type="text"
+                :value="dev.user_geolocation.long"
+                readonly
+                :name="`user_geolocation_long${ind}`"
+              >
               </b-input>
-              <b-input type="text" :value="dev.user_geolocation.lat" readonly>
+              <b-input
+                type="text"
+                :value="dev.user_geolocation.lat"
+                readonly
+                :name="`user_geolocation_lat${ind}`"
+              >
               </b-input>
             </b-field>
           </div>
@@ -2415,11 +2447,13 @@ export default Vue.extend({
         this.sendingForm = true
         const axiosConfig = {
           header: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            // 'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
             'Access-Control-Allow-Origin': '*',
           },
         }
-
+        const form = new FormData(document.getElementById('form-submit'))
+        console.log('form', form)
         // @ts-ignore
         this.$axios
           .post(
