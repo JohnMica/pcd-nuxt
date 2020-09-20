@@ -951,16 +951,16 @@
     <div v-show="currentStep === 5" class="step">
       <!-- <ValidationObserver ref="observer" v-slot="{ handleSubmit }" tag="div"> -->
       <form
-        id="formSubmit"
+        id="form-submit"
         ref="formSubmit"
-        name="formSubmit"
+        name="form-submit"
         data-netlify="true"
         method="POST"
         data-netlify-honeypot="bot-field"
         @submit.prevent="onSubmit"
       >
         <input type="hidden" name="bot-field" />
-        <input type="hidden" name="form-name" value="formSubmit" />
+        <input type="hidden" name="form-name" value="form-submit" />
         <b-field label="Name">
           <b-input
             :value="senderDetails.sendername"
@@ -2380,6 +2380,7 @@ export default Vue.extend({
               return Object.entries(el)
                 .map((i) => {
                   if (i[0] === 'user_geolocation') {
+                    console.log(i[1])
                     return Object.keys(i[1])
                       .map((j) => {
                         return `${encodeURIComponent(j)}=${encodeURIComponent(
@@ -2425,7 +2426,7 @@ export default Vue.extend({
             'https://testing-pcd.netlify.app',
             // '/',
             this.encode({
-              'form-name': 'formSubmit',
+              'form-name': 'form-submit',
               ...this.formToSend,
               ...this.senderDetails,
             }),
