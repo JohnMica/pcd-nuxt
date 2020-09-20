@@ -2264,6 +2264,7 @@ export default Vue.extend({
       this.formToSend = Object.assign({}, this.defaultformToSend)
       this.currentStep = 1
       this.submitSuccess = false
+      this.$refs.builder.reset()
     },
     backToStep() {
       if (this.currentStep === 1) {
@@ -2424,8 +2425,8 @@ export default Vue.extend({
             'https://testing-pcd.netlify.app',
             // '/',
             this.encode({
-              'form-name': 'formbuilder',
-              ...this.form,
+              'form-name': 'formSubmit',
+              ...this.formToSend,
               ...this.senderDetails,
             }),
             axiosConfig
@@ -2443,7 +2444,7 @@ export default Vue.extend({
                   {},
                   this.defaultSenderDetails
                 )
-                // this.$refs.observer.reset()
+                this.$refs.builder.reset()
               })
             }, 1500)
           })
