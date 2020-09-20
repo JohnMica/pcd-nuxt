@@ -1,5 +1,5 @@
 export default {
-  mode: 'universal',
+  // mode: 'universal',
   // target: 'static',
   head: {
     title: 'PublicCode Directory',

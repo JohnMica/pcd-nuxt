@@ -129,8 +129,7 @@
   </b-table>
 </template>
 
-<script lang="ts">
-// @ts-nocheck
+<script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 export default Vue.extend({

@@ -46,9 +46,9 @@
     <app-footer></app-footer>
   </main>
 </template>
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
+<script>
+// import Vue from 'vue'
+export default {
   name: 'ErrorLayout',
-})
+}
 </script>

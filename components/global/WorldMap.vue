@@ -143,7 +143,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 // @ts-nocheck
 import Vue from 'vue'
 import { mapGetters } from 'vuex'

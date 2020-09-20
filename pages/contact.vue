@@ -21,7 +21,7 @@
           <b-field
             label="Name"
             v-bind="$attrs"
-            :type="{ 'is-danger': errors[0], 'is-success': valid }"
+            :type="{ 'is-danger': invalid, 'is-success': valid }"
             :message="errors"
           >
             <b-input v-model="form.name" name="name"></b-input>
@@ -37,7 +37,7 @@
           <b-field
             label="Email"
             v-bind="$attrs"
-            :type="{ 'is-danger': errors[0], 'is-success': valid }"
+            :type="{ 'is-danger': invalid, 'is-success': valid }"
             :message="errors"
           >
             <b-input
@@ -79,7 +79,7 @@
           <b-field
             label="Message"
             v-bind="$attrs"
-            :type="{ 'is-danger': errors[0], 'is-success': valid }"
+            :type="{ 'is-danger': invalid, 'is-success': valid }"
             :message="errors"
           >
             <b-input
@@ -100,9 +100,7 @@
   </div>
 </template>
 
-<script lang="ts">
-/* eslint-disable no-console */
-// @ts-nocheck
+<script>
 import Vue from 'vue'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
@@ -125,7 +123,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    encode(data: any) {
+    encode(data) {
       return Object.keys(data)
         .map(
           (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
@@ -133,8 +131,7 @@ export default Vue.extend({
         .join('&')
     },
     onSubmit() {
-      // @ts-ignore
-      this.$refs.simplecontact.validate().then((success: any) => {
+      this.$refs.simplecontact.validate().then((success) => {
         if (!success) {
         }
       })
@@ -145,7 +142,6 @@ export default Vue.extend({
           'Access-Control-Allow-Origin': '*',
         },
       }
-      // @ts-ignore
       this.$axios
         .post(
           // '/',
@@ -156,18 +152,12 @@ export default Vue.extend({
           }),
           axiosConfig
         )
-        .then((res: any) => {
+        .then((res) => {
           setTimeout(() => {
-            console.log(
-              'form sent',
-              this.encode({
-                'form-name': 'simplecontact',
-                ...this.form,
-              })
-            )
             this.$nextTick(() => {
               this.sendingForm = false
               this.form = { name: '', email: '', subject: '', message: '' }
+              // eslint-disable-next-line no-console
               console.log('result', res)
               // @ts-ignore
               this.$refs.simplecontact.reset()
@@ -175,7 +165,8 @@ export default Vue.extend({
             // this.$router.push('/')
           }, 1500)
         })
-        .catch((err: any) => {
+        .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(err)
           this.sendingForm = false
         })

@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -30,12 +30,11 @@ export default Vue.extend({
     }
   },
   watch: {
-    async searchQuery(searchQuery: string) {
+    async searchQuery(searchQuery) {
       if (!searchQuery) {
         this.articles = []
         return
       }
-      // @ts-ignore
       this.articles = await this.$content('articles')
         .limit(6)
         .search(searchQuery)

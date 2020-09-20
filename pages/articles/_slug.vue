@@ -41,7 +41,7 @@
   </main>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -61,7 +61,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    formatDate(date: string) {
+    formatDate(date) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' }
       return new Date(date).toLocaleDateString('en', options)
     },

@@ -5,23 +5,22 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
-
 export default Vue.extend({
   name: 'MainPage',
   layout: 'DefaultLayout',
   data() {
     return {
-      page: {} as any,
+      page: {},
     }
   },
   beforeMount() {
     this.fetchPage()
   },
   methods: {
-    async fetchPage() {
-      const page = await this.$content('index').fetch()
+    async fetchPage({ $content }) {
+      const page = await $content('index').fetch()
       this.page = page
     },
   },

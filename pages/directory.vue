@@ -26,13 +26,11 @@
   </section>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
+<script>
+export default {
   name: 'DirectoryPage',
   layout: 'DirectoryLayout',
-})
+}
 </script>
 
 <style scoped></style>

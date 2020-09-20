@@ -38,14 +38,14 @@
   </b-navbar>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
 export default Vue.extend({
   name: 'NavigationBar',
   data() {
     return {
-      pages: [] as any[],
+      pages: [],
     }
   },
   beforeCreate() {
@@ -60,7 +60,6 @@ export default Vue.extend({
         .only(['title', 'slug'])
         .sortBy('createdAt', 'desc')
         .fetch()
-      // @ts-ignore
       this.pages = pages
     },
   },

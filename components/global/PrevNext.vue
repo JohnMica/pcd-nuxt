@@ -8,7 +8,6 @@
     >
       {{ prev.title }}
     </NuxtLink>
-    <span v-else>&nbsp;</span>
     <NuxtLink
       v-if="next"
       :prefetch="false"
@@ -17,10 +16,9 @@
     >
       {{ next.title }}
     </NuxtLink>
-    <span v-else>&nbsp;</span>
   </div>
 </template>
-<script lang="ts">
+<script>
 import Vue from 'vue'
 export default Vue.extend({
   name: 'PrevNext',

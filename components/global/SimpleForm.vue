@@ -135,9 +135,8 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 /* eslint-disable no-console */
-// @ts-nocheck
 import Vue from 'vue'
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
@@ -164,7 +163,7 @@ export default Vue.extend({
       })
     },
 
-    encode(data: any) {
+    encode(data) {
       const formData = new FormData()
       for (const key of Object.keys(data)) {
         if (key === 'files') {
@@ -177,12 +176,11 @@ export default Vue.extend({
       }
       return formData
     },
-    deleteDropFile(index: number) {
+    deleteDropFile(index) {
       this.form.files.splice(index, 1)
     },
     onSubmit() {
-      // @ts-ignore
-      this.$refs.simpleform.validate().then((success: any) => {
+      this.$refs.simpleform.validate().then((success) => {
         if (!success) {
         }
       })
@@ -201,7 +199,6 @@ export default Vue.extend({
         })
       )
 
-      // @ts-ignore
       this.$axios
         .post(
           // '/',
@@ -212,20 +209,19 @@ export default Vue.extend({
           }),
           axiosConfig
         )
-        .then((res: any) => {
+        .then((res) => {
           setTimeout(() => {
             this.$nextTick(() => {
               this.sendingForm = false
               this.form = Object.assign({}, this.defaultForm)
               this.dropFiles = []
-              // @ts-ignore
               this.$refs.simpleform.reset()
             })
             console.log('result', res)
             // this.$router.push('/')
           }, 1500)
         })
-        .catch((err: any) => {
+        .catch((err) => {
           console.log(err)
         })
     },

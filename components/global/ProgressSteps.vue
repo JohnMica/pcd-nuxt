@@ -97,259 +97,413 @@
         </div>
       </div>
     </div>
-    <validation-observer ref="observer" v-slot="{ handleSubmit }" tag="div">
+    <ValidationObserver ref="builder" v-slot="{ handleSubmit }" tag="div">
       <form
         id="formbuilder"
         ref="formbuilder"
         name="formbuilder"
-        data-netlify="true"
         method="POST"
-        data-netlify-honeypot="bot-field"
-        @submit.prevent="handleSubmit(onSubmit)"
+        @submit.prevent="handleSubmit(formbuild)"
       >
-        <input type="hidden" name="bot-field" />
-        <input type="hidden" name="form-name" value="formbuilder" />
-        <keep-alive>
-          <div v-show="currentStep === 1" class="step">
-            <validation-provider
+        <div v-show="currentStep === 1" class="step">
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="name:3"
+            vid="sendername"
+            :skip-if-empty="false"
+          >
+            <b-field
+              label="Name"
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <b-input
+                v-model="senderDetails.sendername"
+                type="text"
+                name="sendername"
+                required
+              >
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="required|email"
+            vid="senderemail"
+            :skip-if-empty="false"
+          >
+            <b-field
+              label="Email"
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <b-input
+                v-model="senderDetails.senderemail"
+                type="email"
+                name="senderemail"
+                required
+              >
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+          <ValidationProvider
+            tag="div"
+            :skip-if-empty="true"
+            vid="organisation"
+          >
+            <b-field label="Organisation">
+              <b-input
+                v-model="senderDetails.senderorganisation"
+                type="text"
+                name="senderorganisation"
+              >
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+        </div>
+        <div v-show="currentStep === 2" class="step">
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="name:3"
+            vid="projectname"
+            :skip-if-empty="false"
+          >
+            <b-field
+              label="Project Name"
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <b-input v-model="form.name" type="text" name="name" required>
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="url_string"
+            vid="officialurl"
+            :skip-if-empty="false"
+          >
+            <b-field
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <template slot="label">
+                Project Website &nbsp;
+                <b-tooltip label="Project website is required" type="is-light">
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                v-model="form.official_url"
+                type="text"
+                name="official_url"
+                required
+              >
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="url_string"
+            vid="repository"
+            :skip-if-empty="false"
+          >
+            <b-field
+              label="Repository URL"
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <b-input
+                v-model="form.repository"
+                type="text"
+                name="repository"
+                required
+              >
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="arr:1"
+            vid="startingcountry"
+            :skip-if-empty="false"
+          >
+            <b-field
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <template slot="label">
+                Project Starting Country &nbsp;
+                <b-tooltip label="eg: Canada" type="is-light" animated>
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-taginput
+                v-model="form.origin_country"
+                :data="countries"
+                autocomplete
+                icon="label"
+                name="origin_country"
+                :allow-new="true"
+                :value="form.origin_country"
+              >
+              </b-taginput>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="arr:1"
+            vid="projectlang"
+            :skip-if-empty="false"
+          >
+            <b-field
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <template slot="label">
+                Project Languages &nbsp;
+                <b-tooltip label="eg: EN, IT, FR, DE" type="is-light" animated>
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-taginput
+                v-model="form.language"
+                autocomplete
+                icon="label"
+                name="language"
+                :data="languages"
+                :allow-new="true"
+                :value="form.language"
+              >
+              </b-taginput>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="name:3"
+            vid="projecttype"
+            :skip-if-empty="false"
+          >
+            <b-field
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <template slot="label">
+                Project Type &nbsp;
+                <b-tooltip
+                  label="eg: website, mobile app, platform"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                v-model="form.entry_type"
+                type="text"
+                name="entry_type"
+                maxlength="50"
+                required
+              >
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="arr:1"
+            vid="projectlicence"
+            :skip-if-empty="false"
+          >
+            <b-field
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <template slot="label">
+                Project Licence &nbsp;
+                <b-tooltip label="eg: MIT, GPL" type="is-light" animated>
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-taginput
+                v-model="form.licence"
+                :data="licences"
+                autocomplete
+                name="licence"
+                icon="label"
+                :allow-new="true"
+                :value="form.licence"
+              >
+              </b-taginput>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="arr:1"
+            vid="projectcateg"
+            :skip-if-empty="false"
+          >
+            <b-field
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <template slot="label">
+                Project Category &nbsp;
+                <b-tooltip
+                  label="eg: Education Software, Software"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-taginput
+                v-model="form.category"
+                :data="categories"
+                name="category"
+                icon="label"
+                autocomplete
+                :allow-new="true"
+                :value="form.category"
+              >
+              </b-taginput>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="arr:1"
+            vid="projectsector"
+            :skip-if-empty="false"
+          >
+            <b-field
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <template slot="label">
+                Project Sector &nbsp;
+                <b-tooltip
+                  label="eg: Local Government, Public Health"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-taginput
+                v-model="form.sector"
+                autocomplete
+                name="sector"
+                icon="label"
+                :allow-new="true"
+                :data="sectors"
+                :value="form.sector"
+              >
+              </b-taginput>
+            </b-field>
+          </ValidationProvider>
+
+          <ValidationProvider
+            v-slot="{ errors, valid }"
+            tag="div"
+            rules="minmax:10,350"
+            vid="description"
+            :skip-if-empty="false"
+          >
+            <b-field
+              label="Project Description"
+              v-bind="$attrs"
+              :type="{ 'is-danger': errors[0], 'is-success': valid }"
+              :message="errors"
+            >
+              <b-input
+                v-model="form.description"
+                type="textarea"
+                name="description"
+                maxlength="350"
+                required
+              >
+              </b-input>
+            </b-field>
+          </ValidationProvider>
+        </div>
+        <div v-show="currentStep === 3" class="step">
+          <b-field label="Developers">
+            <b-button
+              native-type="button"
+              :disabled="counterDev === 4"
+              @click.prevent="addDevelopers"
+            >
+              Add Developers
+            </b-button>
+          </b-field>
+          <div v-for="(dev, ind) in form.developers" :key="`dev-${ind}`">
+            <hr v-if="ind >= 1" />
+            <b-field v-if="ind >= 1" class="is-flex justify-end">
+              <b-button
+                native-type="button"
+                @click.prevent="removeDeveloper(ind)"
+              >
+                Remove Dev
+              </b-button>
+            </b-field>
+            <ValidationProvider
               v-slot="{ errors, valid }"
-              tag="div"
               rules="name:3"
-              vid="sendername"
+              :vid="`devname-${ind}`"
               :skip-if-empty="false"
+              tag="div"
             >
               <b-field
-                label="Name"
+                label="Developer Name"
                 v-bind="$attrs"
                 :type="{ 'is-danger': errors[0], 'is-success': valid }"
                 :message="errors"
               >
                 <b-input
-                  v-model="senderDetails.sendername"
+                  v-model="dev.developer_name"
                   type="text"
-                  name="sendername"
-                  required
-                >
-                </b-input>
-              </b-field>
-            </validation-provider>
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="required|email"
-              vid="senderemail"
-              :skip-if-empty="false"
-            >
-              <b-field
-                label="Email"
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <b-input
-                  v-model="senderDetails.senderemail"
-                  type="email"
-                  name="senderemail"
-                  required
-                >
-                </b-input>
-              </b-field>
-            </validation-provider>
-            <validation-provider
-              tag="div"
-              :skip-if-empty="true"
-              vid="organisation"
-            >
-              <b-field label="Organisation">
-                <b-input
-                  v-model="senderDetails.senderorganisation"
-                  type="text"
-                  name="senderorganisation"
-                >
-                </b-input>
-              </b-field>
-            </validation-provider>
-          </div>
-        </keep-alive>
-        <keep-alive>
-          <div v-show="currentStep === 2" class="step">
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="name:3"
-              vid="projectname"
-              :skip-if-empty="false"
-            >
-              <b-field
-                label="Project Name"
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <b-input v-model="form.name" type="text" name="name" required>
-                </b-input>
-              </b-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="url_string"
-              vid="officialurl"
-              :skip-if-empty="false"
-            >
-              <b-field
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <template slot="label">
-                  Project Website &nbsp;
-                  <b-tooltip
-                    label="Project website is required"
-                    type="is-light"
-                  >
-                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                  </b-tooltip>
-                </template>
-                <b-input
-                  v-model="form.official_url"
-                  type="text"
-                  name="official_url"
-                  required
-                >
-                </b-input>
-              </b-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="url_string"
-              vid="repository"
-              :skip-if-empty="false"
-            >
-              <b-field
-                label="Repository URL"
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <b-input
-                  v-model="form.repository"
-                  type="text"
-                  name="repository"
-                  required
-                >
-                </b-input>
-              </b-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="arr:1"
-              vid="startingcountry"
-              :skip-if-empty="false"
-            >
-              <b-field
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <template slot="label">
-                  Project Starting Country &nbsp;
-                  <b-tooltip label="eg: Canada" type="is-light" animated>
-                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                  </b-tooltip>
-                </template>
-                <b-taginput
-                  v-model="form.origin_country"
-                  :data="countries"
-                  autocomplete
-                  icon="label"
-                  name="origin_country"
-                  :allow-new="true"
-                  :value="form.origin_country"
-                >
-                </b-taginput>
-              </b-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="arr:1"
-              vid="projectlang"
-              :skip-if-empty="false"
-            >
-              <b-field
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <template slot="label">
-                  Project Languages &nbsp;
-                  <b-tooltip
-                    label="eg: EN, IT, FR, DE"
-                    type="is-light"
-                    animated
-                  >
-                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                  </b-tooltip>
-                </template>
-                <b-taginput
-                  v-model="form.language"
-                  autocomplete
-                  icon="label"
-                  name="language"
-                  :data="languages"
-                  :allow-new="true"
-                  :value="form.language"
-                >
-                </b-taginput>
-              </b-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="name:3"
-              vid="projecttype"
-              :skip-if-empty="false"
-            >
-              <b-field
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <template slot="label">
-                  Project Type &nbsp;
-                  <b-tooltip
-                    label="eg: website, mobile app, platform"
-                    type="is-light"
-                    animated
-                  >
-                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                  </b-tooltip>
-                </template>
-                <b-input
-                  v-model="form.entry_type"
-                  type="text"
-                  name="entry_type"
+                  name="developer_name"
                   maxlength="50"
-                  required
+                  :required="counterDev <= ind ? true : false"
                 >
                 </b-input>
               </b-field>
-            </validation-provider>
-
-            <validation-provider
+            </ValidationProvider>
+            <ValidationProvider
               v-slot="{ errors, valid }"
-              tag="div"
-              rules="arr:1"
-              vid="projectlicence"
+              rules="url_string"
+              :vid="`devwebsite-${ind}`"
               :skip-if-empty="false"
+              tag="div"
             >
               <b-field
                 v-bind="$attrs"
@@ -357,30 +511,30 @@
                 :message="errors"
               >
                 <template slot="label">
-                  Project Licence &nbsp;
-                  <b-tooltip label="eg: MIT, GPL" type="is-light" animated>
+                  Developer Website &nbsp;
+                  <b-tooltip
+                    label="eg: https://example.com"
+                    type="is-light"
+                    animated
+                  >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
                 </template>
-                <b-taginput
-                  v-model="form.licence"
-                  :data="licences"
-                  autocomplete
-                  name="licence"
-                  icon="label"
-                  :allow-new="true"
-                  :value="form.licence"
+                <b-input
+                  v-model="dev.developer_url"
+                  type="text"
+                  name="developer_url"
+                  :required="counterDev <= ind ? true : false"
                 >
-                </b-taginput>
+                </b-input>
               </b-field>
-            </validation-provider>
-
-            <validation-provider
+            </ValidationProvider>
+            <ValidationProvider
               v-slot="{ errors, valid }"
-              tag="div"
-              rules="arr:1"
-              vid="projectcateg"
+              rules="url_string"
+              :vid="`devlogo-${ind}`"
               :skip-if-empty="false"
+              tag="div"
             >
               <b-field
                 v-bind="$attrs"
@@ -388,7 +542,38 @@
                 :message="errors"
               >
                 <template slot="label">
-                  Project Category &nbsp;
+                  Developer Logo URL &nbsp;
+                  <b-tooltip
+                    label="eg: https://example.com/logo.png"
+                    type="is-light"
+                    animated
+                  >
+                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                  </b-tooltip>
+                </template>
+                <b-input
+                  v-model="dev.developer_logo_url"
+                  type="text"
+                  name="developer_url"
+                  :required="counterDev <= ind ? true : false"
+                >
+                </b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors, valid }"
+              rules="alpha_num:3"
+              :vid="`devcateg-${ind}`"
+              :skip-if-empty="false"
+              tag="div"
+            >
+              <b-field
+                v-bind="$attrs"
+                :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                :message="errors"
+              >
+                <template slot="label">
+                  Developer Category &nbsp;
                   <b-tooltip
                     label="eg: Education Software, Software"
                     type="is-light"
@@ -397,123 +582,66 @@
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
                 </template>
-                <b-taginput
-                  v-model="form.category"
-                  :data="categories"
-                  name="category"
-                  icon="label"
-                  autocomplete
-                  :allow-new="true"
-                  :value="form.category"
-                >
-                </b-taginput>
-              </b-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="arr:1"
-              vid="projectsector"
-              :skip-if-empty="false"
-            >
-              <b-field
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
-                <template slot="label">
-                  Project Sector &nbsp;
-                  <b-tooltip
-                    label="eg: Local Government, Public Health"
-                    type="is-light"
-                    animated
-                  >
-                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-                  </b-tooltip>
-                </template>
-                <b-taginput
-                  v-model="form.sector"
-                  autocomplete
-                  name="sector"
-                  icon="label"
-                  :allow-new="true"
-                  :data="sectors"
-                  :value="form.sector"
-                >
-                </b-taginput>
-              </b-field>
-            </validation-provider>
-
-            <validation-provider
-              v-slot="{ errors, valid }"
-              tag="div"
-              rules="minmax:10,350"
-              vid="description"
-              :skip-if-empty="false"
-            >
-              <b-field
-                label="Project Description"
-                v-bind="$attrs"
-                :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                :message="errors"
-              >
                 <b-input
-                  v-model="form.description"
-                  type="textarea"
-                  name="description"
-                  maxlength="350"
-                  required
+                  v-model="dev.developer_category"
+                  type="text"
+                  name="developer_category"
+                  maxlength="50"
+                  :required="counterDev <= ind ? true : false"
                 >
                 </b-input>
               </b-field>
-            </validation-provider></div
-        ></keep-alive>
-        <keep-alive>
-          <div v-show="currentStep === 3" class="step">
-            <b-field label="Developers">
-              <b-button native-type="button" @click.prevent="addDevelopers">
-                Add Developers
+            </ValidationProvider>
+          </div>
+          <b-field label="Maintainers">
+            <b-checkbox v-model="sameAsDevs">Same as Developers</b-checkbox>
+          </b-field>
+          <div v-show="!sameAsDevs">
+            <b-field label="Maintainers">
+              <b-button
+                native-type="button"
+                :disabled="counterMaint === 4"
+                @click.prevent="addMaintainers"
+              >
+                Add Maintainers
               </b-button>
             </b-field>
-            <div v-for="(dev, ind) in form.developers" :key="ind">
+            <div v-for="(dev, ind) in form.maintainers" :key="`maint-${ind}`">
               <hr v-if="ind >= 1" />
-
               <b-field v-if="ind >= 1" class="is-flex justify-end">
                 <b-button
                   native-type="button"
-                  @click.prevent="removeDeveloper(ind)"
+                  @click.prevent="removeMaintainer(ind)"
                 >
-                  Remove Dev
+                  Remove Maintainer
                 </b-button>
               </b-field>
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="name:3"
-                :vid="`devname-${ind}`"
+                :vid="`maintname-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
-                  label="Developer Name"
+                  label="Maintainers Name"
                   v-bind="$attrs"
                   :type="{ 'is-danger': errors[0], 'is-success': valid }"
                   :message="errors"
                 >
                   <b-input
-                    v-model="dev.developer_name"
+                    v-model="dev.maintainer_name"
                     type="text"
-                    name="developer_name"
+                    name="maintainer_name"
                     maxlength="50"
-                    required
+                    :required="counterMaint <= ind ? true : false"
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-
-              <validation-provider
+              </ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
-                :vid="`devwebsite-${ind}`"
+                :vid="`maintwebsite-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -522,7 +650,7 @@
                   :message="errors"
                 >
                   <template slot="label">
-                    Developer Website &nbsp;
+                    Maintainers Website &nbsp;
                     <b-tooltip
                       label="eg: https://example.com"
                       type="is-light"
@@ -535,19 +663,18 @@
                     </b-tooltip>
                   </template>
                   <b-input
-                    v-model="dev.developer_url"
+                    v-model="dev.maintainer_url"
                     type="text"
-                    name="developer_url"
-                    required
+                    name="maintainer_url"
+                    :required="counterMaint <= ind ? true : false"
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-
-              <validation-provider
+              </ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
-                :vid="`devlogo-${ind}`"
+                :vid="`maintlogo-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -556,7 +683,7 @@
                   :message="errors"
                 >
                   <template slot="label">
-                    Developer Logo URL &nbsp;
+                    Maintainers Logo URL &nbsp;
                     <b-tooltip
                       label="eg: https://example.com/logo.png"
                       type="is-light"
@@ -569,19 +696,18 @@
                     </b-tooltip>
                   </template>
                   <b-input
-                    v-model="dev.developer_logo_url"
+                    v-model="dev.maintainer_logo_url"
                     type="text"
-                    name="developer_url"
-                    required
+                    name="maintainer_logo_url"
+                    :required="counterMaint <= ind ? true : false"
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-
-              <validation-provider
+              </ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
-                rules="alpha_num:3"
-                :vid="`devcateg-${ind}`"
+                rules="url_string"
+                :vid="`maintrepo-${ind}`"
                 :skip-if-empty="false"
               >
                 <b-field
@@ -590,9 +716,9 @@
                   :message="errors"
                 >
                   <template slot="label">
-                    Developer Category &nbsp;
+                    Maintainers Repository &nbsp;
                     <b-tooltip
-                      label="eg: Education Software, Software"
+                      label="eg: https://github.com/maintainer"
                       type="is-light"
                       animated
                     >
@@ -603,396 +729,198 @@
                     </b-tooltip>
                   </template>
                   <b-input
-                    v-model="dev.developer_category"
+                    v-model="dev.maintainer_repository"
                     type="text"
-                    name="developer_category"
-                    maxlength="50"
-                    required
+                    name="maintainer_repository"
+                    :required="counterMaint <= ind ? true : false"
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-            </div>
-            <b-field label="Maintainers">
-              <b-checkbox v-model="sameAsDevs">Same as Developers</b-checkbox>
-            </b-field>
-            <div v-if="!sameAsDevs">
-              <b-field label="Maintainers">
-                <b-button native-type="button" @click.prevent="addMaintainers">
-                  Add Maintainers
-                </b-button>
-              </b-field>
-              <div v-for="(dev, ind) in form.maintainers" :key="ind">
-                <hr v-if="ind >= 1" />
-                <b-field v-if="ind >= 1" class="is-flex justify-end">
-                  <b-button
-                    native-type="button"
-                    @click.prevent="removeMaintainer(ind)"
-                  >
-                    Remove Maintainer
-                  </b-button>
-                </b-field>
-
-                <validation-provider
-                  v-slot="{ errors, valid }"
-                  rules="name:3"
-                  :vid="`maintname-${ind}`"
-                  :skip-if-empty="false"
-                >
-                  <b-field
-                    label="Maintainers Name"
-                    v-bind="$attrs"
-                    :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                    :message="errors"
-                  >
-                    <b-input
-                      v-model="dev.maintainer_name"
-                      type="text"
-                      name="maintainer_name"
-                      maxlength="50"
-                      required
-                    >
-                    </b-input>
-                  </b-field>
-                </validation-provider>
-
-                <validation-provider
-                  v-slot="{ errors, valid }"
-                  rules="url_string"
-                  :vid="`maintwebsite-${ind}`"
-                  :skip-if-empty="false"
-                >
-                  <b-field
-                    v-bind="$attrs"
-                    :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                    :message="errors"
-                  >
-                    <template slot="label">
-                      Maintainers Website &nbsp;
-                      <b-tooltip
-                        label="eg: https://example.com"
-                        type="is-light"
-                        animated
-                      >
-                        <b-icon
-                          size="is-small"
-                          icon="help-circle-outline"
-                        ></b-icon>
-                      </b-tooltip>
-                    </template>
-                    <b-input
-                      v-model="dev.maintainer_url"
-                      type="text"
-                      name="maintainer_url"
-                      required
-                    >
-                    </b-input>
-                  </b-field>
-                </validation-provider>
-
-                <validation-provider
-                  v-slot="{ errors, valid }"
-                  rules="url_string"
-                  :vid="`maintlogo-${ind}`"
-                  :skip-if-empty="false"
-                >
-                  <b-field
-                    v-bind="$attrs"
-                    :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                    :message="errors"
-                  >
-                    <template slot="label">
-                      Maintainers Logo URL &nbsp;
-                      <b-tooltip
-                        label="eg: https://example.com/logo.png"
-                        type="is-light"
-                        animated
-                      >
-                        <b-icon
-                          size="is-small"
-                          icon="help-circle-outline"
-                        ></b-icon>
-                      </b-tooltip>
-                    </template>
-                    <b-input
-                      v-model="dev.maintainer_logo_url"
-                      type="text"
-                      name="maintainer_logo_url"
-                      required
-                    >
-                    </b-input>
-                  </b-field>
-                </validation-provider>
-
-                <validation-provider
-                  v-slot="{ errors, valid }"
-                  rules="url_string"
-                  :vid="`maintrepo-${ind}`"
-                  :skip-if-empty="false"
-                >
-                  <b-field
-                    v-bind="$attrs"
-                    :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                    :message="errors"
-                  >
-                    <template slot="label">
-                      Maintainers Repository &nbsp;
-                      <b-tooltip
-                        label="eg: https://github.com/maintainer"
-                        type="is-light"
-                        animated
-                      >
-                        <b-icon
-                          size="is-small"
-                          icon="help-circle-outline"
-                        ></b-icon>
-                      </b-tooltip>
-                    </template>
-                    <b-input
-                      v-model="dev.maintainer_repository"
-                      type="text"
-                      name="maintainer_repository"
-                      required
-                    >
-                    </b-input>
-                  </b-field>
-                </validation-provider>
-              </div>
+              </ValidationProvider>
             </div>
           </div>
-        </keep-alive>
-        <keep-alive>
-          <div v-show="currentStep === 4" class="step">
-            <b-field label="Users">
-              <b-button native-type="button" @click.prevent="addUsers">
-                Add Users
+        </div>
+        <div v-show="currentStep === 4" class="step">
+          <b-field label="Users">
+            <b-button
+              native-type="button"
+              :disabled="counterUsers === 4"
+              @click.prevent="addUsers"
+            >
+              Add Users
+            </b-button>
+          </b-field>
+          <div v-for="(dev, ind) in form.users" :key="`user-${ind}`">
+            <hr v-if="ind >= 1" />
+            <b-field v-if="ind >= 1" class="is-flex justify-end">
+              <b-button native-type="button" @click.prevent="removeUser(ind)">
+                Remove User
               </b-button>
             </b-field>
-            <div v-for="(dev, ind) in form.users" :key="ind">
-              <hr v-if="ind >= 1" />
-              <b-field v-if="ind >= 1" class="is-flex justify-end">
-                <b-button native-type="button" @click.prevent="removeUser(ind)">
-                  Remove Dev
-                </b-button>
-              </b-field>
-
-              <validation-provider
-                v-slot="{ errors, valid }"
-                rules="name:3"
-                :vid="`username-${ind}`"
-                :skip-if-empty="false"
+            <ValidationProvider
+              v-slot="{ errors, valid }"
+              rules="name:3"
+              :vid="`username-${ind}`"
+              :skip-if-empty="false"
+            >
+              <b-field
+                label="User Name"
+                v-bind="$attrs"
+                :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                :message="errors"
               >
-                <b-field
-                  label="User Name"
-                  v-bind="$attrs"
-                  :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                  :message="errors"
-                >
-                  <b-input
-                    v-model="dev.user_name"
-                    name="user_name"
-                    type="text"
-                    required
-                  >
-                  </b-input>
-                </b-field>
-              </validation-provider>
-
-              <validation-provider
-                v-slot="{ errors, valid }"
-                rules="url_string"
-                :vid="`userwebsite-${ind}`"
-                :skip-if-empty="false"
-              >
-                <b-field
-                  v-bind="$attrs"
-                  :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                  :message="errors"
-                >
-                  <template slot="label">
-                    User Website &nbsp;
-                    <b-tooltip
-                      label="eg: https://example.com"
-                      type="is-light"
-                      animated
-                    >
-                      <b-icon
-                        size="is-small"
-                        icon="help-circle-outline"
-                      ></b-icon>
-                    </b-tooltip>
-                  </template>
-                  <b-input
-                    v-model="dev.user_url"
-                    type="text"
-                    name="user_url"
-                    required
-                  >
-                  </b-input>
-                </b-field>
-              </validation-provider>
-              <validation-provider
-                v-slot="{ errors, valid }"
-                rules="url_string"
-                :vid="`userlogo-${ind}`"
-                :skip-if-empty="false"
-              >
-                <b-field
-                  v-bind="$attrs"
-                  :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                  :message="errors"
-                >
-                  <template slot="label">
-                    User Logo URL &nbsp;
-                    <b-tooltip
-                      label="eg: https://example.com/image.png"
-                      type="is-light"
-                      animated
-                    >
-                      <b-icon
-                        size="is-small"
-                        icon="help-circle-outline"
-                      ></b-icon>
-                    </b-tooltip>
-                  </template>
-                  <b-input
-                    v-model="dev.user_logo_url"
-                    type="text"
-                    name="user_logo_url"
-                    required
-                  >
-                  </b-input>
-                </b-field>
-              </validation-provider>
-
-              <validation-provider
-                v-slot="{ errors, valid }"
-                rules="name:3"
-                :vid="`userlocation-${ind}`"
-                :skip-if-empty="false"
-              >
-                <b-field
-                  v-bind="$attrs"
-                  :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                  :message="errors"
-                >
-                  <template slot="label">
-                    User Location &nbsp;
-                    <b-tooltip label="eg:London" type="is-light" animated>
-                      <b-icon
-                        size="is-small"
-                        icon="help-circle-outline"
-                      ></b-icon>
-                    </b-tooltip>
-                  </template>
-                  <b-input
-                    v-model="dev.user_location"
-                    type="text"
-                    name="user_location"
-                    required
-                  >
-                  </b-input>
-                </b-field>
-              </validation-provider>
-
-              <validation-provider
-                v-slot="{ errors, valid }"
-                rules="name:5"
-                :vid="`userlong-${ind}`"
-                :skip-if-empty="false"
-              >
-                <b-field
-                  v-bind="$attrs"
-                  :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                  :message="errors"
-                >
-                  <template slot="label">
-                    User User Geolocation Longitude &nbsp;
-                    <b-tooltip label="eg: -1.2323232" type="is-light" animated>
-                      <b-icon
-                        size="is-small"
-                        icon="help-circle-outline"
-                      ></b-icon>
-                    </b-tooltip>
-                  </template>
-                  <b-input
-                    v-model="dev.user_geolocation.long"
-                    type="text"
-                    name="long"
-                    maxlength="10"
-                    required
-                  >
-                  </b-input>
-                </b-field>
-              </validation-provider>
-
-              <validation-provider
-                v-slot="{ errors, valid }"
-                rules="name:5"
-                :vid="`userlat-${ind}`"
-                :skip-if-empty="false"
-              >
-                <b-field
-                  v-bind="$attrs"
-                  :type="{ 'is-danger': errors[0], 'is-success': valid }"
-                  :message="errors"
-                >
-                  <template slot="label">
-                    User User Geolocation Latitude &nbsp;
-                    <b-tooltip label="eg: 4.2323232" type="is-light" animated>
-                      <b-icon
-                        size="is-small"
-                        icon="help-circle-outline"
-                      ></b-icon>
-                    </b-tooltip>
-                  </template>
-                  <b-input
-                    v-model="dev.user_geolocation.lat"
-                    type="text"
-                    name="lat"
-                    maxlength="10"
-                    required
-                  >
-                  </b-input>
-                </b-field>
-              </validation-provider>
-            </div>
-          </div>
-        </keep-alive>
-        <keep-alive>
-          <div v-show="currentStep === 5" class="step">
-            <div v-for="(dev, ind) in form.users" :key="ind">
-              <hr v-if="ind >= 1" />
-              <!-- <validation-provider name="readform"> -->
-              <b-field label="User Name">
-                <b-input type="text" :value="dev.user_name" readonly> </b-input>
-              </b-field>
-              <b-field label="Users Website">
-                <b-input type="text" :value="dev.user_url" readonly> </b-input>
-              </b-field>
-              <b-field label="User Logo URL">
-                <b-input :value="dev.user_logo_url" type="text" readonly>
-                </b-input>
-              </b-field>
-              <b-field label="User Location">
-                <b-input :value="dev.user_location" type="text" readonly>
-                </b-input>
-              </b-field>
-              <b-field label="User Geolocation">
                 <b-input
+                  v-model="dev.user_name"
+                  name="user_name"
                   type="text"
-                  :value="dev.user_geolocation.long"
-                  readonly
+                  :required="counterUsers <= ind ? true : false"
                 >
                 </b-input>
-                <b-input type="text" :value="dev.user_geolocation.lat" readonly>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors, valid }"
+              rules="url_string"
+              :vid="`userwebsite-${ind}`"
+              :skip-if-empty="false"
+            >
+              <b-field
+                v-bind="$attrs"
+                :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                :message="errors"
+              >
+                <template slot="label">
+                  User Website &nbsp;
+                  <b-tooltip
+                    label="eg: https://example.com"
+                    type="is-light"
+                    animated
+                  >
+                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                  </b-tooltip>
+                </template>
+                <b-input
+                  v-model="dev.user_url"
+                  type="text"
+                  name="user_url"
+                  :required="counterUsers <= ind ? true : false"
+                >
                 </b-input>
               </b-field>
-              <!-- </validation-provider> -->
-            </div>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors, valid }"
+              rules="url_string"
+              :vid="`userlogo-${ind}`"
+              :skip-if-empty="false"
+            >
+              <b-field
+                v-bind="$attrs"
+                :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                :message="errors"
+              >
+                <template slot="label">
+                  User Logo URL &nbsp;
+                  <b-tooltip
+                    label="eg: https://example.com/image.png"
+                    type="is-light"
+                    animated
+                  >
+                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                  </b-tooltip>
+                </template>
+                <b-input
+                  v-model="dev.user_logo_url"
+                  type="text"
+                  name="user_logo_url"
+                  :required="counterUsers <= ind ? true : false"
+                >
+                </b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors, valid }"
+              rules="name:3"
+              :vid="`userlocation-${ind}`"
+              :skip-if-empty="false"
+            >
+              <b-field
+                v-bind="$attrs"
+                :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                :message="errors"
+              >
+                <template slot="label">
+                  User Location &nbsp;
+                  <b-tooltip label="eg:London" type="is-light" animated>
+                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                  </b-tooltip>
+                </template>
+                <b-input
+                  v-model="dev.user_location"
+                  type="text"
+                  name="user_location"
+                  :required="counterUsers <= ind ? true : false"
+                >
+                </b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors, valid }"
+              rules="name:5"
+              :vid="`userlong-${ind}`"
+              :skip-if-empty="false"
+            >
+              <b-field
+                v-bind="$attrs"
+                :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                :message="errors"
+              >
+                <template slot="label">
+                  User User Geolocation Longitude &nbsp;
+                  <b-tooltip label="eg: -1.2323232" type="is-light" animated>
+                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                  </b-tooltip>
+                </template>
+                <b-input
+                  v-model="dev.user_geolocation.long"
+                  type="text"
+                  name="long"
+                  maxlength="10"
+                  :required="counterUsers <= ind ? true : false"
+                >
+                </b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors, valid }"
+              rules="name:5"
+              :vid="`userlat-${ind}`"
+              :skip-if-empty="false"
+            >
+              <b-field
+                v-bind="$attrs"
+                :type="{ 'is-danger': errors[0], 'is-success': valid }"
+                :message="errors"
+              >
+                <template slot="label">
+                  User User Geolocation Latitude &nbsp;
+                  <b-tooltip label="eg: 4.2323232" type="is-light" animated>
+                    <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                  </b-tooltip>
+                </template>
+                <b-input
+                  v-model="dev.user_geolocation.lat"
+                  type="text"
+                  name="lat"
+                  maxlength="10"
+                  :required="counterUsers <= ind ? true : false"
+                >
+                </b-input>
+              </b-field>
+            </ValidationProvider>
           </div>
-        </keep-alive>
-        <b-field v-show="currentStep < 6" class="is-between pt-5">
+        </div>
+        <b-field v-if="currentStep < 5" class="is-between pt-5">
           <b-button
             outlined
             type="is-primary"
@@ -1004,28 +932,405 @@
           <button
             v-if="currentStep < 4"
             type="submit"
+            native-type="submit"
             class="button is-primary is-outlined"
           >
             Next Step
           </button>
           <button
-            v-else-if="currentStep === 4"
+            v-else
             type="submit"
             class="button is-primary is-outlined"
+            @click.prevent="goToReview"
           >
             Review Information
           </button>
+        </b-field>
+      </form>
+    </ValidationObserver>
+    <div v-show="currentStep === 5" class="step">
+      <!-- <ValidationObserver ref="observer" v-slot="{ handleSubmit }" tag="div"> -->
+      <form
+        id="formSubmit"
+        ref="formSubmit"
+        name="formSubmit"
+        data-netlify="true"
+        method="POST"
+        data-netlify-honeypot="bot-field"
+        @submit.prevent="onSubmit"
+      >
+        <input type="hidden" name="bot-field" />
+        <input type="hidden" name="form-name" value="formSubmit" />
+        <b-field label="Name">
+          <b-input
+            :value="senderDetails.sendername"
+            readonly
+            type="text"
+            name="sendername"
+          >
+          </b-input>
+        </b-field>
+        <b-field label="Email">
+          <b-input
+            :value="senderDetails.senderemail"
+            readonly
+            type="email"
+            name="senderemail"
+          >
+          </b-input>
+        </b-field>
+        <b-field label="Organisation">
+          <b-input
+            :value="senderDetails.senderorganisation"
+            type="text"
+            name="senderorganisation"
+          >
+          </b-input>
+        </b-field>
+
+        <b-field label="Project Name">
+          <b-input :value="form.name" type="text" name="name" readonly>
+          </b-input>
+        </b-field>
+        <b-field>
+          <template slot="label">
+            Project Website &nbsp;
+            <b-tooltip label="Project website is required" type="is-light">
+              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+            </b-tooltip>
+          </template>
+          <b-input
+            :value="form.official_url"
+            type="text"
+            name="official_url"
+            readonly
+          >
+          </b-input>
+        </b-field>
+        <b-field label="Repository URL">
+          <b-input
+            :value="form.repository"
+            type="text"
+            name="repository"
+            readonly
+          >
+          </b-input>
+        </b-field>
+
+        <b-field>
+          <template slot="label">
+            Project Starting Country &nbsp;
+            <b-tooltip label="eg: Canada" type="is-light" animated>
+              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+            </b-tooltip>
+          </template>
+          <b-taginput
+            icon="label"
+            name="origin_country"
+            :allow-new="false"
+            :value="form.origin_country"
+            readonly
+            :closable="false"
+          >
+          </b-taginput>
+        </b-field>
+        <b-field>
+          <template slot="label">
+            Project Languages &nbsp;
+            <b-tooltip label="eg: EN, IT, FR, DE" type="is-light" animated>
+              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+            </b-tooltip>
+          </template>
+          <b-taginput
+            icon="label"
+            name="language"
+            :allow-new="false"
+            :value="form.language"
+            readonly
+            :closable="false"
+          >
+          </b-taginput>
+        </b-field>
+        <b-field>
+          <template slot="label">
+            Project Type &nbsp;
+            <b-tooltip
+              label="eg: website, mobile app, platform"
+              type="is-light"
+              animated
+            >
+              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+            </b-tooltip>
+          </template>
+          <b-input
+            :value="form.entry_type"
+            type="text"
+            name="entry_type"
+            readonly
+          >
+          </b-input>
+        </b-field>
+        <b-field>
+          <template slot="label">
+            Project Category &nbsp;
+            <b-tooltip
+              label="eg: Education Software, Software"
+              type="is-light"
+              animated
+            >
+              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+            </b-tooltip>
+          </template>
+          <b-taginput
+            name="category"
+            icon="label"
+            :allow-new="false"
+            :value="form.category"
+            readonly
+            :closable="false"
+          >
+          </b-taginput>
+        </b-field>
+        <b-field>
+          <template slot="label">
+            Project Licence &nbsp;
+            <b-tooltip label="eg: MIT, GPL" type="is-light" animated>
+              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+            </b-tooltip>
+          </template>
+          <b-taginput
+            name="licence"
+            icon="label"
+            :allow-new="false"
+            :value="form.licence"
+            readonly
+            :closable="false"
+          >
+          </b-taginput>
+        </b-field>
+        <b-field>
+          <template slot="label">
+            Project Sector &nbsp;
+            <b-tooltip
+              label="eg: Local Government, Public Health"
+              type="is-light"
+              animated
+            >
+              <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+            </b-tooltip>
+          </template>
+          <b-taginput
+            name="sector"
+            icon="label"
+            :allow-new="false"
+            :value="form.sector"
+            readonly
+            :closable="false"
+          >
+          </b-taginput>
+        </b-field>
+        <b-field label="Project Description">
+          <b-input
+            :value="form.description"
+            type="textarea"
+            name="description"
+            readonly
+          >
+          </b-input>
+        </b-field>
+        <hr />
+        <template v-for="(dev, ind) in formToSend.developers">
+          <div v-show="dev.developer_name.length > 0" :key="`dev-r-${ind}`">
+            <hr v-if="ind >= 1" />
+            <b-field label="Developer Name">
+              <b-input
+                :value="dev.developer_name"
+                type="text"
+                name="developer_name"
+                readonly
+              >
+              </b-input>
+            </b-field>
+
+            <b-field>
+              <template slot="label">
+                Developer Website &nbsp;
+                <b-tooltip
+                  label="eg: https://example.com"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                :value="dev.developer_url"
+                type="text"
+                name="developer_url"
+                readonly
+              >
+              </b-input>
+            </b-field>
+
+            <b-field>
+              <template slot="label">
+                Developer Logo URL &nbsp;
+                <b-tooltip
+                  label="eg: https://example.com/logo.png"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                :value="dev.developer_logo_url"
+                type="text"
+                name="developer_url"
+                readonly
+              >
+              </b-input>
+            </b-field>
+
+            <b-field>
+              <template slot="label">
+                Developer Category &nbsp;
+                <b-tooltip
+                  label="eg: Education Software, Software"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                :value="dev.developer_category"
+                type="text"
+                name="developer_category"
+                readonly
+              >
+              </b-input>
+            </b-field>
+          </div>
+        </template>
+        <hr />
+        <template v-for="(dev, ind) in formToSend.maintainers">
+          <div v-show="dev.maintainer_name.length > 0" :key="`maint-r-${ind}`">
+            <hr v-if="ind >= 1" />
+            <b-field label="Maintainers Name">
+              <b-input
+                :value="dev.maintainer_name"
+                type="text"
+                name="maintainer_name"
+                readonly
+              >
+              </b-input>
+            </b-field>
+
+            <b-field>
+              <template slot="label">
+                Maintainers Website &nbsp;
+                <b-tooltip
+                  label="eg: https://example.com"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                :value="dev.maintainer_url"
+                type="text"
+                name="maintainer_url"
+                readonly
+              >
+              </b-input>
+            </b-field>
+
+            <b-field>
+              <template slot="label">
+                Maintainers Logo URL &nbsp;
+                <b-tooltip
+                  label="eg: https://example.com/logo.png"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                :value="dev.maintainer_logo_url"
+                type="text"
+                name="maintainer_logo_url"
+                readonly
+              >
+              </b-input>
+            </b-field>
+
+            <b-field>
+              <template slot="label">
+                Maintainers Repository &nbsp;
+                <b-tooltip
+                  label="eg: https://github.com/maintainer"
+                  type="is-light"
+                  animated
+                >
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+              <b-input
+                :value="dev.maintainer_repository"
+                type="text"
+                name="maintainer_repository"
+                readonly
+              >
+              </b-input>
+            </b-field>
+          </div>
+        </template>
+        <hr />
+        <template v-for="(dev, ind) in formToSend.users">
+          <div v-show="dev.user_name.length > 0" :key="`user-r-${ind}`">
+            <hr v-if="ind >= 1" />
+            <b-field label="User Name">
+              <b-input type="text" :value="dev.user_name" readonly> </b-input>
+            </b-field>
+            <b-field label="Users Website">
+              <b-input type="text" :value="dev.user_url" readonly> </b-input>
+            </b-field>
+            <b-field label="User Logo URL">
+              <b-input :value="dev.user_logo_url" type="text" readonly>
+              </b-input>
+            </b-field>
+            <b-field label="User Location">
+              <b-input :value="dev.user_location" type="text" readonly>
+              </b-input>
+            </b-field>
+            <b-field label="User Geolocation">
+              <b-input type="text" :value="dev.user_geolocation.long" readonly>
+              </b-input>
+              <b-input type="text" :value="dev.user_geolocation.lat" readonly>
+              </b-input>
+            </b-field>
+          </div>
+        </template>
+        <b-field class="is-between pt-5">
+          <b-button outlined type="is-primary" @click.prevent="backToStep">
+            Prev Step
+          </b-button>
+
           <button
-            v-else
             id="submitbtn"
             type="submit"
+            native-type="submit"
             class="button is-primary is-outlined"
           >
             Submit Form
           </button>
         </b-field>
       </form>
-    </validation-observer>
+      <!-- </ValidationObserver> -->
+    </div>
     <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
     <div v-show="submitSuccess" id="form-result" class="step">
       Thanks for the email. We will analyze it and add it to our databse
@@ -1038,7 +1343,7 @@
     <b-modal
       :active.sync="developersModalActive"
       has-modal-card
-      trap-focus
+      destroy-on-hide
       aria-role="dialog"
       aria-modal
     >
@@ -1047,14 +1352,14 @@
           <p class="modal-card-title">Add Developer</p>
         </header>
         <section class="modal-card-body">
-          <validation-observer v-slot="{ handleSubmit }" slim>
+          <ValidationObserver v-slot="{ handleSubmit }" slim>
             <form
               id="devModal"
               ref="devModal"
               name="devModal"
               @submit.prevent="handleSubmit(saveDeveloper)"
             >
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="name:3"
                 :name="`newdevname`"
@@ -1073,8 +1378,8 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-              <validation-provider
+              </ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newdevwebsite`"
@@ -1105,9 +1410,9 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newdevlogo`"
@@ -1138,11 +1443,11 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
-                rules="arr:1"
+                rules="name:3"
                 :name="`newdevcateg`"
                 :skip-if-empty="false"
               >
@@ -1164,24 +1469,17 @@
                       ></b-icon>
                     </b-tooltip>
                   </template>
-                  <b-taginput
-                    v-model="tempDevData.developer_category"
-                    :data="countries"
-                    autocomplete
-                    icon="label"
-                    :allow-new="true"
-                    :value="tempDevData.developer_category"
-                  >
-                  </b-taginput>
+                  <b-input v-model="tempDevData.developer_category" type="text">
+                  </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
               <b-field>
                 <button class="button is-primary" native-type="submit">
                   Add Developer
                 </button>
               </b-field>
             </form>
-          </validation-observer>
+          </ValidationObserver>
         </section>
         <footer class="modal-card-foot">
           <button class="button" type="button" @click.prevent="closeModal">
@@ -1193,7 +1491,7 @@
     <b-modal
       :active.sync="maintainersModalActive"
       has-modal-card
-      trap-focus
+      destroy-on-hide
       aria-role="dialog"
       aria-modal
     >
@@ -1203,15 +1501,15 @@
         </header>
 
         <section class="modal-card-body">
-          <validation-observer v-slot="{ handleSubmit }" slim>
+          <ValidationObserver v-slot="{ handleSubmit }" slim>
             <form
               id="maintModal"
               ref="maintModal"
               @submit.prevent="handleSubmit(saveMaintainer)"
             >
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
-                rules="url_string"
+                rules="name:3"
                 :name="`newmaintname`"
                 :skip-if-empty="false"
               >
@@ -1229,8 +1527,8 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-              <validation-provider
+              </ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newmaintwebsite`"
@@ -1261,9 +1559,9 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newmaintlogo`"
@@ -1294,9 +1592,9 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newmaintrepo`"
@@ -1328,15 +1626,15 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
               <b-field>
                 <button class="button is-primary" native-type="submit">
-                  Add Developer
+                  Add Maintainer
                 </button>
               </b-field>
             </form>
-          </validation-observer>
+          </ValidationObserver>
         </section>
         <footer class="modal-card-foot">
           <button
@@ -1361,13 +1659,13 @@
           <p class="modal-card-title">Add User</p>
         </header>
         <section class="modal-card-body">
-          <validation-observer v-slot="{ handleSubmit }" slim>
+          <ValidationObserver v-slot="{ handleSubmit }" slim>
             <form
               id="userModal"
               ref="userModal"
               @submit.prevent="handleSubmit(saveUser)"
             >
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="name:3"
                 :name="`newusername`"
@@ -1386,8 +1684,8 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-              <validation-provider
+              </ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newuserwebsite`"
@@ -1414,9 +1712,9 @@
                   <b-input v-model="tempUserData.user_url" type="text" required>
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="url_string"
                 :name="`newuserlogo`"
@@ -1447,8 +1745,8 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
-              <validation-provider
+              </ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="name:3"
                 :name="`newuserlocation`"
@@ -1476,9 +1774,9 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
-              <validation-provider
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="name:5"
                 :name="`newuserlong`"
@@ -1505,8 +1803,8 @@
                     required
                   >
                   </b-input> </b-field
-              ></validation-provider>
-              <validation-provider
+              ></ValidationProvider>
+              <ValidationProvider
                 v-slot="{ errors, valid }"
                 rules="name:5"
                 :name="`newuserlat`"
@@ -1525,7 +1823,7 @@
                   >
                   </b-input>
                 </b-field>
-              </validation-provider>
+              </ValidationProvider>
 
               <b-field>
                 <button class="button is-primary" native-type="submit">
@@ -1533,7 +1831,7 @@
                 </button>
               </b-field>
             </form>
-          </validation-observer>
+          </ValidationObserver>
         </section>
         <footer class="modal-card-foot">
           <button class="button" type="button" @click.prevent="closeModal">
@@ -1545,7 +1843,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 /* eslint-disable no-console */
 // /* eslint-disable no-unused-vars */
 // /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -1562,18 +1860,18 @@ export default Vue.extend({
   },
   data() {
     return {
-      currentStep: 5 as number,
-      submitSuccess: false as boolean,
-      developersModalActive: false as boolean,
-      maintainersModalActive: false as boolean,
-      usersModalActive: false as boolean,
-      sendingForm: false as boolean,
-      validForm: false as boolean,
-      formSubmitted: false as boolean,
-      counterDev: 0 as number,
-      counterMaint: 0 as number,
-      counterUsers: 0 as number,
-      sameAsDevs: false as boolean,
+      currentStep: 1,
+      submitSuccess: false,
+      developersModalActive: false,
+      maintainersModalActive: false,
+      usersModalActive: false,
+      sendingForm: false,
+      validForm: false,
+      formSubmitted: false,
+      counterDev: 0,
+      counterMaint: 0,
+      counterUsers: 0,
+      sameAsDevs: false,
       userCategories: [],
       senderDetails: {
         sendername: 'name',
@@ -1596,7 +1894,7 @@ export default Vue.extend({
           {
             developer_name: 'dev name',
             developer_url: 'http://test.com',
-            developer_logo_url: 'http://test.com',
+            developer_logo_url: 'http://test.com/logo.jpg',
             developer_category: 'dev catego',
           },
         ],
@@ -1604,7 +1902,7 @@ export default Vue.extend({
           {
             maintainer_name: 'mant name',
             maintainer_url: 'http://test.com',
-            maintainer_logo_url: 'http://test.com',
+            maintainer_logo_url: 'http://test.com/logo.jpg',
             maintainer_repository: 'http://test.com',
           },
         ],
@@ -1671,7 +1969,7 @@ export default Vue.extend({
         developer_name: 'dev name',
         developer_url: 'http://test.com',
         developer_logo_url: 'http://test.com',
-        developer_category: 'dev catego',
+        developer_category: 'categ',
       },
       tempMaintData: {
         maintainer_name: 'mant name',
@@ -1690,6 +1988,265 @@ export default Vue.extend({
         },
       },
       formSubmissionResult: null,
+      formToSend: {
+        name: '',
+        official_url: '',
+        logo_url: '',
+        repository: '',
+        origin_country: [],
+        entry_type: '',
+        sector: [],
+        language: [],
+        licence: [],
+        category: [],
+        description: '',
+        developers: [
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+        ],
+        maintainers: [
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+        ],
+        users: [
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+        ],
+      },
+
+      defaultformToSend: {
+        name: '',
+        official_url: '',
+        logo_url: '',
+        repository: '',
+        origin_country: [],
+        entry_type: '',
+        sector: [],
+        language: [],
+        licence: [],
+        category: [],
+        description: '',
+        developers: [
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+          {
+            developer_name: '',
+            developer_url: '',
+            developer_logo_url: '',
+            developer_category: '',
+          },
+        ],
+        maintainers: [
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+          {
+            maintainer_name: '',
+            maintainer_url: '',
+            maintainer_logo_url: '',
+            maintainer_repository: '',
+          },
+        ],
+        users: [
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+          {
+            user_name: '',
+            user_location: '',
+            user_logo_url: '',
+            user_url: '',
+            user_geolocation: {
+              lat: '',
+              long: '',
+            },
+          },
+        ],
+      },
     }
   },
   computed: {
@@ -1704,6 +2261,7 @@ export default Vue.extend({
   methods: {
     resetForm() {
       this.form = Object.assign({}, this.defaultForm)
+      this.formToSend = Object.assign({}, this.defaultformToSend)
       this.currentStep = 1
       this.submitSuccess = false
     },
@@ -1714,15 +2272,12 @@ export default Vue.extend({
       this.currentStep--
     },
     addDevelopers() {
-      this.counterDev++
       this.developersModalActive = true
     },
     addMaintainers() {
-      this.counterMaint++
       this.maintainersModalActive = true
     },
     addUsers() {
-      this.counterUsers++
       this.usersModalActive = true
     },
     closeModal() {
@@ -1732,7 +2287,9 @@ export default Vue.extend({
     },
     saveDeveloper() {
       this.developersModalActive = false
-      this.form.developers.push(this.tempDevData)
+      this.counterDev = this.counterDev + 1
+
+      this.form.developers[this.counterDev] = this.tempDevData
       this.tempDevData = {
         developer_name: '',
         developer_url: '',
@@ -1742,7 +2299,8 @@ export default Vue.extend({
     },
     saveUser() {
       this.usersModalActive = false
-      this.form.users.push(this.tempUserData)
+      this.counterUsers = this.counterUsers + 1
+      this.form.users[this.counterUsers] = this.tempUserData
       this.tempUserData = {
         user_name: '',
         user_location: '',
@@ -1756,15 +2314,17 @@ export default Vue.extend({
     },
     saveMaintainer() {
       this.maintainersModalActive = false
-      this.form.maintainers.push(this.tempMaintData)
+      this.counterMaint = this.counterMaint + 1
+      this.form.maintainers[this.counterMaint] = this.tempMaintData
       this.tempMaintData = {
         maintainer_name: '',
         maintainer_url: '',
         maintainer_logo_url: '',
         maintainer_repository: '',
       }
+      this.counterMaint = this.counterMaint + 1
     },
-    removeDeveloper(index: number) {
+    removeDeveloper(index) {
       this.form.developers.splice(index, 1)
       this.tempDevData = {
         developer_name: '',
@@ -1772,8 +2332,12 @@ export default Vue.extend({
         developer_logo_url: '',
         developer_category: '',
       }
+      this.counterDev = this.counterDev - 1
+      if (this.counterDev < 0) {
+        this.counterDev = 0
+      }
     },
-    removeMaintainer(index: number) {
+    removeMaintainer(index) {
       this.form.maintainers.splice(index, 1)
       this.tempMaintData = {
         maintainer_name: '',
@@ -1781,8 +2345,12 @@ export default Vue.extend({
         maintainer_logo_url: '',
         maintainer_repository: '',
       }
+      this.counterMaint = this.counterMaint - 1
+      if (this.counterMaint < 0) {
+        this.counterMaint = 0
+      }
     },
-    removeUser(index: number) {
+    removeUser(index) {
       this.form.users.splice(index, 1)
       this.tempUserData = {
         user_name: '',
@@ -1794,8 +2362,12 @@ export default Vue.extend({
           long: '',
         },
       }
+      this.counterUsers = this.counterUsers - 1
+      if (this.counterUsers < 0) {
+        this.counterUsers = 0
+      }
     },
-    encode(data: any) {
+    encode(data) {
       return Object.keys(data)
         .map((key) => {
           if (
@@ -1803,9 +2375,9 @@ export default Vue.extend({
             key === 'maintainers' ||
             key === 'users'
           ) {
-            return data[key].map((el: any) => {
+            return data[key].map((el) => {
               return Object.entries(el)
-                .map((i: any) => {
+                .map((i) => {
                   if (i[0] === 'user_geolocation') {
                     return Object.keys(i[1])
                       .map((j) => {
@@ -1835,17 +2407,9 @@ export default Vue.extend({
         .join('&')
     },
     onSubmit() {
-      if (this.currentStep < 5) {
-        this.currentStep++
-        return
-      }
-
       if (this.currentStep === 5) {
-        // @ts-ignore
-        this.$refs.observer.validate().then((success: any) => {
-          if (!success) {
-          }
-        })
+        // this.$refs.observer.validate().then((success) => {
+        //   if (success) {
         this.sendingForm = true
         const axiosConfig = {
           header: {
@@ -1853,18 +2417,6 @@ export default Vue.extend({
             'Access-Control-Allow-Origin': '*',
           },
         }
-        console.log(
-          'formencoded',
-          JSON.parse(
-            JSON.stringify(
-              this.encode({
-                'form-name': 'formbuilder',
-                ...this.form,
-                ...this.senderDetails,
-              })
-            )
-          )
-        )
 
         // @ts-ignore
         this.$axios
@@ -1878,7 +2430,7 @@ export default Vue.extend({
             }),
             axiosConfig
           )
-          .then((res: any) => {
+          .then((res) => {
             setTimeout(() => {
               console.log('response', res)
               this.submitSuccess = true
@@ -1886,20 +2438,42 @@ export default Vue.extend({
               this.currentStep = 6
               this.$nextTick(() => {
                 this.form = Object.assign({}, this.defaultForm)
+                this.formToSend = Object.assign({}, this.defaultformToSend)
                 this.senderDetails = Object.assign(
                   {},
                   this.defaultSenderDetails
                 )
-                // @ts-ignore
-                this.$refs.observer.reset()
+                // this.$refs.observer.reset()
               })
             }, 1500)
           })
-          .catch((error: any) => {
+          .catch((error) => {
             console.error('Error', error)
             this.sendingForm = false
           })
+        // }
+        // })
       }
+    },
+    formbuild() {
+      if (this.currentStep < 4) {
+        this.currentStep++
+        return
+      }
+      this.$refs.builder.validate()
+    },
+    goToReview() {
+      this.currentStep = 5
+      this.form.developers.forEach((el, i) => {
+        this.formToSend.developers[i] = el
+      })
+      this.form.users.forEach((el, i) => {
+        this.formToSend.users[i] = el
+      })
+      this.form.maintainers.forEach((el, i) => {
+        this.formToSend.maintainers[i] = el
+      })
+      console.log(this.form, this.formToSend)
     },
   },
 })
