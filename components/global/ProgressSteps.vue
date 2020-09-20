@@ -951,16 +951,16 @@
     <div v-show="currentStep === 5" class="step">
       <!-- <ValidationObserver ref="observer" v-slot="{ handleSubmit }" tag="div"> -->
       <form
-        id="form-submit"
-        ref="formSubmit"
-        name="form-submit"
+        id="form-buiding"
+        ref="form-building"
+        name="form-buiding"
         data-netlify="true"
         method="POST"
         data-netlify-honeypot="bot-field"
         @submit.prevent="onSubmit"
       >
         <input type="hidden" name="bot-field" />
-        <input type="hidden" name="form-name" value="form-submit" />
+        <input type="hidden" name="form-name" value="form-buiding" />
         <b-field label="Name">
           <b-input
             :value="senderDetails.sendername"
@@ -987,8 +987,8 @@
           >
           </b-input>
         </b-field>
-        <b-field class="file hidden">
-          <b-upload v-model="files" accept=".json">
+        <b-field class="file is-hidden">
+          <b-upload ref="files" v-model="files" accept=".json">
             <a class="button is-primary">
               <b-icon icon="upload"></b-icon>
               <span>Click to upload</span>
@@ -1366,7 +1366,7 @@
           id="submitbtn"
           type="submit"
           native-type="submit"
-          form="form-submit"
+          form="form-buiding"
           class="button is-primary is-outlined"
         >
           Submit Form
@@ -2430,7 +2430,6 @@ export default Vue.extend({
         }
       }
       this.files = new File([files], 'entry.json', { type: 'application/json' })
-      console.log(formData, files, dataToEncod)
       return formData
       // return Object.keys(data)
       // .map((key) => {
