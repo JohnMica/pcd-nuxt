@@ -101,31 +101,45 @@
               <div class="social-media">
                 Contact details:
                 <div class="">
-                  <span v-if="item.email">
-                    <a :href="`mailto:${item.email}`" class="pa-2">
-                      <img
-                        :src="require(`~/assets/images/email.svg`)"
-                        alt="email image"
-                        width="24"
-                      />
-                    </a>
-                  </span>
-                  <span>
-                    <a
-                      v-for="(social, i) in item.socialmedia"
-                      :key="i"
-                      :href="social.link"
-                      rel="noopener"
-                      target="_blank"
-                      class="pa-2 is-inline-flex"
-                    >
-                      <img
-                        :src="require(`~/assets/images/${social.image}`)"
-                        alt="social media logo"
-                        width="24"
-                      />
-                    </a>
-                  </span>
+                  <a
+                    v-if="item.website"
+                    :href="item.website"
+                    rel="noopener"
+                    target="_blank"
+                    class="pa-2 is-inline-flex"
+                  >
+                    <img
+                      :src="require(`~/assets/images/globe.svg`)"
+                      alt="website image"
+                      width="24"
+                    />
+                  </a>
+                  <a
+                    v-if="item.email"
+                    :href="`mailto:${item.email}`"
+                    class="pa-2 is-inline-flex"
+                  >
+                    <img
+                      :src="require(`~/assets/images/email.svg`)"
+                      alt="email image"
+                      width="24"
+                    />
+                  </a>
+
+                  <a
+                    v-for="(social, i) in item.socialmedia"
+                    :key="i"
+                    :href="social.link"
+                    rel="noopener"
+                    target="_blank"
+                    class="pa-2 is-inline-flex"
+                  >
+                    <img
+                      :src="require(`~/assets/images/${social.image}`)"
+                      alt="social media logo"
+                      width="24"
+                    />
+                  </a>
                 </div>
               </div>
             </div>

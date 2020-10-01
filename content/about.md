@@ -37,8 +37,7 @@ contributors:
       - image: 'instagram.svg'
         link: ' https://www.instagram.com/design.brainy/?hl=en'
   - name: 'John Mica'
-    email: john@threebros.design
-    website: 'https://threebros.design'
+    website: 'https://www.threebros.design'
     contributor_title: 'Development and Implementation'
     socialmedia:
       - image: 'twitter.svg'
