@@ -2426,7 +2426,7 @@ export default Vue.extend({
       }
       for (const key of Object.keys(dataToEncod)) {
         if (key === 'files') {
-          formData.append(key, dataToEncod[key][0])
+          formData.append(key, dataToEncod[key][0], 'application/json')
         } else {
           formData.append(key, dataToEncod[key])
         }
@@ -2473,13 +2473,10 @@ export default Vue.extend({
     },
     onSubmit() {
       if (this.currentStep === 5) {
-        // this.$refs.observer.validate().then((success) => {
-        //   if (success) {
         this.sendingForm = true
         const axiosConfig = {
           header: {
             'Content-Type': 'multipart/form-data',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
             'Access-Control-Allow-Origin': '*',
           },
         }
@@ -2489,11 +2486,7 @@ export default Vue.extend({
           .post(
             'https://testing-pcd.netlify.app',
             // '/',
-            this.encode(
-              // 'form-name': 'form-submit',
-              { ...this.formToSend }
-              // ...this.senderDetails,
-            ),
+            this.encode({ ...this.formToSend }),
             axiosConfig
           )
           .then((res) => {
