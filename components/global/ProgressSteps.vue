@@ -2484,6 +2484,7 @@ export default Vue.extend({
           },
         }
         // @ts-ignore
+        console.log(this.encode({ ...this.senderDetails }))
         this.$axios
           .post(
             'https://testing-pcd.netlify.app',
@@ -2497,7 +2498,7 @@ export default Vue.extend({
           )
           .then((res) => {
             setTimeout(() => {
-              console.log('response', res)
+              console.log('response susccess', res)
               this.submitSuccess = true
               this.sendingForm = false
               this.currentStep = 6
