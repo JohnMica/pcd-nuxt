@@ -1364,15 +1364,15 @@
           Prev Step
         </b-button>
 
-        <button
+        <b-button
           id="submitbtn"
           type="submit"
           native-type="submit"
-          form="form-buiding"
+          form="formcreation"
           class="button is-primary is-outlined"
         >
           Submit Form
-        </button>
+        </b-button>
       </b-field>
       <!-- </ValidationObserver> -->
     </div>
@@ -2422,7 +2422,7 @@ export default Vue.extend({
       const dataToEncod = {
         files: new File([files], 'entry.json', { type: 'application/json' }),
         ...this.senderDetails,
-        'form-name': 'form-submit',
+        'form-name': 'formcreation',
       }
       for (const key of Object.keys(dataToEncod)) {
         if (key === 'files') {
@@ -2431,7 +2431,7 @@ export default Vue.extend({
           formData.append(key, dataToEncod[key])
         }
       }
-      this.files = new File([files], 'entry.json', { type: 'application/json' })
+      // this.files = new File([files], 'entry.json', { type: 'application/json' })
       return formData
       // return Object.keys(data)
       // .map((key) => {
