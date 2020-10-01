@@ -13,7 +13,7 @@ export default {
           'The federated DataBase of Open Source Software used by public institutions',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/logo.png' }],
     bodyAttrs: {
       class: 'is-grid',
     },

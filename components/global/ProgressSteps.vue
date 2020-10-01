@@ -951,16 +951,18 @@
     <div v-show="currentStep === 5" class="step">
       <!-- <ValidationObserver ref="observer" v-slot="{ handleSubmit }" tag="div"> -->
       <form
-        id="form-buiding"
-        ref="form-building"
-        name="form-buiding"
+        id="formcreation"
+        ref="formcreation"
+        name="formcreation"
         data-netlify="true"
         method="POST"
+        novalidate
+        enctype="multipart/form-data"
         data-netlify-honeypot="bot-field"
         @submit.prevent="onSubmit"
       >
         <input type="hidden" name="bot-field" />
-        <input type="hidden" name="form-name" value="form-buiding" />
+        <input type="hidden" name="form-name" value="formcreation" />
         <b-field label="Name">
           <b-input
             :value="senderDetails.sendername"
@@ -988,7 +990,7 @@
           </b-input>
         </b-field>
         <b-field class="file is-hidden">
-          <b-upload ref="files" v-model="files" accept=".json">
+          <b-upload ref="files" v-model="files" name="files" accept=".json">
             <a class="button is-primary">
               <b-icon icon="upload"></b-icon>
               <span>Click to upload</span>
