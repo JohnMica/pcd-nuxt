@@ -189,13 +189,7 @@ export default Vue.extend({
           'Access-Control-Allow-Origin': '*',
         },
       }
-      console.log(
-        'uploaded file',
-        this.encode({
-          'form-name': 'simpleform',
-          ...this.form,
-        })
-      )
+
       this.$axios
         .post(
           // '/',

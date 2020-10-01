@@ -1152,7 +1152,7 @@
         </b-input>
       </b-field>
       <hr />
-      <template v-for="(dev, ind) in formToSend.developers">
+      <template v-for="(dev, ind) in form.developers">
         <div v-show="dev.developer_name.length > 0" :key="`dev-r-${ind}`">
           <hr v-if="ind >= 1" />
           <b-field label="Developer Name">
@@ -1227,7 +1227,7 @@
         </div>
       </template>
       <hr />
-      <template v-for="(dev, ind) in formToSend.maintainers">
+      <template v-for="(dev, ind) in form.maintainers">
         <div v-show="dev.maintainer_name.length > 0" :key="`maint-r-${ind}`">
           <hr v-if="ind >= 1" />
           <b-field label="Maintainers Name">
@@ -1302,7 +1302,7 @@
         </div>
       </template>
       <hr />
-      <template v-for="(dev, ind) in formToSend.users">
+      <template v-for="(dev, ind) in form.users">
         <div v-show="dev.user_name.length > 0" :key="`user-r-${ind}`">
           <hr v-if="ind >= 1" />
           <b-field label="User Name">
@@ -2033,265 +2033,6 @@ export default Vue.extend({
         },
       },
       formSubmissionResult: null,
-      formToSend: {
-        name: '',
-        official_url: '',
-        logo_url: '',
-        repository: '',
-        origin_country: [],
-        entry_type: '',
-        sector: [],
-        language: [],
-        licence: [],
-        category: [],
-        description: '',
-        developers: [
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-        ],
-        maintainers: [
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-        ],
-        users: [
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-        ],
-      },
-
-      defaultformToSend: {
-        name: '',
-        official_url: '',
-        logo_url: '',
-        repository: '',
-        origin_country: [],
-        entry_type: '',
-        sector: [],
-        language: [],
-        licence: [],
-        category: [],
-        description: '',
-        developers: [
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-          {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
-          },
-        ],
-        maintainers: [
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-          {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
-          },
-        ],
-        users: [
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-          {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
-            user_geolocation: {
-              lat: '',
-              long: '',
-            },
-          },
-        ],
-      },
       files: [],
     }
   },
@@ -2307,7 +2048,6 @@ export default Vue.extend({
   methods: {
     resetForm() {
       this.form = Object.assign({}, this.defaultForm)
-      this.formToSend = Object.assign({}, this.defaultformToSend)
       this.currentStep = 1
       this.submitSuccess = false
       this.$refs.builder.reset()
@@ -2420,56 +2160,15 @@ export default Vue.extend({
         type: 'application/json',
       })
       const dataToEncod = {
-        files: new File([files], 'entry.json', { type: 'application/json' }),
-        ...this.senderDetails,
         'form-name': 'formcreation',
+        ...this.senderDetails,
       }
       for (const key of Object.keys(dataToEncod)) {
-        if (key === 'files') {
-          formData.append(key, dataToEncod[key][0], 'application/json')
-        } else {
-          formData.append(key, dataToEncod[key])
-        }
+        formData.append(key, dataToEncod[key])
       }
-      // this.files = new File([files], 'entry.json', { type: 'application/json' })
+      formData.append('files', files, 'application/json')
+
       return formData
-      // return Object.keys(data)
-      // .map((key) => {
-      //   if (
-      //     key === 'developers' ||
-      //     key === 'maintainers' ||
-      //     key === 'users'
-      //   ) {
-      //     return data[key].map((el, ind) => {
-      //       return Object.entries(el)
-      //         .map((i) => {
-      //           if (i[0] === 'user_geolocation') {
-      //             return Object.keys(i[1])
-      //               .map((j) => {
-      //                 return `user_geolocation${encodeURIComponent(
-      //                   j
-      //                 )}=${encodeURIComponent(i[1][j])}`
-      //               })
-      //               .join('&')
-      //           } else {
-      //             return `${encodeURIComponent(
-      //               i[0]
-      //             )}${ind}=${encodeURIComponent(i[1])}`
-      //           }
-      //         })
-      //         .join('&')
-      //     })
-      //   } else if (
-      //     key === 'licence' ||
-      //     key === 'category' ||
-      //     key === 'sector'
-      //   ) {
-      //     return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-      //   } else {
-      //     return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-      //   }
-      // })
-      // .join('&')
     },
     onSubmit() {
       if (this.currentStep === 5) {
@@ -2481,12 +2180,11 @@ export default Vue.extend({
           },
         }
         // @ts-ignore
-        console.log(this.encode({ ...this.senderDetails }))
         this.$axios
           .post(
             'https://testing-pcd.netlify.app',
             // '/',
-            this.encode({ ...this.formToSend }),
+            this.encode({ ...this.form }),
             axiosConfig
           )
           .then((res) => {
@@ -2497,7 +2195,6 @@ export default Vue.extend({
               this.currentStep = 6
               this.$nextTick(() => {
                 this.form = Object.assign({}, this.defaultForm)
-                this.formToSend = Object.assign({}, this.defaultformToSend)
                 this.senderDetails = Object.assign(
                   {},
                   this.defaultSenderDetails
@@ -2523,16 +2220,6 @@ export default Vue.extend({
     },
     goToReview() {
       this.currentStep = 5
-      this.form.developers.forEach((el, i) => {
-        this.formToSend.developers[i] = el
-      })
-      this.form.users.forEach((el, i) => {
-        this.formToSend.users[i] = el
-      })
-      this.form.maintainers.forEach((el, i) => {
-        this.formToSend.maintainers[i] = el
-      })
-      console.log(this.form, this.formToSend)
     },
   },
 })
