@@ -97,7 +97,7 @@
         </div>
       </div>
     </div>
-    <ValidationObserver ref="builder" v-slot="{ handleSubmit }" tag="div">
+    <ValidationObserver ref="builder" v-slot="{ handleSubmit }" tag="div" slim>
       <form
         id="formbuilder"
         ref="formbuilder"
@@ -105,9 +105,10 @@
         method="POST"
         @submit.prevent="handleSubmit(formbuild)"
       >
-        <div v-show="currentStep === 1" class="step">
+        <div v-if="currentStep === 1" class="step">
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="name:3"
             vid="sendername"
@@ -130,6 +131,7 @@
           </ValidationProvider>
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="required|email"
             vid="senderemail"
@@ -151,6 +153,7 @@
             </b-field>
           </ValidationProvider>
           <ValidationProvider
+            mode="lazy"
             tag="div"
             :skip-if-empty="true"
             vid="organisation"
@@ -165,9 +168,10 @@
             </b-field>
           </ValidationProvider>
         </div>
-        <div v-show="currentStep === 2" class="step">
+        <div v-else-if="currentStep === 2" class="step">
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="name:3"
             vid="projectname"
@@ -186,6 +190,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="url_string"
             vid="officialurl"
@@ -214,6 +219,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="url_string"
             vid="repository"
@@ -237,6 +243,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="arr:1"
             vid="startingcountry"
@@ -268,6 +275,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="arr:1"
             vid="projectlang"
@@ -299,6 +307,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="name:3"
             vid="projecttype"
@@ -332,6 +341,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="arr:1"
             vid="projectlicence"
@@ -363,6 +373,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="arr:1"
             vid="projectcateg"
@@ -398,6 +409,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="arr:1"
             vid="projectsector"
@@ -433,6 +445,7 @@
 
           <ValidationProvider
             v-slot="{ errors, valid }"
+            mode="lazy"
             tag="div"
             rules="minmax:10,350"
             vid="description"
@@ -455,7 +468,7 @@
             </b-field>
           </ValidationProvider>
         </div>
-        <div v-show="currentStep === 3" class="step">
+        <div v-else-if="currentStep === 3" class="step">
           <b-field label="Developers">
             <b-button
               native-type="button"
@@ -477,6 +490,7 @@
             </b-field>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="name:3"
               :vid="`devname-${ind}`"
               :skip-if-empty="false"
@@ -500,6 +514,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="url_string"
               :vid="`devwebsite-${ind}`"
               :skip-if-empty="false"
@@ -531,6 +546,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="url_string"
               :vid="`devlogo-${ind}`"
               :skip-if-empty="false"
@@ -562,6 +578,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="alpha_num:3"
               :vid="`devcateg-${ind}`"
               :skip-if-empty="false"
@@ -618,6 +635,7 @@
               </b-field>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:3"
                 :vid="`maintname-${ind}`"
                 :skip-if-empty="false"
@@ -640,6 +658,7 @@
               </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :vid="`maintwebsite-${ind}`"
                 :skip-if-empty="false"
@@ -673,6 +692,7 @@
               </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :vid="`maintlogo-${ind}`"
                 :skip-if-empty="false"
@@ -706,6 +726,7 @@
               </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :vid="`maintrepo-${ind}`"
                 :skip-if-empty="false"
@@ -740,7 +761,7 @@
             </div>
           </div>
         </div>
-        <div v-show="currentStep === 4" class="step">
+        <div v-else-if="currentStep === 4" class="step">
           <b-field label="Users">
             <b-button
               native-type="button"
@@ -759,6 +780,7 @@
             </b-field>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="name:3"
               :vid="`username-${ind}`"
               :skip-if-empty="false"
@@ -780,6 +802,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="url_string"
               :vid="`userwebsite-${ind}`"
               :skip-if-empty="false"
@@ -810,6 +833,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="url_string"
               :vid="`userlogo-${ind}`"
               :skip-if-empty="false"
@@ -840,6 +864,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="name:3"
               :vid="`userlocation-${ind}`"
               :skip-if-empty="false"
@@ -866,6 +891,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="name:5"
               :vid="`userlong-${ind}`"
               :skip-if-empty="false"
@@ -893,6 +919,7 @@
             </ValidationProvider>
             <ValidationProvider
               v-slot="{ errors, valid }"
+              mode="lazy"
               rules="name:5"
               :vid="`userlat-${ind}`"
               :skip-if-empty="false"
@@ -920,7 +947,7 @@
             </ValidationProvider>
           </div>
         </div>
-        <b-field v-if="currentStep < 5" class="is-between pt-5">
+        <b-field v-show="currentStep < 5" class="is-between pt-5">
           <b-button
             outlined
             type="is-primary"
@@ -949,7 +976,6 @@
       </form>
     </ValidationObserver>
     <div v-show="currentStep === 5" class="step">
-      <!-- <ValidationObserver ref="observer" v-slot="{ handleSubmit }" tag="div"> -->
       <form
         id="formcreation"
         ref="formcreation"
@@ -1374,7 +1400,6 @@
           Submit Form
         </b-button>
       </b-field>
-      <!-- </ValidationObserver> -->
     </div>
     <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
     <div v-show="submitSuccess" id="form-result" class="step">
@@ -1406,6 +1431,7 @@
             >
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:3"
                 :name="`newdevname`"
                 :skip-if-empty="false"
@@ -1426,6 +1452,7 @@
               </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :name="`newdevwebsite`"
                 :skip-if-empty="false"
@@ -1459,6 +1486,7 @@
 
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :name="`newdevlogo`"
                 :skip-if-empty="false"
@@ -1492,6 +1520,7 @@
 
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:3"
                 :name="`newdevcateg`"
                 :skip-if-empty="false"
@@ -1554,6 +1583,7 @@
             >
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:3"
                 :name="`newmaintname`"
                 :skip-if-empty="false"
@@ -1575,6 +1605,7 @@
               </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :name="`newmaintwebsite`"
                 :skip-if-empty="false"
@@ -1608,6 +1639,7 @@
 
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :name="`newmaintlogo`"
                 :skip-if-empty="false"
@@ -1641,6 +1673,7 @@
 
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :name="`newmaintrepo`"
                 :skip-if-empty="false"
@@ -1712,6 +1745,7 @@
             >
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:3"
                 :name="`newusername`"
                 :skip-if-empty="false"
@@ -1732,6 +1766,7 @@
               </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :name="`newuserwebsite`"
                 :skip-if-empty="false"
@@ -1761,6 +1796,7 @@
 
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="url_string"
                 :name="`newuserlogo`"
                 :skip-if-empty="false"
@@ -1793,6 +1829,7 @@
               </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:3"
                 :name="`newuserlocation`"
                 :skip-if-empty="false"
@@ -1823,6 +1860,7 @@
 
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:5"
                 :name="`newuserlong`"
                 :skip-if-empty="false"
@@ -1851,6 +1889,7 @@
               ></ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
+                mode="lazy"
                 rules="name:5"
                 :name="`newuserlat`"
                 :skip-if-empty="false"
@@ -1888,11 +1927,7 @@
   </div>
 </template>
 
-<script>
-/* eslint-disable no-console */
-// /* eslint-disable no-unused-vars */
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-
+<script lang="ts">
 import Vue from 'vue'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapGetters } from 'vuex'
@@ -1905,7 +1940,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      currentStep: 4,
+      currentStep: 1,
       submitSuccess: false,
       developersModalActive: false,
       maintainersModalActive: false,
@@ -1919,121 +1954,121 @@ export default Vue.extend({
       sameAsDevs: false,
       userCategories: [],
       senderDetails: {
-        sendername: 'name',
-        senderemail: 'email@test.com',
-        senderorganisation: 'organisation',
+        sendername: '' as string,
+        senderemail: '' as string,
+        senderorganisation: '' as string,
       },
       form: {
-        name: 'project name',
-        official_url: 'http://test.com',
-        logo_url: 'http://test.com',
-        repository: 'http://test.com',
-        origin_country: ['country'],
-        entry_type: 'project type',
-        sector: ['sector'],
-        language: ['en', 'it', 'de'],
-        licence: ['licence'],
-        category: ['categ'],
-        description: 'descirpieornainawin ainaoidnioandi oansiodn oiasd idi na',
+        name: '' as string,
+        official_url: '' as string,
+        logo_url: '' as string,
+        repository: '' as string,
+        origin_country: [] as string[],
+        entry_type: '' as string,
+        sector: [] as string[],
+        language: [] as string[],
+        licence: [] as string[],
+        category: [] as string[],
+        description: '' as string,
         developers: [
           {
-            developer_name: 'dev name',
-            developer_url: 'http://test.com',
-            developer_logo_url: 'http://test.com/logo.jpg',
-            developer_category: 'dev catego',
+            developer_name: '' as string,
+            developer_url: '' as string,
+            developer_logo_url: '' as string,
+            developer_category: '' as string,
           },
         ],
         maintainers: [
           {
-            maintainer_name: 'mant name',
-            maintainer_url: 'http://test.com',
-            maintainer_logo_url: 'http://test.com/logo.jpg',
-            maintainer_repository: 'http://test.com',
+            maintainer_name: '' as string,
+            maintainer_url: '' as string,
+            maintainer_logo_url: '' as string,
+            maintainer_repository: '' as string,
           },
         ],
         users: [
           {
-            user_name: 'name',
-            user_location: 'https://google.com',
-            user_logo_url: 'https://google.com',
-            user_url: 'https://google.com',
+            user_name: '' as string,
+            user_location: '' as string,
+            user_logo_url: '' as string,
+            user_url: '' as string,
             user_geolocation: {
-              lat: '54.23223',
-              long: '-1.23232',
+              lat: '' as string,
+              long: '' as string,
             },
           },
         ],
       },
       defaultSenderDetails: {
-        sendername: '',
-        senderemail: '',
-        senderorganisation: '',
+        sendername: '' as string,
+        senderemail: '' as string,
+        senderorganisation: '' as string,
       },
       defaultForm: {
-        name: '',
-        official_url: '',
-        logo_url: '',
-        repository: '',
-        origin_country: [],
-        entry_type: '',
-        sector: [],
-        language: [],
-        licence: [],
-        category: [],
-        description: '',
+        name: '' as string,
+        official_url: '' as string,
+        logo_url: '' as string,
+        repository: '' as string,
+        origin_country: [] as string[],
+        entry_type: '' as string,
+        sector: [] as string[],
+        language: [] as string[],
+        licence: [] as string[],
+        category: [] as string[],
+        description: '' as string,
         developers: [
           {
-            developer_name: '',
-            developer_url: '',
-            developer_logo_url: '',
-            developer_category: '',
+            developer_name: '' as string,
+            developer_url: '' as string,
+            developer_logo_url: '' as string,
+            developer_category: '' as string,
           },
         ],
         maintainers: [
           {
-            maintainer_name: '',
-            maintainer_url: '',
-            maintainer_logo_url: '',
-            maintainer_repository: '',
+            maintainer_name: '' as string,
+            maintainer_url: '' as string,
+            maintainer_logo_url: '' as string,
+            maintainer_repository: '' as string,
           },
         ],
         users: [
           {
-            user_name: '',
-            user_location: '',
-            user_logo_url: '',
-            user_url: '',
+            user_name: '' as string,
+            user_location: '' as string,
+            user_logo_url: '' as string,
+            user_url: '' as string,
             user_geolocation: {
-              lat: '',
-              long: '',
+              lat: '' as string,
+              long: '' as string,
             },
           },
         ],
       },
       tempDevData: {
-        developer_name: 'dev name',
-        developer_url: 'http://test.com',
-        developer_logo_url: 'http://test.com',
-        developer_category: 'categ',
+        developer_name: '' as string,
+        developer_url: '' as string,
+        developer_logo_url: '' as string,
+        developer_category: '' as string,
       },
       tempMaintData: {
-        maintainer_name: 'mant name',
-        maintainer_url: 'http://test.com',
-        maintainer_logo_url: 'http://test.com',
-        maintainer_repository: 'http://test.com',
+        maintainer_name: '' as string,
+        maintainer_url: '' as string,
+        maintainer_logo_url: '' as string,
+        maintainer_repository: '' as string,
       },
       tempUserData: {
-        user_name: 'name',
-        user_location: 'London',
-        user_logo_url: 'https://google.com',
-        user_url: 'https://google.com',
+        user_name: '' as string,
+        user_location: '' as string,
+        user_logo_url: '' as string,
+        user_url: '' as string,
         user_geolocation: {
-          lat: '54.23223',
-          long: '-1.23232',
+          lat: '' as string,
+          long: '' as string,
         },
       },
       formSubmissionResult: null,
-      files: [],
+      files: [] as any[],
     }
   },
   computed: {
@@ -2050,6 +2085,7 @@ export default Vue.extend({
       this.form = Object.assign({}, this.defaultForm)
       this.currentStep = 1
       this.submitSuccess = false
+      // @ts-ignore
       this.$refs.builder.reset()
     },
     backToStep() {
@@ -2111,7 +2147,7 @@ export default Vue.extend({
       }
       this.counterMaint = this.counterMaint + 1
     },
-    removeDeveloper(index) {
+    removeDeveloper(index: number) {
       this.form.developers.splice(index, 1)
       this.tempDevData = {
         developer_name: '',
@@ -2120,11 +2156,11 @@ export default Vue.extend({
         developer_category: '',
       }
       this.counterDev = this.counterDev - 1
-      if (this.counterDev < 0) {
+      if (!this.counterDev) {
         this.counterDev = 0
       }
     },
-    removeMaintainer(index) {
+    removeMaintainer(index: number) {
       this.form.maintainers.splice(index, 1)
       this.tempMaintData = {
         maintainer_name: '',
@@ -2133,11 +2169,11 @@ export default Vue.extend({
         maintainer_repository: '',
       }
       this.counterMaint = this.counterMaint - 1
-      if (this.counterMaint < 0) {
+      if (!this.counterMaint) {
         this.counterMaint = 0
       }
     },
-    removeUser(index) {
+    removeUser(index: number) {
       this.form.users.splice(index, 1)
       this.tempUserData = {
         user_name: '',
@@ -2150,20 +2186,21 @@ export default Vue.extend({
         },
       }
       this.counterUsers = this.counterUsers - 1
-      if (this.counterUsers < 0) {
+      if (!this.counterUsers) {
         this.counterUsers = 0
       }
     },
-    encode(data) {
+    encode(data: any) {
       const formData = new FormData()
-      const files = new Blob([JSON.stringify(data)], {
+      const files = new Blob([JSON.stringify(data as any)], {
         type: 'application/json',
       })
       const dataToEncod = {
         'form-name': 'formcreation',
         ...this.senderDetails,
       }
-      for (const key of Object.keys(dataToEncod)) {
+      for (const key of Object.keys(dataToEncod as any)) {
+        // @ts-ignore
         formData.append(key, dataToEncod[key])
       }
       formData.append('files', files, 'application/json')
@@ -2187,9 +2224,9 @@ export default Vue.extend({
             this.encode({ ...this.form }),
             axiosConfig
           )
-          .then((res) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          .then((res: any) => {
             setTimeout(() => {
-              console.log('response susccess', res)
               this.submitSuccess = true
               this.sendingForm = false
               this.currentStep = 6
@@ -2199,16 +2236,16 @@ export default Vue.extend({
                   {},
                   this.defaultSenderDetails
                 )
+                // @ts-ignore
                 this.$refs.builder.reset()
               })
             }, 1500)
           })
-          .catch((error) => {
+          .catch((error: any) => {
+            // eslint-disable-next-line no-console
             console.error('Error', error)
             this.sendingForm = false
           })
-        // }
-        // })
       }
     },
     formbuild() {
@@ -2216,6 +2253,7 @@ export default Vue.extend({
         this.currentStep++
         return
       }
+      // @ts-ignore
       this.$refs.builder.validate()
     },
     goToReview() {

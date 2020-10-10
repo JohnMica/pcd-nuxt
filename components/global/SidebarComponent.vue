@@ -395,7 +395,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
@@ -405,19 +405,29 @@ export default Vue.extend({
     return {
       name: '',
       country: '',
-      checkedSectors: [],
-      checkedCategories: [],
-      checkedLicences: [],
-      checkedUsers: [],
-      checkedLang: [],
-      checkedMaintainers: [],
-      selected: null,
+      checkedSectors: [] as any[],
+      checkedCategories: [] as any[],
+      checkedLicences: [] as any[],
+      checkedUsers: [] as any[],
+      checkedLang: [] as any[],
+      checkedMaintainers: [] as any[],
+      selected: {} as any,
       isComponentModalActive: false,
     }
   },
   computed: {
+    ...mapGetters({
+      countries: 'countries',
+      sectors: 'sectors',
+      allProducts: 'allProducts',
+      categories: 'categories',
+      licences: 'licences',
+      users: 'users',
+      languages: 'languages',
+      maintainers: 'maintainers',
+    }),
     filteredDataArray() {
-      return this.countries.filter((option) => {
+      return this.countries.filter((option: any) => {
         return option
           .toString()
           .toLowerCase()
@@ -426,13 +436,13 @@ export default Vue.extend({
     },
     productNames() {
       const arr = []
-      this.allProducts.map((el) => {
+      this.allProducts.map((el: any) => {
         arr.push(el.name)
       })
       return arr
     },
     filteredProductNames() {
-      return this.productNames.filter((option) => {
+      return this.productNames.filter((option: any) => {
         return option.toString().toLowerCase().includes(this.name.toLowerCase())
       })
     },
@@ -460,16 +470,6 @@ export default Vue.extend({
         this.country.length > 0
       )
     },
-    ...mapGetters({
-      countries: 'countries',
-      sectors: 'sectors',
-      allProducts: 'allProducts',
-      categories: 'categories',
-      licences: 'licences',
-      users: 'users',
-      languages: 'languages',
-      maintainers: 'maintainers',
-    }),
   },
   mounted() {},
   methods: {
@@ -477,7 +477,7 @@ export default Vue.extend({
       if (this.checkedCategories.length < this.categories.length) {
         this.checkedCategories = this.categories
       } else {
-        this.checkedCategories = []
+        this.checkedCategories = [] as any[]
       }
       this.updateFilteredItems()
     },
@@ -485,7 +485,7 @@ export default Vue.extend({
       if (this.checkedSectors.length < this.sectors.length) {
         this.checkedSectors = this.sectors
       } else {
-        this.checkedSectors = []
+        this.checkedSectors = [] as any[]
       }
       this.updateFilteredItems()
     },
@@ -493,7 +493,7 @@ export default Vue.extend({
       if (this.checkedLicences.length < this.licences.length) {
         this.checkedLicences = this.licences
       } else {
-        this.checkedLicences = []
+        this.checkedLicences = [] as any[]
       }
       this.updateFilteredItems()
     },
@@ -501,7 +501,7 @@ export default Vue.extend({
       if (this.checkedUsers.length < this.users.length) {
         this.checkedUsers = this.users
       } else {
-        this.checkedUsers = []
+        this.checkedUsers = [] as any[]
       }
       this.updateFilteredItems()
     },
@@ -509,7 +509,7 @@ export default Vue.extend({
       if (this.checkedMaintainers.length < this.maintainers.length) {
         this.checkedMaintainers = this.maintainers
       } else {
-        this.checkedMaintainers = []
+        this.checkedMaintainers = [] as any[]
       }
       this.updateFilteredItems()
     },
@@ -517,23 +517,23 @@ export default Vue.extend({
       if (this.checkedLang.length < this.languages.length) {
         this.checkedLang = this.languages
       } else {
-        this.checkedLang = []
+        this.checkedLang = [] as any[]
       }
       this.updateFilteredItems()
     },
     clearAllFilters() {
       this.name = ''
       this.country = ''
-      this.checkedSectors = []
-      this.checkedCategories = []
-      this.checkedLicences = []
-      this.checkedUsers = []
-      this.checkedLang = []
-      this.selected = null
+      this.checkedSectors = [] as any[]
+      this.checkedCategories = [] as any[]
+      this.checkedLicences = [] as any[]
+      this.checkedUsers = [] as any[]
+      this.checkedLang = [] as any[]
+      this.selected = null as any
       this.resetItems()
     },
     updateFilteredItems() {
-      this.$store.commit('updateFilteredProducts', this.dataToSend)
+      this.$store.commit('updateFilteredProducts', this.dataToSend as any)
     },
     resetItems() {
       this.$store.commit('resetProducts')
@@ -542,4 +542,8 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.field {
+  padding-bottom: 0.125rem;
+}
+</style>

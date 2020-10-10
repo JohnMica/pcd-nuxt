@@ -123,17 +123,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 export default Vue.extend({
   name: 'ListView',
-  data() {
-    return {
-      loading: true,
-      list: null,
-    }
-  },
+
   computed: {
     ...mapGetters({
       products: 'allProducts',
@@ -145,14 +140,13 @@ export default Vue.extend({
     }),
   },
   mounted() {
-    setTimeout(() => {
-      this.loading = false
-    }, 200)
-    this.$on('show-hide', (name, value) => {
+    this.$on('show-hide', (name: any, value: any) => {
       this.$store.commit('show-hideMore', { name, value })
     })
   },
-  methods: {},
+  beforeDestroy() {
+    this.$off()
+  },
 })
 </script>
 

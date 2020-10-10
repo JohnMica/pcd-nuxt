@@ -3,7 +3,7 @@
     <section class="hero is-medium is-gradient">
       <div class="hero-head">
         <div class="container">
-          <navigation-bar></navigation-bar>
+          <NavigationBar />
         </div>
       </div>
       <div class="hero-body has-text-centered">
@@ -12,7 +12,7 @@
             <h1>{{ page.title }}</h1>
           </div>
           <div class="column is-12">
-            <total-products></total-products>
+            <TotalProducts />
           </div>
         </div>
       </div>
@@ -22,12 +22,12 @@
       <div class="container">
         <div class="columns">
           <div class="column is-12">
-            <nuxt></nuxt>
+            <Nuxt></Nuxt>
           </div>
         </div>
       </div>
     </section>
-    <app-footer></app-footer>
+    <AppFooter />
   </main>
 </template>
 

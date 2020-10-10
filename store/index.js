@@ -8,12 +8,11 @@ export const state = () => ({
   sector: [],
   languages: [],
   countries: [],
-  companies: [],
+  // companies: [],
   users: [],
   developers: [],
   maintainers: [],
   checked: false,
   errors: [],
   filteredProducts: [],
-  totalUsers: null,
 })

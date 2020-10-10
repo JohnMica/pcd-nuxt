@@ -16,10 +16,8 @@
       <b-navbar-item label="Directory" href="/directory">
         Directory
       </b-navbar-item>
-      <b-navbar-item label="About us" href="/about">
-        About us
-      </b-navbar-item>
-      <!-- <b-navbar-dropdown label="Blog" href="#">
+      <b-navbar-item label="About us" href="/about"> About us </b-navbar-item>
+      <b-navbar-dropdown label="Blog">
         <b-navbar-item
           v-for="page of pages"
           :key="page.slug"
@@ -27,25 +25,23 @@
         >
           {{ page.title }}
         </b-navbar-item>
-      </b-navbar-dropdown> -->
+      </b-navbar-dropdown>
       <b-navbar-item label="Submit Porject" href="/join-us">
         Submit Project
       </b-navbar-item>
-      <b-navbar-item label="Contact" href="/contact">
-        Contact
-      </b-navbar-item>
+      <b-navbar-item label="Contact" href="/contact"> Contact </b-navbar-item>
     </template>
   </b-navbar>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
   name: 'NavigationBar',
   data() {
     return {
-      pages: [],
+      pages: [] as any[],
     }
   },
   beforeCreate() {

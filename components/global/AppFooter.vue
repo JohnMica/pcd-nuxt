@@ -11,7 +11,7 @@
       <div class="container">
         <div class="columns is-centered is-multiline">
           <div class="column is-12 is-flex justify-between">
-            <nuxt-link class="footer-link" to="/">
+            <NuxtLink class="footer-link" to="/">
               <img
                 src="~assets/logos/logo.svg"
                 alt="PublicCode Directory logo"
@@ -19,7 +19,7 @@
                 width="35"
               />
               PublicCode Directory
-            </nuxt-link>
+            </NuxtLink>
             <a
               href="https://twitter.com/publiccodedir"
               class="footer-link twitter"
@@ -33,11 +33,11 @@
             </a>
           </div>
           <div class="column is-12 is-flex justify-end">
-            <nuxt-link to="/join-us" class="footer-link">
+            <NuxtLink to="/join-us" class="footer-link">
               Submit Project
-            </nuxt-link>
-            <nuxt-link to="/contact" class="footer-link">Contact</nuxt-link>
-            <nuxt-link to="/cookies" class="footer-link">Cookies</nuxt-link>
+            </NuxtLink>
+            <NuxtLink to="/contact" class="footer-link">Contact</NuxtLink>
+            <NuxtLink to="/cookies" class="footer-link">Cookies</NuxtLink>
           </div>
         </div>
       </div>
@@ -45,16 +45,15 @@
   </footer>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
-
 export default Vue.extend({
   name: 'AppFooter',
-  computed: {
-    footerPages() {
-      return this.$router
-    },
-  },
+  // computed: {
+  //   footerPages() {
+  //     return this.$router
+  //   },
+  // },
 })
 </script>
 

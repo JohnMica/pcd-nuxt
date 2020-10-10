@@ -8,7 +8,7 @@
           :min-zoom="minZoom"
           :zoom="zoom"
           :center="center"
-          style="height: 350px;"
+          style="height: 350px"
         >
           <l-tile-layer :url="url"> </l-tile-layer>
           <l-marker
@@ -143,23 +143,80 @@
   </div>
 </template>
 
-<script>
-// @ts-nocheck
-import Vue from 'vue'
+<script lang="ts">
+/* eslint-disable camelcase */
+import Vue, { PropOptions } from 'vue'
 import { mapGetters } from 'vuex'
+interface ProductInterface {
+  name: string
+  category: any[]
+  description: string
+  developers: any[]
+  entry_type: string
+  language: string[]
+  licence: string[]
+  logo_url: string
+  maintainers: any[]
+  official_url: string
+  origin_country: string
+  repository: string
+  sector: string[]
+  showMore: boolean
+  users: any[]
+}
+interface MarketObject {
+  id: number
+  position: any[]
+  url: string
+  logo: string
+  name: string
+  attribution: string
+}
 export default Vue.extend({
   name: 'WorldMap',
-
   data() {
     return {
       zoom: 1,
       center: [51.5285582, -0.2416811],
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      locations: [],
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' as string,
+      locations: [] as any[],
       minZoom: 1,
       maxZoom: 13,
       showObjectMap: false,
-      selectedMapObj: {},
+      selectedMapObj: {
+        name: '',
+        category: [],
+        description: '',
+        developers: [],
+        entry_type: '',
+        language: [],
+        licence: [],
+        logo_url: '',
+        maintainers: [],
+        official_url: '',
+        origin_country: '',
+        repository: '',
+        sector: [],
+        showMore: false,
+        users: [],
+      } as PropOptions<ProductInterface>,
+      defaultEmptyMapObj: {
+        name: '',
+        category: [],
+        description: '',
+        developers: [],
+        entry_type: '',
+        language: [],
+        licence: [],
+        logo_url: '',
+        maintainers: [],
+        official_url: '',
+        origin_country: '',
+        repository: '',
+        sector: [],
+        showMore: false,
+        users: [],
+      } as PropOptions<ProductInterface>,
       showMore: false,
     }
   },
@@ -171,79 +228,77 @@ export default Vue.extend({
       sectors: 'sectors',
       users: 'users',
       languages: 'languages',
+      list: 'filteredProducts',
     }),
-
-    list() {
-      return this.$store.state.filteredProducts
-    },
   },
 
   watch: {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    list(newValue, oldValue) {
+    list() {
       const loadingComponent = this.$buefy.loading.open({
+        // @ts-ignore
         container: this.$refs.mapWrapper.$el,
       })
       setTimeout(() => {
         loadingComponent.close()
         this.makeLocations()
+        // @ts-ignore
         this.$refs.map.mapObject._onResize()
-      }, 300)
+      }, 150)
     },
   },
   mounted() {
-    // eslint-disable-next-line nuxt/no-env-in-hooks
-    if (process.client) {
-      this.$nextTick(() => {
-        const loadingComponent = this.$buefy.loading.open({
-          container: this.$refs.mapWrapper.$el,
-        })
-        setTimeout(() => {
-          loadingComponent.close()
-          this.makeLocations()
-          this.$refs.map.mapObject._onResize()
-        }, 500)
+    this.$nextTick(() => {
+      const loadingComponent = this.$buefy.loading.open({
+        // @ts-ignore
+        container: this.$refs.mapWrapper.$el,
       })
-    }
+      setTimeout(() => {
+        loadingComponent.close()
+        this.makeLocations()
+        // @ts-ignore
+        this.$refs.map.mapObject._onResize()
+      }, 500)
+    })
   },
   methods: {
     makeLocations() {
       this.locations = []
       for (let index = 0; index < this.list.length; index++) {
-        this.list[index].users.forEach((user) => {
+        this.list[index].users.forEach((user: any) => {
           if (
             user.user_name !== '' &&
             user.user_geolocation &&
             user.user_geolocation.lat &&
             user.user_geolocation.long
           ) {
-            this.locations.push({
+            const newUser = {
               id: index,
-              // eslint-disable-next-line no-undef
               position: [user.user_geolocation.lat, user.user_geolocation.long],
               url: user.user_url,
               logo: user.user_logo_url ? user.user_logo_url : '',
               name: user.user_name,
-              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' class='small-logo'/>  ${user.user_name}</div>  `,
-            })
+              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' class='small-logo'/>  ${user.user_name}</div>`,
+            } as PropOptions<MarketObject>
+            this.locations.push(newUser)
           }
         })
       }
     },
-    udpateSelectedMapObj(marker) {
+    udpateSelectedMapObj(marker: any) {
       this.showObjectMap = false
       Object.assign(
         this.selectedMapObj,
-        this.list.filter((el) =>
-          el.users.some((item) => item.user_name === marker.name)
+        this.list.filter((el: any) =>
+          el.users.some((item: any) => item.user_name === marker.name)
         )[0]
       )
       this.showObjectMap = true
     },
-    removeSelection(marker) {
+    removeSelection(marker: any) {
       this.showObjectMap = false
+      // @ts-ignore
       if (this.selectedMapObj.name === marker.name) {
-        this.selectedMapObj = {}
+        this.selectedMapObj = Object.assign({}, this.defaultEmptyMapObj)
       }
     },
   },

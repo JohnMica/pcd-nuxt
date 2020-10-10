@@ -3,14 +3,23 @@
     <section class="hero is-medium is-gradient">
       <div class="hero-head">
         <div class="container">
-          <navigation-bar></navigation-bar>
+          <NavigationBar />
         </div>
       </div>
       <div class="hero-body has-text-centered">
         <div class="container">
           <div class="columns is-centered">
-            <div class="column is-12 is-half-desktop">
-              errorororor
+            <div
+              class="column is-12 is-half-desktop is-flex align-center justify-center"
+            >
+              There was an error. you can try again or
+              <b-button
+                type="is-primary"
+                class="is-outlined ml-4"
+                @click="$router.go(-1)"
+              >
+                Go Back
+              </b-button>
             </div>
           </div>
         </div>
@@ -43,7 +52,7 @@
         </div>
       </div>
     </section>
-    <app-footer></app-footer>
+    <AppFooter />
   </main>
 </template>
 <script>

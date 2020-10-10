@@ -1,19 +1,19 @@
 <template>
-  <b-tabs expanded type="is-boxed">
+  <b-tabs v-model="activeTab" expanded type="is-boxed">
     <b-tab-item
       label="Complete Form"
       icon="format-align-left"
       multiline
       class="py-3"
     >
-      <progress-steps></progress-steps>
+      <ProgressSteps />
     </b-tab-item>
     <b-tab-item label="Upload File" icon="cloud-upload" class="py-3">
-      <simple-form></simple-form>
+      <SimpleForm />
     </b-tab-item>
     <b-tab-item label="Via Github PR" icon="git" class="py-3">
       <div class="content">
-        <nuxt-content :document="page"></nuxt-content>
+        <NuxtContent :document="page"></NuxtContent>
       </div>
     </b-tab-item>
   </b-tabs>
@@ -27,6 +27,11 @@ export default Vue.extend({
   async asyncData({ $content }) {
     const page = await $content('join').fetch()
     return { page }
+  },
+  data() {
+    return {
+      activeTab: 0,
+    }
   },
 })
 </script>

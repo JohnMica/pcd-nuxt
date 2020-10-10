@@ -18,15 +18,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
-
 export default Vue.extend({
   name: 'SeachInput',
   data() {
     return {
       searchQuery: '',
-      articles: [],
+      articles: [] as any[],
     }
   },
   watch: {

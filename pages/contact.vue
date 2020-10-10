@@ -1,6 +1,6 @@
 <template>
   <div>
-    <validation-observer ref="simplecontact" v-slot="{ handleSubmit }">
+    <ValidationObserver ref="simplecontact" v-slot="{ handleSubmit }">
       <form
         id="simplecontact"
         name="simplecontact"
@@ -11,7 +11,7 @@
       >
         <input type="hidden" name="form-name" value="simplecontact" />
         <input type="hidden" name="bot-field" />
-        <validation-provider
+        <ValidationProvider
           v-slot="{ errors, invalid, valid }"
           rules="name:3"
           tag="div"
@@ -26,8 +26,8 @@
           >
             <b-input v-model="form.name" name="name"></b-input>
           </b-field>
-        </validation-provider>
-        <validation-provider
+        </ValidationProvider>
+        <ValidationProvider
           v-slot="{ errors, invalid, valid }"
           rules="email"
           tag="div"
@@ -48,8 +48,8 @@
             >
             </b-input>
           </b-field>
-        </validation-provider>
-        <validation-provider
+        </ValidationProvider>
+        <ValidationProvider
           v-slot="{ errors }"
           tag="div"
           rules="name:3"
@@ -68,8 +68,8 @@
               name="subject"
             ></b-input>
           </b-field>
-        </validation-provider>
-        <validation-provider
+        </ValidationProvider>
+        <ValidationProvider
           v-slot="{ errors, invalid, valid }"
           tag="div"
           rules="name:25"
@@ -88,14 +88,14 @@
               name="message"
             ></b-input>
           </b-field>
-        </validation-provider>
+        </ValidationProvider>
         <b-field>
           <b-button type="is-primary" native-type="submit" outlined>
             Send email
           </b-button>
         </b-field>
       </form>
-    </validation-observer>
+    </ValidationObserver>
     <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
   </div>
 </template>

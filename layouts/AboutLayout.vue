@@ -3,22 +3,22 @@
     <section class="hero is-medium is-gradient">
       <div class="hero-head">
         <div class="container">
-          <navigation-bar></navigation-bar>
+          <NavigationBar />
         </div>
       </div>
       <div class="hero-body has-text-centered">
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-12 is-half-desktop">
-              <nuxt-content :document="page"></nuxt-content>
+              <NuxtContent :document="page"></NuxtContent>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <nuxt></nuxt>
+    <Nuxt></Nuxt>
 
-    <app-footer></app-footer>
+    <AppFooter />
   </main>
 </template>
 

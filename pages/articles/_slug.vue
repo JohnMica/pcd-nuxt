@@ -3,7 +3,7 @@
     <section class="hero is-medium is-gradient">
       <div class="hero-head">
         <div class="container">
-          <navigation-bar></navigation-bar>
+          <NavigationBar />
         </div>
       </div>
       <div class="hero-body has-text-centered">
@@ -28,16 +28,16 @@
       <div class="container">
         <div class="columns is-mobile is-centered is-multiline">
           <div class="column is-12-mobile is-8-tablet is-7-desktop">
-            <nuxt-content :document="article"></nuxt-content>
-            <prev-next :prev="prev" :next="next"></prev-next>
+            <NuxtContent :document="article"></NuxtContent>
+            <PrevNext :prev="prev" :next="next"></PrevNext>
           </div>
           <aside class="column is-hidden-mobile is-3-tablet">
-            <app-search-input></app-search-input>
+            <AppSearchInput />
           </aside>
         </div>
       </div>
     </section>
-    <AppFooter></AppFooter>
+    <AppFooter />
   </main>
 </template>
 
