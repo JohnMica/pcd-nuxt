@@ -1,6 +1,6 @@
 <template>
   <div>
-    <validation-observer ref="simpleform" v-slot="{ handleSubmit }">
+    <ValidationObserver ref="simpleform" v-slot="{ handleSubmit }">
       <form
         id="simpleform"
         name="simpleform"
@@ -13,9 +13,10 @@
       >
         <input type="hidden" name="form-name" value="simpleform" />
         <input type="hidden" name="bot-field" />
-        <validation-provider
+        <ValidationProvider
           v-slot="{ errors, valid }"
           tag="div"
+          mode="lazy"
           rules="name:3"
           vid="sendername"
           :skip-if-empty="false"
@@ -35,11 +36,12 @@
             >
             </b-input>
           </b-field>
-        </validation-provider>
+        </ValidationProvider>
 
-        <validation-provider
+        <ValidationProvider
           v-slot="{ errors, valid }"
           tag="div"
+          mode="lazy"
           rules="email"
           vid="senderemail"
           :skip-if-empty="false"
@@ -60,22 +62,12 @@
             >
             </b-input>
           </b-field>
-        </validation-provider>
-        <!-- <b-field class="file">
-          <b-upload v-model="form.file">
-            <a class="button is-primary">
-              <b-icon icon="upload"></b-icon>
-              <span>Click to upload</span>
-            </a>
-          </b-upload>
-          <span v-if="form.file" class="file-name">
-            {{ form.file.name }}
-          </span>
-        </b-field> -->
-        <validation-provider
+        </ValidationProvider>
+        <ValidationProvider
           v-slot="{ errors, invalid, valid }"
-          rules="mimes:.json"
           tag="div"
+          mode="lazy"
+          rules="mimes:.json"
           vid="file"
           :skip-if-empty="false"
         >
@@ -106,7 +98,7 @@
               </section>
             </b-upload>
           </b-field>
-        </validation-provider>
+        </ValidationProvider>
         <div class="tags">
           <span
             v-for="(item, index) in dropFiles"
@@ -121,8 +113,7 @@
             ></button>
           </span>
         </div>
-        <b-field
-          ><!-- Label left empty for spacing -->
+        <b-field>
           <p class="control">
             <button type="submit" class="button is-primary">
               Send message
@@ -130,7 +121,7 @@
           </p>
         </b-field>
       </form>
-    </validation-observer>
+    </ValidationObserver>
     <b-loading :active.sync="sendingForm" :can-cancel="false"></b-loading>
   </div>
 </template>

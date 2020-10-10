@@ -40,7 +40,7 @@ contributors:
     website: 'https://www.threebros.design'
     contributor_title: 'Development and Implementation'
     socialmedia:
-      - image: 'twitter.svg'
+      - image: 'twitter-black.svg'
         link: 'https://twitter.com/JohnMica5'
 ---
 

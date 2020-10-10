@@ -12,32 +12,34 @@
         <input type="hidden" name="form-name" value="simplecontact" />
         <input type="hidden" name="bot-field" />
         <ValidationProvider
-          v-slot="{ errors, invalid, valid }"
+          v-slot="{ errors, valid }"
           rules="name:3"
           tag="div"
+          mode="lazy"
           vid="sendername"
           :skip-if-empty="false"
         >
           <b-field
             label="Name"
             v-bind="$attrs"
-            :type="{ 'is-danger': invalid, 'is-success': valid }"
+            :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
             <b-input v-model="form.name" name="name"></b-input>
           </b-field>
         </ValidationProvider>
         <ValidationProvider
-          v-slot="{ errors, invalid, valid }"
+          v-slot="{ errors, valid }"
           rules="email"
           tag="div"
+          mode="lazy"
           vid="senderemail"
           :skip-if-empty="false"
         >
           <b-field
             label="Email"
             v-bind="$attrs"
-            :type="{ 'is-danger': invalid, 'is-success': valid }"
+            :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
             <b-input
@@ -52,6 +54,7 @@
         <ValidationProvider
           v-slot="{ errors }"
           tag="div"
+          mode="lazy"
           rules="name:3"
           vid="subject"
           :skip-if-empty="true"
@@ -70,8 +73,9 @@
           </b-field>
         </ValidationProvider>
         <ValidationProvider
-          v-slot="{ errors, invalid, valid }"
+          v-slot="{ errors, valid }"
           tag="div"
+          mode="lazy"
           rules="name:25"
           vid="message"
           :skip-if-empty="false"
@@ -79,7 +83,7 @@
           <b-field
             label="Message"
             v-bind="$attrs"
-            :type="{ 'is-danger': invalid, 'is-success': valid }"
+            :type="{ 'is-danger': errors[0], 'is-success': valid }"
             :message="errors"
           >
             <b-input

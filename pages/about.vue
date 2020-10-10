@@ -106,23 +106,25 @@
                     :href="item.website"
                     rel="noopener"
                     target="_blank"
-                    class="pa-2 is-inline-flex"
+                    class="pa-2 is-inline-block"
                   >
                     <img
                       :src="require(`~/assets/images/globe.svg`)"
                       alt="website image"
                       width="24"
+                      height="24"
                     />
                   </a>
                   <a
                     v-if="item.email"
                     :href="`mailto:${item.email}`"
-                    class="pa-2 is-inline-flex"
+                    class="pa-2 is-inline-block"
                   >
                     <img
                       :src="require(`~/assets/images/email.svg`)"
                       alt="email image"
                       width="24"
+                      height="24"
                     />
                   </a>
 
@@ -132,12 +134,13 @@
                     :href="social.link"
                     rel="noopener"
                     target="_blank"
-                    class="pa-2 is-inline-flex"
+                    class="pa-2 is-inline-block"
                   >
                     <img
                       :src="require(`~/assets/images/${social.image}`)"
                       alt="social media logo"
                       width="24"
+                      height="24"
                     />
                   </a>
                 </div>

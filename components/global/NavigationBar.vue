@@ -41,7 +41,7 @@ export default Vue.extend({
   name: 'NavigationBar',
   data() {
     return {
-      pages: [] as any[],
+      pages: [] as any,
     }
   },
   beforeCreate() {

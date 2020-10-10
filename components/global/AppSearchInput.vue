@@ -25,7 +25,7 @@ export default Vue.extend({
   data() {
     return {
       searchQuery: '',
-      articles: [] as any[],
+      articles: [] as any,
     }
   },
   watch: {

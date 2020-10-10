@@ -25,30 +25,35 @@
         </div>
       </div>
     </section>
-    <section class="section is-gradient is-margin-negative">
-      <div class="columns is-centered is-multiline">
-        <div
-          class="column is-10 is-8-desktop has-text-centered is-flex justify-center homepage-btns"
-        >
-          <a href="directory" class="card">
-            <div class="card-content">
-              <img src="~/assets/images/directory.svg" alt="directory Image" />
-              <p class="title is-spaced is-4">Directory</p>
-              <p class="subtitle is-6">Browse the Public Code Directory</p>
-            </div>
-          </a>
-          <a href="join-us" class="card">
-            <div class="card-content">
-              <img
-                src="~/assets/images/submit-project.svg"
-                alt="Submit Image"
-              />
-              <p class="title is-spaced is-4">Submit Project</p>
-              <p class="subtitle is-6">
-                Submit your project and be a part of the community.
-              </p>
-            </div>
-          </a>
+    <section class="section is-gradient">
+      <div class="container">
+        <div class="columns is-centered is-multiline">
+          <div
+            class="column is-10 is-8-desktop has-text-centered is-flex justify-center homepage-btns"
+          >
+            <a href="directory" class="card">
+              <div class="card-content">
+                <img
+                  src="~/assets/images/directory.svg"
+                  alt="directory Image"
+                />
+                <p class="title is-spaced is-4">Directory</p>
+                <p class="subtitle is-6">Browse the Public Code Directory</p>
+              </div>
+            </a>
+            <a href="join-us" class="card">
+              <div class="card-content">
+                <img
+                  src="~/assets/images/submit-project.svg"
+                  alt="Submit Image"
+                />
+                <p class="title is-spaced is-4">Submit Project</p>
+                <p class="subtitle is-6">
+                  Submit your project and be a part of the community.
+                </p>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </section>

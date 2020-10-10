@@ -1,16 +1,24 @@
 export default {
-  // mode: 'universal',
-  // target: 'static',
+  target: 'static',
   head: {
     title: 'PublicCode Directory',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1 viewport-fit=cover',
+      },
       {
         hid: 'description',
         name: 'description',
         content:
           'The federated DataBase of Open Source Software used by public institutions',
+      },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'federated, DataBase, Open Source Software, public institutions',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/img/logo.png' }],
@@ -24,6 +32,13 @@ export default {
     '~/plugins/capitalize',
     { src: '~/plugins/validate.js', mode: 'client' },
   ],
+  pwa: {
+    icon: {
+      source: './static/img/logo.png',
+      sizes: [64, 120, 144, 152, 192, 384, 512],
+      targetDir: 'img',
+    },
+  },
   components: [{ path: '~/components', extensions: ['vue'] }],
   buildModules: ['@nuxt/components', '@nuxt/typescript-build'],
   modules: [
