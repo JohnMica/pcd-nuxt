@@ -141,7 +141,7 @@ export default Vue.extend({
   },
   mounted() {
     this.$on('show-hide', (name: any, value: any) => {
-      this.$store.commit('show-hideMore', { name, value })
+      this.$store.commit('showHideMore', { name, value })
     })
   },
   beforeDestroy() {
