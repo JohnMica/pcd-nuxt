@@ -299,9 +299,10 @@
                 v-model="form.origin_country"
                 :data="countries"
                 autocomplete
+                open-on-focus
                 icon="label"
                 name="origin_country"
-                :allow-new="true"
+                allow-new
                 :value="form.origin_country"
               >
               </b-taginput>
@@ -330,10 +331,11 @@
               <b-taginput
                 v-model="form.language"
                 autocomplete
+                open-on-focus
                 icon="label"
                 name="language"
                 :data="languages"
-                :allow-new="true"
+                allow-new
                 :value="form.language"
               >
               </b-taginput>
@@ -397,10 +399,12 @@
                 v-model="form.licence"
                 :data="licences"
                 autocomplete
+                open-on-focus
                 name="licence"
                 icon="label"
-                :allow-new="true"
+                allow-new
                 :value="form.licence"
+                :before-adding="beforeAdding"
               >
               </b-taginput>
             </b-field>
@@ -435,7 +439,8 @@
                 name="category"
                 icon="label"
                 autocomplete
-                :allow-new="true"
+                open-on-focus
+                allow-new
                 :value="form.category"
               >
               </b-taginput>
@@ -468,9 +473,10 @@
               <b-taginput
                 v-model="form.sector"
                 autocomplete
+                open-on-focus
                 name="sector"
                 icon="label"
-                :allow-new="true"
+                allow-new
                 :data="sectors"
                 :value="form.sector"
               >
@@ -2375,6 +2381,9 @@ export default Vue.extend({
       // @ts-ignore
       this.$refs.builder4.validate()
       this.currentStep++
+    },
+    beforeAdding(tag) {
+      return tag.length > 2
     },
   },
 })
