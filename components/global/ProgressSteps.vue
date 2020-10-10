@@ -304,6 +304,7 @@
                 name="origin_country"
                 allow-new
                 :value="form.origin_country"
+                :before-adding="beforeAdding"
               >
               </b-taginput>
             </b-field>
@@ -337,6 +338,7 @@
                 :data="languages"
                 allow-new
                 :value="form.language"
+                :before-adding="beforeAdding"
               >
               </b-taginput>
             </b-field>
@@ -442,6 +444,7 @@
                 open-on-focus
                 allow-new
                 :value="form.category"
+                :before-adding="beforeAdding"
               >
               </b-taginput>
             </b-field>
@@ -479,6 +482,7 @@
                 allow-new
                 :data="sectors"
                 :value="form.sector"
+                :before-adding="beforeAdding"
               >
               </b-taginput>
             </b-field>
@@ -1172,6 +1176,7 @@
           :value="form.origin_country"
           readonly
           :closable="false"
+          :before-adding="beforeAdding"
         >
         </b-taginput>
       </b-field>
@@ -1189,6 +1194,7 @@
           :value="form.language"
           readonly
           :closable="false"
+          :before-adding="beforeAdding"
         >
         </b-taginput>
       </b-field>
@@ -1229,6 +1235,7 @@
           :value="form.category"
           readonly
           :closable="false"
+          :before-adding="beforeAdding"
         >
         </b-taginput>
       </b-field>
@@ -1246,6 +1253,7 @@
           :value="form.licence"
           readonly
           :closable="false"
+          :before-adding="beforeAdding"
         >
         </b-taginput>
       </b-field>
@@ -1267,6 +1275,7 @@
           :value="form.sector"
           readonly
           :closable="false"
+          :before-adding="beforeAdding"
         >
         </b-taginput>
       </b-field>
@@ -2382,7 +2391,7 @@ export default Vue.extend({
       this.$refs.builder4.validate()
       this.currentStep++
     },
-    beforeAdding(tag) {
+    beforeAdding(tag: string) {
       return tag.length > 2
     },
   },
