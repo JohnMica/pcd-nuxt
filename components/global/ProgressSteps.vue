@@ -97,15 +97,20 @@
         </div>
       </div>
     </div>
-    <ValidationObserver ref="builder" v-slot="{ handleSubmit }" tag="div" slim>
-      <form
-        id="formbuilder"
-        ref="formbuilder"
-        name="formbuilder"
-        method="POST"
-        @submit.prevent="handleSubmit(formbuild)"
+
+    <div v-show="currentStep === 1" class="step">
+      <ValidationObserver
+        ref="builder1"
+        v-slot="{ handleSubmit }"
+        tag="div"
+        slim
       >
-        <div v-if="currentStep === 1" class="step">
+        <form
+          id="formbuilder1"
+          ref="formbuilder1"
+          name="formbuilder1"
+          @submit.prevent="handleSubmit(formbuild1)"
+        >
           <ValidationProvider
             v-slot="{ errors, valid }"
             mode="lazy"
@@ -167,8 +172,38 @@
               </b-input>
             </b-field>
           </ValidationProvider>
-        </div>
-        <div v-else-if="currentStep === 2" class="step">
+          <b-field>
+            <div class="is-flex is-between pt-5">
+              <b-button
+                outlined
+                type="is-primary"
+                disabled
+                @click.prevent="backToStep"
+              >
+                Prev Step
+              </b-button>
+
+              <button type="submit" class="button is-primary is-outlined">
+                Next Step
+              </button>
+            </div>
+          </b-field>
+        </form>
+      </ValidationObserver>
+    </div>
+    <div v-show="currentStep === 2" class="step">
+      <ValidationObserver
+        ref="builder2"
+        v-slot="{ handleSubmit }"
+        tag="div"
+        slim
+      >
+        <form
+          id="formbuilder1"
+          ref="formbuilder1"
+          name="formbuilder1"
+          @submit.prevent="handleSubmit(formbuild2)"
+        >
           <ValidationProvider
             v-slot="{ errors, valid }"
             mode="lazy"
@@ -467,16 +502,46 @@
               </b-input>
             </b-field>
           </ValidationProvider>
-        </div>
-        <div v-else-if="currentStep === 3" class="step">
+          <b-field>
+            <div class="is-flex is-between pt-5">
+              <b-button outlined type="is-primary" @click.prevent="backToStep">
+                Prev Step
+              </b-button>
+              <button type="submit" class="button is-primary is-outlined">
+                Next Step
+              </button>
+            </div>
+          </b-field>
+        </form>
+      </ValidationObserver>
+    </div>
+    <div v-show="currentStep === 3" class="step">
+      <ValidationObserver
+        ref="builder3"
+        v-slot="{ handleSubmit }"
+        tag="div"
+        slim
+      >
+        <form
+          id="formbuilder3"
+          ref="formbuilder3"
+          name="formbuilder3"
+          @submit.prevent="handleSubmit(formbuild3)"
+        >
           <b-field label="Developers">
-            <b-button
-              native-type="button"
-              :disabled="counterDev === 4"
-              @click.prevent="addDevelopers"
-            >
-              Add Developers
-            </b-button>
+            <template slot="label">
+              <div class="is-flex align-center">
+                Developers
+                <b-button
+                  native-type="button"
+                  class="ml-4"
+                  :disabled="counterDev === 4"
+                  @click.prevent="addDevelopers"
+                >
+                  Add Developers
+                </b-button>
+              </div>
+            </template>
           </b-field>
           <div v-for="(dev, ind) in form.developers" :key="`dev-${ind}`">
             <hr v-if="ind >= 1" />
@@ -488,6 +553,7 @@
                 Remove Dev
               </b-button>
             </b-field>
+
             <ValidationProvider
               v-slot="{ errors, valid }"
               mode="lazy"
@@ -610,18 +676,31 @@
               </b-field>
             </ValidationProvider>
           </div>
-          <b-field label="Maintainers">
-            <b-checkbox v-model="sameAsDevs">Same as Developers</b-checkbox>
+          <b-field>
+            <template slot="label">
+              <div class="is-flex align-center">
+                Maintainers
+                <b-checkbox v-model="sameAsDevs" class="ml-4">
+                  Same as Developers
+                </b-checkbox>
+              </div>
+            </template>
           </b-field>
-          <div v-show="!sameAsDevs">
-            <b-field label="Maintainers">
-              <b-button
-                native-type="button"
-                :disabled="counterMaint === 4"
-                @click.prevent="addMaintainers"
-              >
-                Add Maintainers
-              </b-button>
+          <div v-if="!sameAsDevs">
+            <b-field>
+              <template slot="label">
+                <div class="is-flex align-center">
+                  Maintainers
+                  <b-button
+                    native-type="button"
+                    class="ml-4"
+                    :disabled="counterMaint === 4"
+                    @click.prevent="addMaintainers"
+                  >
+                    Add Maintainers
+                  </b-button>
+                </div>
+              </template>
             </b-field>
             <div v-for="(dev, ind) in form.maintainers" :key="`maint-${ind}`">
               <hr v-if="ind >= 1" />
@@ -633,6 +712,7 @@
                   Remove Maintainer
                 </b-button>
               </b-field>
+
               <ValidationProvider
                 v-slot="{ errors, valid }"
                 mode="lazy"
@@ -760,17 +840,47 @@
               </ValidationProvider>
             </div>
           </div>
-        </div>
-        <div v-else-if="currentStep === 4" class="step">
-          <b-field label="Users">
+          <b-field>
+            <div class="is-flex is-between pt-5">
+              <b-button outlined type="is-primary" @click.prevent="backToStep">
+                Prev Step
+              </b-button>
+              <button type="submit" class="button is-primary is-outlined">
+                Next Step
+              </button>
+            </div>
+          </b-field>
+        </form>
+      </ValidationObserver>
+    </div>
+    <div v-show="currentStep === 4" class="step">
+      <b-field>
+        <template slot="label">
+          <div class="is-flex align-center">
+            Users
             <b-button
               native-type="button"
+              class="ml-4"
               :disabled="counterUsers === 4"
               @click.prevent="addUsers"
             >
               Add Users
             </b-button>
-          </b-field>
+          </div>
+        </template>
+      </b-field>
+      <ValidationObserver
+        ref="builder4"
+        v-slot="{ handleSubmit }"
+        tag="div"
+        slim
+      >
+        <form
+          id="formbuilder4"
+          ref="formbuilder4"
+          name="formbuilder4"
+          @submit.prevent="handleSubmit(formbuild4)"
+        >
           <div v-for="(dev, ind) in form.users" :key="`user-${ind}`">
             <hr v-if="ind >= 1" />
             <b-field v-if="ind >= 1" class="is-flex justify-end">
@@ -778,6 +888,7 @@
                 Remove User
               </b-button>
             </b-field>
+
             <ValidationProvider
               v-slot="{ errors, valid }"
               mode="lazy"
@@ -946,35 +1057,20 @@
               </b-field>
             </ValidationProvider>
           </div>
-        </div>
-        <b-field v-show="currentStep < 5" class="is-between pt-5">
-          <b-button
-            outlined
-            type="is-primary"
-            :disabled="currentStep === 1"
-            @click.prevent="backToStep"
-          >
-            Prev Step
-          </b-button>
-          <button
-            v-if="currentStep < 4"
-            type="submit"
-            native-type="submit"
-            class="button is-primary is-outlined"
-          >
-            Next Step
-          </button>
-          <button
-            v-else
-            type="submit"
-            class="button is-primary is-outlined"
-            @click.prevent="goToReview"
-          >
-            Review Information
-          </button>
-        </b-field>
-      </form>
-    </ValidationObserver>
+          <b-field>
+            <div class="is-flex is-between pt-5">
+              <b-button outlined type="is-primary" @click.prevent="backToStep">
+                Prev Step
+              </b-button>
+              <button type="submit" class="button is-primary is-outlined">
+                Review Information
+              </button>
+            </div>
+          </b-field>
+        </form>
+      </ValidationObserver>
+    </div>
+
     <div v-show="currentStep === 5" class="step">
       <form
         id="formcreation"
@@ -2086,7 +2182,13 @@ export default Vue.extend({
       this.currentStep = 1
       this.submitSuccess = false
       // @ts-ignore
-      this.$refs.builder.reset()
+      this.$refs.builder1.reset()
+      // @ts-ignore
+      this.$refs.builder2.reset()
+      // @ts-ignore
+      this.$refs.builder3.reset()
+      // @ts-ignore
+      this.$refs.builder4.reset()
     },
     backToStep() {
       if (this.currentStep === 1) {
@@ -2237,7 +2339,13 @@ export default Vue.extend({
                   this.defaultSenderDetails
                 )
                 // @ts-ignore
-                this.$refs.builder.reset()
+                this.$refs.builder1.reset()
+                // @ts-ignore
+                this.$refs.builder2.reset()
+                // @ts-ignore
+                this.$refs.builder3.reset()
+                // @ts-ignore
+                this.$refs.builder4.reset()
               })
             }, 1500)
           })
@@ -2248,16 +2356,25 @@ export default Vue.extend({
           })
       }
     },
-    formbuild() {
-      if (this.currentStep < 4) {
-        this.currentStep++
-        return
-      }
+    formbuild1() {
       // @ts-ignore
-      this.$refs.builder.validate()
+      this.$refs.builder1.validate()
+      this.currentStep++
     },
-    goToReview() {
-      this.currentStep = 5
+    formbuild2() {
+      // @ts-ignore
+      this.$refs.builder2.validate()
+      this.currentStep++
+    },
+    formbuild3() {
+      // @ts-ignore
+      this.$refs.builder3.validate()
+      this.currentStep++
+    },
+    formbuild4() {
+      // @ts-ignore
+      this.$refs.builder4.validate()
+      this.currentStep++
     },
   },
 })
