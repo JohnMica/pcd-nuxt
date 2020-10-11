@@ -40,7 +40,7 @@
         sortable
       >
         <span class="bold">
-          {{ props.row.entry_type }}
+          {{ props.row.entry_type.toString() }}
         </span>
       </b-table-column>
       <b-table-column

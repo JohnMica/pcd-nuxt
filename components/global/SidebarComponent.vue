@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="column is-3-tablet">
     <aside class="aside is-hidden-mobile">
       <b-field label="Search Projects">
         <b-autocomplete

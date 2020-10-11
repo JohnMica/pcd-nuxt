@@ -8,7 +8,7 @@
       >
         <header class="card-header">
           <div class="card-header-title columns is-multiline">
-            <div class="column">
+            <div class="column is-12-mobile is-6-tablet py-0">
               <img
                 v-if="product.logo_url"
                 class="small-logo"
@@ -16,7 +16,7 @@
                 :alt="`${product.name} logo`"
               />
             </div>
-            <div class="column has-text-right">
+            <div class="column has-text-right is-12-mobile is-6-tablet py-0">
               <p v-for="(licence, ind) in product.licence" :key="ind">
                 <span> {{ licence }}</span>
               </p>
