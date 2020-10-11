@@ -2380,7 +2380,7 @@ export default Vue.extend({
       this.currentStep++
     },
     beforeAdding(tag: string) {
-      return tag.length > 2
+      return tag.length >= 2
     },
   },
 })
