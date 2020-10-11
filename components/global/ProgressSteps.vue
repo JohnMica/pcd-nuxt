@@ -291,7 +291,11 @@
             >
               <template slot="label">
                 Project Starting Country &nbsp;
-                <b-tooltip label="eg: Canada" type="is-light" animated>
+                <b-tooltip
+                  label="eg: Canada; start typing and either select from the dropdown options or press ENTER key to add new country"
+                  type="is-light"
+                  animated
+                >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
               </template>
@@ -325,7 +329,11 @@
             >
               <template slot="label">
                 Project Languages &nbsp;
-                <b-tooltip label="eg: EN, IT, FR, DE" type="is-light" animated>
+                <b-tooltip
+                  label="eg: EN, IT, FR, DE; start typing and either select from the dropdown options or press ENTER key to add new language"
+                  type="is-light"
+                  animated
+                >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
               </template>
@@ -360,7 +368,7 @@
               <template slot="label">
                 Project Type &nbsp;
                 <b-tooltip
-                  label="eg: website, mobile app, platform"
+                  label="eg: website, mobile app, platform; start typing and either select from the dropdown options or press ENTER key to add new Project Type"
                   type="is-light"
                   animated
                 >
@@ -393,7 +401,11 @@
             >
               <template slot="label">
                 Project Licence &nbsp;
-                <b-tooltip label="eg: MIT, GPL" type="is-light" animated>
+                <b-tooltip
+                  label="eg: MIT, GPL; start typing and either select from the dropdown options or press ENTER key to add new Licence"
+                  type="is-light"
+                  animated
+                >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
               </template>
@@ -428,7 +440,7 @@
               <template slot="label">
                 Project Category &nbsp;
                 <b-tooltip
-                  label="eg: Education Software, Software"
+                  label="eg: Education Software, Software; start typing and either select from the dropdown options or press ENTER key to add new Category"
                   type="is-light"
                   animated
                 >
@@ -466,7 +478,7 @@
               <template slot="label">
                 Project Sector &nbsp;
                 <b-tooltip
-                  label="eg: Local Government, Public Health"
+                  label="eg: Local Government, Public Health; start typing and either select from the dropdown options or press ENTER key to add new Sector"
                   type="is-light"
                   animated
                 >
@@ -1128,9 +1140,6 @@
               <span>Click to upload</span>
             </a>
           </b-upload>
-          <!-- <span v-if="file" class="file-name">
-            {{ file.name }}
-          </span> -->
         </b-field>
       </form>
 
@@ -1162,13 +1171,7 @@
         >
         </b-input>
       </b-field>
-      <b-field>
-        <template slot="label">
-          Project Starting Country &nbsp;
-          <b-tooltip label="eg: Canada" type="is-light" animated>
-            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-          </b-tooltip>
-        </template>
+      <b-field label="Project Starting Country">
         <b-taginput
           icon="label"
           name="origin_country"
@@ -1180,13 +1183,7 @@
         >
         </b-taginput>
       </b-field>
-      <b-field>
-        <template slot="label">
-          Project Languages &nbsp;
-          <b-tooltip label="eg: EN, IT, FR, DE" type="is-light" animated>
-            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-          </b-tooltip>
-        </template>
+      <b-field label="Project Languages">
         <b-taginput
           icon="label"
           name="language"
@@ -1198,17 +1195,7 @@
         >
         </b-taginput>
       </b-field>
-      <b-field>
-        <template slot="label">
-          Project Type &nbsp;
-          <b-tooltip
-            label="eg: website, mobile app, platform"
-            type="is-light"
-            animated
-          >
-            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-          </b-tooltip>
-        </template>
+      <b-field label="Project Type">
         <b-input
           :value="form.entry_type"
           type="text"
@@ -1217,17 +1204,7 @@
         >
         </b-input>
       </b-field>
-      <b-field>
-        <template slot="label">
-          Project Category &nbsp;
-          <b-tooltip
-            label="eg: Education Software, Software"
-            type="is-light"
-            animated
-          >
-            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-          </b-tooltip>
-        </template>
+      <b-field label="Project Category">
         <b-taginput
           name="category"
           icon="label"
@@ -1239,13 +1216,7 @@
         >
         </b-taginput>
       </b-field>
-      <b-field>
-        <template slot="label">
-          Project Licence &nbsp;
-          <b-tooltip label="eg: MIT, GPL" type="is-light" animated>
-            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-          </b-tooltip>
-        </template>
+      <b-field label="Project Licence">
         <b-taginput
           name="licence"
           icon="label"
@@ -1257,17 +1228,7 @@
         >
         </b-taginput>
       </b-field>
-      <b-field>
-        <template slot="label">
-          Project Sector &nbsp;
-          <b-tooltip
-            label="eg: Local Government, Public Health"
-            type="is-light"
-            animated
-          >
-            <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-          </b-tooltip>
-        </template>
+      <b-field label="Project Sector">
         <b-taginput
           name="sector"
           icon="label"
@@ -1302,17 +1263,7 @@
             </b-input>
           </b-field>
 
-          <b-field>
-            <template slot="label">
-              Developer Website &nbsp;
-              <b-tooltip
-                label="eg: https://example.com"
-                type="is-light"
-                animated
-              >
-                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-              </b-tooltip>
-            </template>
+          <b-field label="Developer Website">
             <b-input
               :value="dev.developer_url"
               type="text"
@@ -1322,17 +1273,7 @@
             </b-input>
           </b-field>
 
-          <b-field>
-            <template slot="label">
-              Developer Logo URL &nbsp;
-              <b-tooltip
-                label="eg: https://example.com/logo.png"
-                type="is-light"
-                animated
-              >
-                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-              </b-tooltip>
-            </template>
+          <b-field label="Developer Logo URL">
             <b-input
               :value="dev.developer_logo_url"
               type="text"
@@ -1342,17 +1283,7 @@
             </b-input>
           </b-field>
 
-          <b-field>
-            <template slot="label">
-              Developer Category &nbsp;
-              <b-tooltip
-                label="eg: Education Software, Software"
-                type="is-light"
-                animated
-              >
-                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-              </b-tooltip>
-            </template>
+          <b-field label="Developer Category">
             <b-input
               :value="dev.developer_category"
               type="text"
@@ -1377,17 +1308,7 @@
             </b-input>
           </b-field>
 
-          <b-field>
-            <template slot="label">
-              Maintainers Website &nbsp;
-              <b-tooltip
-                label="eg: https://example.com"
-                type="is-light"
-                animated
-              >
-                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-              </b-tooltip>
-            </template>
+          <b-field label="Maintainers Website">
             <b-input
               :value="dev.maintainer_url"
               type="text"
@@ -1397,17 +1318,7 @@
             </b-input>
           </b-field>
 
-          <b-field>
-            <template slot="label">
-              Maintainers Logo URL &nbsp;
-              <b-tooltip
-                label="eg: https://example.com/logo.png"
-                type="is-light"
-                animated
-              >
-                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-              </b-tooltip>
-            </template>
+          <b-field label="Maintainers Logo URL">
             <b-input
               :value="dev.maintainer_logo_url"
               type="text"
@@ -1417,17 +1328,7 @@
             </b-input>
           </b-field>
 
-          <b-field>
-            <template slot="label">
-              Maintainers Repository &nbsp;
-              <b-tooltip
-                label="eg: https://github.com/maintainer"
-                type="is-light"
-                animated
-              >
-                <b-icon size="is-small" icon="help-circle-outline"></b-icon>
-              </b-tooltip>
-            </template>
+          <b-field label="Maintainers Repository">
             <b-input
               :value="dev.maintainer_repository"
               type="text"
