@@ -238,7 +238,13 @@
             >
               <template slot="label">
                 Project Website &nbsp;
-                <b-tooltip label="Project website is required" type="is-light">
+                <b-tooltip
+                  label="Project website is required"
+                  type="is-light"
+                  multilined
+                  square
+                  animated
+                >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
               </template>
@@ -292,9 +298,11 @@
               <template slot="label">
                 Project Starting Country &nbsp;
                 <b-tooltip
-                  label="eg: Canada; start typing and either select from the dropdown options or press ENTER key to add new country"
+                  label="eg: Canada, start typing and either select from the dropdown options or press ENTER key to add new country"
                   type="is-light"
                   animated
+                  square
+                  multilined
                 >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
@@ -333,6 +341,8 @@
                   label="eg: EN, IT, FR, DE; start typing and either select from the dropdown options or press ENTER key to add new language"
                   type="is-light"
                   animated
+                  square
+                  multilined
                 >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
@@ -371,6 +381,8 @@
                   label="eg: website, mobile app, platform; start typing and either select from the dropdown options or press ENTER key to add new Project Type"
                   type="is-light"
                   animated
+                  square
+                  multilined
                 >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
@@ -405,6 +417,8 @@
                   label="eg: MIT, GPL; start typing and either select from the dropdown options or press ENTER key to add new Licence"
                   type="is-light"
                   animated
+                  square
+                  multilined
                 >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
@@ -443,6 +457,8 @@
                   label="eg: Education Software, Software; start typing and either select from the dropdown options or press ENTER key to add new Category"
                   type="is-light"
                   animated
+                  square
+                  multilined
                 >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
@@ -481,6 +497,8 @@
                   label="eg: Local Government, Public Health; start typing and either select from the dropdown options or press ENTER key to add new Sector"
                   type="is-light"
                   animated
+                  square
+                  multilined
                 >
                   <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                 </b-tooltip>
@@ -619,6 +637,8 @@
                     label="eg: https://example.com"
                     type="is-light"
                     animated
+                    square
+                    multilined
                   >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
@@ -651,6 +671,8 @@
                     label="eg: https://example.com/logo.png"
                     type="is-light"
                     animated
+                    square
+                    multilined
                   >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
@@ -683,6 +705,8 @@
                     label="eg: Education Software, Software"
                     type="is-light"
                     animated
+                    square
+                    multilined
                   >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
@@ -776,6 +800,8 @@
                       label="eg: https://example.com"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -810,6 +836,8 @@
                       label="eg: https://example.com/logo.png"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -844,6 +872,8 @@
                       label="eg: https://github.com/maintainer"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -951,6 +981,8 @@
                     label="eg: https://example.com"
                     type="is-light"
                     animated
+                    square
+                    multilined
                   >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
@@ -982,6 +1014,8 @@
                     label="eg: https://example.com/image.png"
                     type="is-light"
                     animated
+                    square
+                    multilined
                   >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
@@ -1009,7 +1043,13 @@
               >
                 <template slot="label">
                   User Location &nbsp;
-                  <b-tooltip label="eg:London" type="is-light" animated>
+                  <b-tooltip
+                    label="eg:London"
+                    type="is-light"
+                    animated
+                    square
+                    multilined
+                  >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
                 </template>
@@ -1036,7 +1076,13 @@
               >
                 <template slot="label">
                   User User Geolocation Longitude &nbsp;
-                  <b-tooltip label="eg: -1.2323232" type="is-light" animated>
+                  <b-tooltip
+                    label="eg: -1.2323232"
+                    type="is-light"
+                    animated
+                    square
+                    multilined
+                  >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
                 </template>
@@ -1064,7 +1110,13 @@
               >
                 <template slot="label">
                   User User Geolocation Latitude &nbsp;
-                  <b-tooltip label="eg: 4.2323232" type="is-light" animated>
+                  <b-tooltip
+                    label="eg: 4.2323232"
+                    type="is-light"
+                    animated
+                    square
+                    multilined
+                  >
                     <b-icon size="is-small" icon="help-circle-outline"></b-icon>
                   </b-tooltip>
                 </template>
@@ -1150,7 +1202,13 @@
       <b-field>
         <template slot="label">
           Project Website &nbsp;
-          <b-tooltip label="Project website is required" type="is-light">
+          <b-tooltip
+            label="Project website is required"
+            type="is-light"
+            multilined
+            square
+            animated
+          >
             <b-icon size="is-small" icon="help-circle-outline"></b-icon>
           </b-tooltip>
         </template>
@@ -1480,6 +1538,8 @@
                       label="eg: https://example.com"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1514,6 +1574,8 @@
                       label="eg: https://example.com/logo.png"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1548,6 +1610,8 @@
                       label="eg: Education Software, Software"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1633,6 +1697,8 @@
                       label="eg: https://example.com"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1667,6 +1733,8 @@
                       label="eg: https://example.com/logo.png"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1702,6 +1770,8 @@
                       label="eg: https://example.com/github"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1794,6 +1864,8 @@
                       label="eg: https://example.com"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1824,6 +1896,8 @@
                       label="eg: https://example.com.logo.png"
                       type="is-light"
                       animated
+                      square
+                      multilined
                     >
                       <b-icon
                         size="is-small"
@@ -1853,7 +1927,13 @@
                 >
                   <template slot="label">
                     User Location &nbsp;
-                    <b-tooltip label="eg: London" type="is-light" animated>
+                    <b-tooltip
+                      label="eg: London"
+                      type="is-light"
+                      animated
+                      square
+                      multilined
+                    >
                       <b-icon
                         size="is-small"
                         icon="help-circle-outline"
@@ -1884,7 +1964,13 @@
                 >
                   <template slot="label">
                     User Geolocation Coordinates &nbsp;
-                    <b-tooltip label="eg: London" type="is-light" animated>
+                    <b-tooltip
+                      label="eg: User Geolocation Coordinates, long: 54.15451840 lat: -1.45981919"
+                      type="is-light"
+                      animated
+                      square
+                      multilined
+                    >
                       <b-icon
                         size="is-small"
                         icon="help-circle-outline"
@@ -1897,8 +1983,9 @@
                     maxlength="10"
                     required
                   >
-                  </b-input> </b-field
-              ></ValidationProvider>
+                  </b-input>
+                </b-field>
+              </ValidationProvider>
               <ValidationProvider
                 v-slot="{ errors, valid }"
                 mode="lazy"
