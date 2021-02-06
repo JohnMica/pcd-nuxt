@@ -1,0 +1,61 @@
+{
+  "name": "Project name",
+  "entry_type": "software",
+  "description": "description of the project - please mind the double quotes inside the description and make sure you escape them like this - \" ; also do not use the 'Enter' key as the description has to be one paragraph. ",
+  "official_url": "https://project.website.if.it.has.any",
+  "repository": "https://project.repository",
+  "logo_url": "https://project.logo - if it exists",
+  "language": [
+    "EN",
+    "DE"
+  ],
+  "origin_country": "UK",
+  "sector": [
+    "localgov",
+    "council",
+    "education",
+    "medicine",
+    "etc ..."
+  ],
+  "category": [
+    "website",
+    "software product",
+    "election software",
+    "education platform",
+    "specific type of category ",
+    "etc ..."
+  ],
+  "licence": [
+    "MIT",
+    "GNU-3",
+    "any-type-of-licence"
+  ],
+  "developers": [
+    {
+      "developer_name": "developer name",
+      "developer_logo_url": "https://developer.logo",
+      "developer_url": "https://developer.domain",
+      "developer_category": "Public"
+    }
+  ],
+  "maintainers": [
+    {
+      "maintainer_name": "maintainer 1",
+      "maintainer_url": "https://maintainer1.url",
+      "maintainer_logo_url": "https://maintainer1.logo.url",
+      "maintainer_repository": "https://git.repository if it exists"
+    }
+  ],
+  "users": [
+    {
+      "user_name": "City council",
+      "user_location": "London, UK",
+      "user_logo_url": "https://link.to.logo.if.it.exists",
+      "user_url": "https://link.to.curent.public.website",
+      "user_geolocation": {
+        "lat": 53.371376,
+        "long": -1.23398
+      }
+    }
+  ]
+}

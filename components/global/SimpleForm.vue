@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div>
+      You can download a template json file from
+      <a href="/resources/entry.json" download>entry.json</a>
+    </div>
     <ValidationObserver ref="simpleform" v-slot="{ handleSubmit }">
       <form
         id="simpleform"

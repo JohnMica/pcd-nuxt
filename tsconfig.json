@@ -28,12 +28,16 @@
       "@nuxt/types",
       "@nuxt/content",
       "buefy/types",
-      "nuxt-leaflet"
+      "nuxt-leaflet",
+      "cypress"
     ]
   },
   "exclude": [
     "node_modules",
     ".nuxt",
     "dist"
+  ],
+  "include": [
+    "**/*.ts"
   ]
 }
