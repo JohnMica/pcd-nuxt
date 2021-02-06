@@ -36,10 +36,20 @@ export default {
     icon: {
       source: './static/img/logo.png',
       sizes: [64, 120, 144, 152, 192, 384, 512],
-      targetDir: 'img',
+    },
+    manifest: {
+      name: 'PublicCode Directory',
+      short_name: 'PCD',
+      description:
+        'The federated DataBase of Open Source Software used by public institutions',
+      lang: 'en',
+      theme_color: '#4DBA87',
+      useWebManifestExtension: false,
+      startUrl: '/',
     },
   },
-  components: [{ path: '~/components', extensions: ['vue'] }],
+  telemetry: true,
+  components: true,
   buildModules: ['@nuxt/components', '@nuxt/typescript-build'],
   modules: [
     'nuxt-buefy',
@@ -48,8 +58,19 @@ export default {
     'nuxt-leaflet',
     '@nuxt/content',
   ],
+  modern: process.env.NODE_ENV === 'production',
   generate: {
     fallback: true,
+  },
+  render: {
+    http2: {
+      push: false,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      pushAssets: (req, res, publicPath, preloadFIles) =>
+        preloadFIles
+          .filter((f) => f.asType === 'script' && f.file === 'runtime.js')
+          .map((f) => `<${publicPath}${f.file}>; rel=preload; as=${f.asType}`),
+    },
   },
   axios: {},
   content: {
