@@ -17,6 +17,7 @@
                 alt="PublicCode Directory logo"
                 class="mr-2"
                 width="35"
+                height="35"
               />
               PublicCode Directory
             </NuxtLink>
@@ -29,6 +30,7 @@
                 class="logo"
                 alt="Twitter logo"
                 width="30"
+                height="30"
               />
             </a>
           </div>

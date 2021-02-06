@@ -12,6 +12,8 @@
               <img
                 v-if="product.logo_url"
                 class="small-logo"
+                height="40"
+                width="auto"
                 :src="product.logo_url"
                 :alt="`${product.name} logo`"
               />

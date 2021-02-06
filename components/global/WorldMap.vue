@@ -30,6 +30,8 @@
             <img
               v-if="selectedMapObj.logo_url"
               class="small-logo"
+              height="40"
+              width="auto"
               :src="selectedMapObj.logo_url"
               :alt="`${selectedMapObj.name} logo`"
             />
@@ -277,7 +279,7 @@ export default Vue.extend({
               url: user.user_url,
               logo: user.user_logo_url ? user.user_logo_url : '',
               name: user.user_name,
-              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' class='small-logo'/>  ${user.user_name}</div>`,
+              attribution: `<div class='is-flex is-column has-text-centered'><img src='${user.user_logo_url}' width='auto' height='40' alt='${user.user_name} logo' class='small-logo'/>  ${user.user_name}</div>`,
             } as PropOptions<MarketObject>
             this.locations.push(newUser)
           }

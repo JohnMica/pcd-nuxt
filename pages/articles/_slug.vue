@@ -14,6 +14,8 @@
               <img
                 :src="require(`~/assets/blog-images/${article.image}`)"
                 :alt="article.title"
+                height="550"
+                width="550"
               />
               <div>
                 {{ article.intro }}

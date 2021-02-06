@@ -6,7 +6,12 @@
         <NuxtLink
           :to="{ name: 'articles-slug', params: { slug: article.slug } }"
         >
-          <img :src="article.img" />
+          <img
+            :src="article.img"
+            width="auto"
+            height="80"
+            :alt="`${article.title} image `"
+          />
           <div>
             <h2>{{ article.title }}</h2>
             <p>by {{ article.author.name }}</p>

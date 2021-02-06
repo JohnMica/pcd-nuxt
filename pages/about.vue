@@ -12,6 +12,8 @@
               class="feature-image"
               :src="require(`~/assets/images/${feature.image}`)"
               :alt="feature.title"
+              width="250"
+              height="250"
             />
           </div>
           <div class="feature">
@@ -43,6 +45,8 @@
                 class="partner-image"
                 src="~/assets/logos/public-code-logo.svg"
                 alt="Public Code Logo"
+                width="40"
+                height="40"
               />
             </a>
             <a
@@ -55,6 +59,8 @@
                 class="partner-image"
                 :src="require('~/assets/logos/fsfe-logo.svg')"
                 alt="FSFE logo"
+                width="auto"
+                height="40"
               />
             </a>
             <a
@@ -67,6 +73,8 @@
                 class="partner-image"
                 :src="require('~/assets/logos/opusvl-black-logo.svg')"
                 alt="OpusVL logo"
+                width="auto"
+                height="40"
               />
             </a>
             <a
@@ -79,6 +87,8 @@
                 class="partner-image"
                 :src="require('~/assets/logos/OpenUK-logo.svg')"
                 alt="OpenUK"
+                width="auto"
+                height="40"
               />
             </a>
           </div>
@@ -106,7 +116,7 @@
                     :href="item.website"
                     rel="noopener"
                     target="_blank"
-                    class="pa-2 is-inline-block"
+                    class="p-2 is-inline-block"
                   >
                     <img
                       :src="require(`~/assets/images/globe.svg`)"
@@ -118,7 +128,7 @@
                   <a
                     v-if="item.email"
                     :href="`mailto:${item.email}`"
-                    class="pa-2 is-inline-block"
+                    class="p-2 is-inline-block"
                   >
                     <img
                       :src="require(`~/assets/images/email.svg`)"
@@ -134,7 +144,7 @@
                     :href="social.link"
                     rel="noopener"
                     target="_blank"
-                    class="pa-2 is-inline-block"
+                    class="p-2 is-inline-block"
                   >
                     <img
                       :src="require(`~/assets/images/${social.image}`)"

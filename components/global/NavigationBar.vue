@@ -7,6 +7,7 @@
           alt="PublicCode Directory logo"
           class="mr-2"
           width="35"
+          height="35"
         />
         PublicCode Directory
       </b-navbar-item>

@@ -30,6 +30,8 @@
                   <img
                     src="~/assets/images/directory.svg"
                     alt="directory Image"
+                    width="40"
+                    height="40"
                   />
                   <span class="title is-spaced is-5">Directory</span>
                   <span class="subtitle is-6"
@@ -42,6 +44,8 @@
                   <img
                     src="~/assets/images/submit-project.svg"
                     alt="Submit Image"
+                    width="40"
+                    height="40"
                   />
                   <span class="title is-spaced is-5">Submit Project</span>
                   <span class="subtitle is-6">

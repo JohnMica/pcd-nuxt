@@ -36,6 +36,8 @@
                 <img
                   src="~/assets/images/directory.svg"
                   alt="directory Image"
+                  width="40"
+                  height="40"
                 />
                 <p class="title is-spaced is-4">Directory</p>
                 <p class="subtitle is-6">Browse the Public Code Directory</p>
@@ -46,6 +48,8 @@
                 <img
                   src="~/assets/images/submit-project.svg"
                   alt="Submit Image"
+                  width="40"
+                  height="40"
                 />
                 <p class="title is-spaced is-4">Submit Project</p>
                 <p class="subtitle is-6">

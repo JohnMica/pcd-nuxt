@@ -137,7 +137,8 @@
               <img
                 class="is-large"
                 src="@/assets/images/emoticon-sad.svg"
-                alt="emoticon"
+                alt="emoticon"  height="40"
+                width="auto"
               />
             </p>
 
